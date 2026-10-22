@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Re:Bean — Nến Thơm Tái Chế Từ Bã Cà Phê</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="site-header" id="header">
+    <div class="header-container">
+      <a href="#" class="brand-logo">
+        <span class="logo-mark">Re:</span><span class="logo-text">Bean</span>
+        <span class="logo-sub">Artisanal Coffee Candle</span>
+      </a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#story" class="nav-link">Câu chuyện tái sinh</a>
+        <a href="#anatomy" class="nav-link">Cấu trúc 2-trong-1</a>
+        <a href="#workshop" class="nav-link">Quy trình 7 bước</a>
+        <a href="#purity" class="nav-link">Cam kết 4 KHÔNG</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#workshop" class="btn-header-cta">Khám phá quy trình</a>
+        <button class="btn-hamburger" id="btn-hamburger" aria-label="Mở menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="drawer-header">
+      <span class="drawer-logo">Re:Bean</span>
+      <button class="btn-close-drawer" id="btn-close-drawer" aria-label="Đóng menu">&times;</button>
+    </div>
+    <nav class="drawer-nav">
+      <a href="#story" class="drawer-link">Câu chuyện tái sinh</a>
+      <a href="#anatomy" class="drawer-link">Cấu trúc 2-trong-1</a>
+      <a href="#workshop" class="drawer-link">Quy trình 7 bước</a>
+      <a href="#purity" class="drawer-link">Cam kết 4 KHÔNG</a>
+      <a href="#workshop" class="drawer-btn-cta">Khám phá xưởng chế tác</a>
+    </nav>
+  </div>
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+
+  <!-- Main Content -->
+  <main id="app">
+    <!-- PHẦN 1: HERO SECTION (Split Editorial Layout) -->
+    <section class="hero-section" id="hero">
+      <div class="hero-container">
+        <!-- Cột trái: Nội dung & Triết lý tái sinh -->
+        <div class="hero-content">
+          <div class="hero-tag">
+            <span class="tag-icon">🌱</span>
+            <span class="tag-text">Nến Thơm Sinh Thái · Dự án Be Startup 2026</span>
+          </div>
+
+          <h1 class="hero-title">
+            Hạt cà phê không kết thúc ở đáy ly.<br>
+            <span class="hero-title-italic">Một vòng đời thuần khiết bắt đầu.</span>
+          </h1>
+
+          <p class="hero-description">
+            Mỗi năm, hàng tấn bã cà phê bị thải bỏ dù còn giữ trọn giá trị sinh học và hương thơm tự nhiên. Re:Bean tái sinh bã cà phê Việt Nam thành ngọn nến thủ công <strong>2-trong-1 độc bản</strong>: thắp sáng thư giãn khi mở nắp, và tiếp tục hút ẩm, khử mùi phòng 24/7 nhờ túi lọc bã cà phê hữu cơ tích hợp khi đậy nắp.
+          </p>
+
+          <!-- 3 Chỉ số thực chứng -->
+          <div class="hero-metrics-grid">
+            <div class="metric-card">
+              <span class="metric-num">99.8%</span>
+              <span class="metric-label">Sinh khối cà phê được tái sinh</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-num">0%</span>
+              <span class="metric-label">Paraffin độc hại & bấc chì</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-num">24/7</span>
+              <span class="metric-label">Hút ẩm & khử mùi khi đậy nắp</span>
+            </div>
+          </div>
+
+          <!-- Nút hành động -->
+          <div class="hero-actions">
+            <a href="#story" class="btn btn-primary">
+              <span>Đọc câu chuyện hạt cà phê</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#anatomy" class="btn btn-secondary">
+              <span>Xem cấu trúc 2-trong-1</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Cột phải: Khung ảnh nghệ nhân & Huy hiệu độc bản -->
+        <div class="hero-visual">
+          <div class="visual-frame">
+            <div class="visual-glow"></div>
+            <img 
+              src="ReBean_v4_01_Mockup.png" 
+              alt="Hũ nến thơm Re:Bean tái chế từ bã cà phê với nắp gỗ và túi lọc khử mùi" 
+              class="hero-product-img"
+              loading="eager"
+            >
+            
+            <!-- Floating Badge 1: Cấu trúc 2-trong-1 -->
+            <div class="floating-badge badge-top-right">
+              <div class="badge-icon-box">🕯️</div>
+              <div class="badge-text">
+                <strong>Đột phá 2-trong-1</strong>
+                <span>Mở thắp sáng · Đậy khử mùi</span>
+              </div>
+            </div>
+
+            <!-- Floating Badge 2: Xử lý khoa học -->
+            <div class="floating-badge badge-bottom-left">
+              <div class="badge-icon-box">☕</div>
+              <div class="badge-text">
+                <strong>100% Bã Cà Phê Thu Gom</strong>
+                <span>Sấy nhiệt 85°C tiệt trùng</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
