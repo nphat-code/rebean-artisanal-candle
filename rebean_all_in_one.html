@@ -1238,7 +1238,7 @@ a {
 }
 
 .hotspot-filter {
-  top: 44px;
+  top: 36px;
   left: -24px;
 }
 
@@ -1352,7 +1352,7 @@ a {
 }
 
 .slice-pouch-fabric {
-  height: 34px;
+  height: 18px;
   background: linear-gradient(180deg, #E6DCBA 0%, #D4C49E 100%);
   border: 1.5px dashed #8F724E;
   border-top: none;
@@ -1360,7 +1360,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
   padding: 0 0.5rem;
 }
 
@@ -1460,9 +1460,9 @@ a {
   margin-top: 3px;
 }
 
-/* Headspace & Wick Flame (Bấc nến cắm vững chãi trên mặt sáp, không lơ lửng) */
+/* Headspace & Wick Flame (Bấc nến cắm vững chãi trên mặt sáp, giữ khoảng cách ly an toàn khi đậy nắp) */
 .jar-headspace {
-  height: 28px;
+  height: 34px;
   position: relative;
   width: 100%;
   flex-shrink: 0;
@@ -1497,7 +1497,7 @@ a {
   left: 50%;
   transform: translateX(-50%);
   width: 16px;
-  height: 28px;
+  height: 26px;
   z-index: 9;
   display: flex;
   flex-direction: column;
@@ -1508,7 +1508,7 @@ a {
 
 .wick-stem {
   width: 3.5px;
-  height: 13px;
+  height: 11px;
   background: linear-gradient(180deg, #1C120C 0%, #382417 100%);
   border-radius: 2px;
   position: relative;
@@ -1517,11 +1517,11 @@ a {
 
 .wick-flame {
   position: absolute;
-  bottom: 11px;
+  bottom: 9px;
   left: 50%;
   transform: translateX(-50%);
   width: 14px;
-  height: 19px;
+  height: 18px;
   transition: all 0.3s ease;
   z-index: 3;
 }
@@ -1669,7 +1669,7 @@ a {
 }
 
 .jar-interactive-stage.closed .lid-assembly {
-  transform: translateY(56px);
+  transform: translateY(40px);
 }
 
 .jar-interactive-stage.closed .slice-lid-wood {
@@ -1678,20 +1678,27 @@ a {
 }
 
 .jar-interactive-stage.closed .slice-filter {
-  opacity: 0.85;
+  opacity: 0.95;
 }
 
 .jar-interactive-stage.closed .candle-wick-assembly {
-  opacity: 0.15;
+  opacity: 0.85;
 }
 
 .jar-interactive-stage.closed .wick-flame {
   opacity: 0;
   transform: translateX(-50%) scale(0);
+  pointer-events: none;
+}
+
+.jar-interactive-stage.closed .jar-headspace::after {
+  opacity: 0;
+  transform: translateX(-50%) scale(0.6);
+  transition: all 0.4s ease;
 }
 
 .jar-interactive-stage.closed .hotspot-wick {
-  opacity: 0.35;
+  opacity: 0.25;
   pointer-events: none;
 }
 
@@ -2354,7 +2361,7 @@ a {
               <div class="card-num">GÓC 02</div>
               <h3 class="card-heading">Chiếc Túi Bã Khử Mùi Dưới Nắp</h3>
               <p class="card-summary">
-                Món quà bất ngờ chúng mình đính kèm dưới nắp: Chiếc túi vải nhỏ chứa bã cà phê đã được sấy thơm giòn. Mỗi khi không đốt nến, bạn chỉ cần đậy nắp lại, túi bã sẽ lặng lẽ hút ẩm và gom sạch mùi phòng cho bạn cả ngày.
+                Món quà bất ngờ chúng mình đính kèm dưới nắp: Chiếc túi vải nhỏ chứa bã cà phê sấy giòn thơm, may dẹt ôm sát lòng nắp gỗ. Mỗi khi không đốt nến (đã tắt lửa), bạn đậy nắp lại; túi bã được giữ khoảng đệm cách ly an toàn trên mặt sáp, tuyệt đối không chạm hay đè bấc nến, lặng lẽ hút ẩm và gom sạch mùi phòng cho bạn cả ngày.
               </p>
               <div class="card-specs-list">
                 <div class="spec-row">
@@ -2364,6 +2371,10 @@ a {
                 <div class="spec-row">
                   <span class="spec-name">Tác dụng:</span>
                   <span class="spec-value">Hút ẩm phòng &amp; gom sạch mùi khó chịu 24/7</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-name">Thiết kế an toàn:</span>
+                  <span class="spec-value">May dẹt ôm sát lòng nắp, cách ly 15mm với bấc sáp</span>
                 </div>
               </div>
             </div>
@@ -2515,7 +2526,7 @@ window.setJarViewMode = function(mode) {
     if (btnExplode) btnExplode.classList.remove('active');
     if (stateBadge) {
       stateBadge.className = 'jar-state-badge mode-deodorize';
-      stateBadge.innerHTML = '<span class="badge-icon">🌱</span><span class="badge-text">Đang đậy nắp: Túi bã tự nhiên hút ẩm &amp; khử mùi</span>';
+      stateBadge.innerHTML = '<span class="badge-icon">🌱</span><span class="badge-text">Đang đậy nắp: Túi bã hút ẩm &amp; khử mùi (cách ly an toàn mặt sáp)</span>';
     }
   }
 };

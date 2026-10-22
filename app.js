@@ -83,7 +83,7 @@ window.setJarViewMode = function(mode) {
     if (btnExplode) btnExplode.classList.remove('active');
     if (stateBadge) {
       stateBadge.className = 'jar-state-badge mode-deodorize';
-      stateBadge.innerHTML = '<span class="badge-icon">🌱</span><span class="badge-text">Đang đậy nắp: Túi bã tự nhiên hút ẩm &amp; khử mùi</span>';
+      stateBadge.innerHTML = '<span class="badge-icon">🌱</span><span class="badge-text">Đang đậy nắp: Túi bã hút ẩm &amp; khử mùi (cách ly an toàn mặt sáp)</span>';
     }
   }
 };
