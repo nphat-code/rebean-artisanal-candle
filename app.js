@@ -63,6 +63,7 @@ window.setJarViewMode = function(mode) {
   const stage = document.getElementById('jar-stage');
   const btnExplode = document.getElementById('btn-explode');
   const btnCollapse = document.getElementById('btn-collapse');
+  const stateBadge = document.getElementById('jar-state-badge');
 
   if (!stage) return;
 
@@ -71,11 +72,19 @@ window.setJarViewMode = function(mode) {
     stage.classList.remove('closed');
     if (btnExplode) btnExplode.classList.add('active');
     if (btnCollapse) btnCollapse.classList.remove('active');
+    if (stateBadge) {
+      stateBadge.className = 'jar-state-badge mode-light';
+      stateBadge.innerHTML = '<span class="badge-icon">✨</span><span class="badge-text">Đang mở nắp: Tỏa hương êm dịu, ấm cúng</span>';
+    }
   } else {
     stage.classList.remove('exploded');
     stage.classList.add('closed');
     if (btnCollapse) btnCollapse.classList.add('active');
     if (btnExplode) btnExplode.classList.remove('active');
+    if (stateBadge) {
+      stateBadge.className = 'jar-state-badge mode-deodorize';
+      stateBadge.innerHTML = '<span class="badge-icon">🌱</span><span class="badge-text">Đang đậy nắp: Túi bã tự nhiên hút ẩm &amp; khử mùi</span>';
+    }
   }
 };
 

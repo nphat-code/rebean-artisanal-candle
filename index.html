@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=2.3">
+  <link rel="stylesheet" href="style.css?v=2.4">
 </head>
 <body>
   <!-- Header / Navigation -->
@@ -274,22 +274,6 @@
           <p class="section-subtitle">
             Không chỉ là ngọn nến thơm thư giãn mỗi tối, từng chi tiết nhỏ đều được chúng mình chăm chút tỉ mỉ từ những nguyên liệu mộc mạc, lành tính cho sức khỏe gia đình bạn.
           </p>
-
-          <!-- Thanh điều khiển chế độ hiển thị -->
-          <div class="anatomy-controls">
-            <div class="view-toggles">
-              <button class="btn-toggle active" id="btn-explode" onclick="setJarViewMode('exploded')">
-                <span>🕯️ Khi Mở Nắp Thắp Sáng</span>
-              </button>
-              <button class="btn-toggle" id="btn-collapse" onclick="setJarViewMode('closed')">
-                <span>🪵 Khi Đậy Nắp Nghỉ Ngơi</span>
-              </button>
-            </div>
-            <div class="dual-mode-pills">
-              <span class="mode-pill pill-light">✨ Mở nắp: Tỏa hương êm dịu, ấm cúng</span>
-              <span class="mode-pill pill-deodorize">🌱 Đậy nắp: Khử mùi &amp; Hút ẩm tự nhiên</span>
-            </div>
-          </div>
         </div>
 
         <!-- Bố cục 2 cột: Trình xem mô hình (Trái) & Chi tiết 5 góc mộc (Phải) -->
@@ -297,6 +281,23 @@
           <!-- Cột trái: Mô hình hũ nến thực tế tương tác -->
           <div class="anatomy-visual-col">
             <div class="jar-stage-wrapper">
+              
+              <!-- Bảng điều khiển nắp nến đặt trực tiếp chung với hũ nến -->
+              <div class="jar-controls-header">
+                <div class="view-toggles">
+                  <button class="btn-toggle active" id="btn-explode" onclick="setJarViewMode('exploded')">
+                    <span>🕯️ Mở Nắp Thắp Sáng</span>
+                  </button>
+                  <button class="btn-toggle" id="btn-collapse" onclick="setJarViewMode('closed')">
+                    <span>🪵 Đậy Nắp Nghỉ Ngơi</span>
+                  </button>
+                </div>
+                <div class="jar-state-badge mode-light" id="jar-state-badge">
+                  <span class="badge-icon">✨</span>
+                  <span class="badge-text">Đang mở nắp: Tỏa hương êm dịu, ấm cúng</span>
+                </div>
+              </div>
+
               <div class="jar-interactive-stage exploded" id="jar-stage">
                 
                 <!-- Cột ghi chú mũi tên so le bên trái (Left Callouts) -->
@@ -584,6 +585,6 @@
       </div>
     </section>
   </main>
-  <script src="app.js?v=2.3"></script>
+  <script src="app.js?v=2.4"></script>
 </body>
 </html>

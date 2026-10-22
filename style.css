@@ -1026,27 +1026,30 @@ a {
   border-top: 1px solid var(--c-border);
 }
 
-.anatomy-controls {
+/* Jar Controls Header: Đặt trực tiếp bên trên hũ nến trong cùng một thẻ */
+.jar-controls-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.25rem;
-  margin-top: 1.75rem;
-  margin-bottom: 2.75rem;
+  gap: 0.85rem;
+  width: 100%;
+  margin-bottom: 0.75rem;
+  padding-bottom: 1.15rem;
+  border-bottom: 1px solid rgba(212, 197, 181, 0.45);
 }
 
 .view-toggles {
   display: inline-flex;
-  gap: 0.5rem;
-  background: var(--c-surface);
+  gap: 0.35rem;
+  background: #F4ECE3;
   padding: 0.35rem;
   border-radius: var(--radius-full);
-  border: 1px solid var(--c-border);
-  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(212, 197, 181, 0.7);
+  box-shadow: inset 0 1px 3px rgba(44, 27, 19, 0.06);
 }
 
 .btn-toggle {
-  padding: 0.55rem 1.35rem;
+  padding: 0.55rem 1.25rem;
   border-radius: var(--radius-full);
   font-size: 0.86rem;
   font-weight: 600;
@@ -1055,6 +1058,9 @@ a {
   cursor: pointer;
   color: var(--c-text-muted);
   transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .btn-toggle:hover {
@@ -1064,31 +1070,28 @@ a {
 .btn-toggle.active {
   background: var(--c-coffee);
   color: var(--c-surface);
-  box-shadow: 0 4px 12px rgba(74, 53, 37, 0.2);
+  box-shadow: 0 3px 10px rgba(74, 53, 37, 0.25);
 }
 
-.dual-mode-pills {
-  display: flex;
-  gap: 0.85rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.mode-pill {
+.jar-state-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   font-size: 0.82rem;
   font-weight: 600;
-  padding: 0.4rem 1rem;
+  padding: 0.35rem 0.95rem;
   border-radius: var(--radius-full);
   border: 1px solid;
+  transition: all 0.3s ease;
 }
 
-.pill-light {
+.jar-state-badge.mode-light {
   background: #FFF9F2;
   color: #B35817;
   border-color: rgba(179, 88, 23, 0.3);
 }
 
-.pill-deodorize {
+.jar-state-badge.mode-deodorize {
   background: #F0F6F2;
   color: var(--c-sage);
   border-color: rgba(61, 102, 78, 0.3);
@@ -1769,8 +1772,37 @@ a {
   }
 
   .jar-stage-wrapper {
-    padding: 1.5rem 0.4rem 1.25rem;
+    padding: 1.25rem 0.5rem 1.25rem;
     overflow: hidden;
+  }
+
+  .jar-controls-header {
+    gap: 0.55rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.85rem;
+  }
+
+  .view-toggles {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    padding: 0.25rem;
+  }
+
+  .btn-toggle {
+    flex: 1;
+    padding: 0.45rem 0.4rem;
+    font-size: 0.76rem;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  .jar-state-badge {
+    font-size: 0.72rem;
+    padding: 0.3rem 0.65rem;
+    max-width: 95%;
+    text-align: center;
+    justify-content: center;
   }
 
   .jar-interactive-stage {
