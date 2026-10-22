@@ -1756,12 +1756,12 @@ a {
 /* Responsive Rules for Anatomy */
 @media (max-width: 1024px) {
   .anatomy-section {
-    padding: 4rem 1.25rem 5rem;
+    padding: 3.5rem 1rem 4.5rem;
   }
 
   .anatomy-layout {
     grid-template-columns: 1fr;
-    gap: 2.75rem;
+    gap: 2.5rem;
   }
 
   .anatomy-visual-col {
@@ -1769,43 +1769,90 @@ a {
   }
 
   .jar-stage-wrapper {
-    padding: 2rem 1rem 1.5rem;
+    padding: 1.5rem 0.4rem 1.25rem;
+    overflow: hidden;
   }
 
   .jar-interactive-stage {
-    flex-direction: column;
-    gap: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  .jar-model-wrapper {
+    width: 165px;
+    transform: scale(0.85);
+    transform-origin: center center;
+    flex-shrink: 0;
   }
 
   .callout-column {
-    height: auto;
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.65rem;
-  }
-
-  .callout-left,
-  .callout-right {
-    align-items: center;
-  }
-
-  .callout-pointer {
-    display: none;
-  }
-
-  .callout-left .callout-text {
-    text-align: left;
+    height: 295px;
+    min-width: unset;
+    width: auto;
+    flex: 1;
+    max-width: 98px;
+    justify-content: space-between;
   }
 
   .callout-card {
-    padding: 0.4rem 0.7rem;
+    padding: 0.32rem 0.45rem;
+    gap: 0.3rem;
+    box-shadow: 0 2px 8px rgba(44, 27, 19, 0.08);
+  }
+
+  .callout-num {
+    width: 17px;
+    height: 17px;
+    font-size: 0.62rem;
+  }
+
+  .callout-text strong {
+    font-size: 0.68rem;
+    white-space: normal;
+    line-height: 1.15;
+  }
+
+  .callout-text span {
+    display: none;
+  }
+
+  .pointer-line {
+    width: 10px;
+  }
+
+  .pointer-dot {
+    width: 5px;
+    height: 5px;
   }
 
   .detail-card:hover,
   .detail-card.active {
     transform: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .jar-model-wrapper {
+    width: 150px;
+    transform: scale(0.78);
+  }
+
+  .callout-column {
+    max-width: 86px;
+    height: 275px;
+  }
+
+  .callout-text strong {
+    font-size: 0.62rem;
+  }
+
+  .pointer-line {
+    width: 6px;
   }
 }
 
