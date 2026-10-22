@@ -1016,3 +1016,383 @@ a {
     gap: 1rem;
   }
 }
+
+/* ==========================================================================
+   Phần 3: Giải Phẫu Cấu Trúc Hũ Nến 2-trong-1 (Interactive Exploded Model)
+   ========================================================================== */
+.anatomy-section {
+  padding: 5.5rem 1.5rem 6.5rem;
+  background: linear-gradient(180deg, #FAF6F0 0%, #F5EDE1 100%);
+  border-top: 1px solid var(--c-border);
+}
+
+.anatomy-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+  margin-bottom: 2.75rem;
+}
+
+.view-toggles {
+  display: inline-flex;
+  gap: 0.5rem;
+  background: var(--c-surface);
+  padding: 0.35rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--c-border);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-toggle {
+  padding: 0.55rem 1.35rem;
+  border-radius: var(--radius-full);
+  font-size: 0.86rem;
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--c-text-muted);
+  transition: all 0.25s ease;
+}
+
+.btn-toggle:hover {
+  color: var(--c-dark);
+}
+
+.btn-toggle.active {
+  background: var(--c-coffee);
+  color: var(--c-surface);
+  box-shadow: 0 4px 12px rgba(74, 53, 37, 0.2);
+}
+
+.dual-mode-pills {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.mode-pill {
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  border: 1px solid;
+}
+
+.pill-light {
+  background: #FFF9F2;
+  color: #B35817;
+  border-color: rgba(179, 88, 23, 0.3);
+}
+
+.pill-deodorize {
+  background: #F0F6F2;
+  color: var(--c-sage);
+  border-color: rgba(61, 102, 78, 0.3);
+}
+
+/* Layout */
+.anatomy-layout {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 3.5rem;
+  align-items: flex-start;
+}
+
+.anatomy-visual-col {
+  position: sticky;
+  top: 90px;
+}
+
+.jar-stage-wrapper {
+  background: var(--c-surface);
+  border: 1.5px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem 1.8rem;
+  box-shadow: var(--shadow-elevated);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.jar-stage {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 1rem 0;
+}
+
+.jar-stage.closed {
+  gap: 2px;
+}
+
+.jar-stage.closed .jar-slice {
+  border-radius: 0;
+}
+
+.jar-stage.closed .slice-lid {
+  border-radius: 12px 12px 0 0;
+}
+
+.jar-stage.closed .slice-jar {
+  border-radius: 0 0 14px 14px;
+}
+
+.jar-stage.closed .coffee-particles,
+.jar-stage.closed .flame-preview {
+  display: none;
+}
+
+/* Slices */
+.jar-slice {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.28s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.15rem;
+  user-select: none;
+}
+
+.jar-slice:hover,
+.jar-slice.active {
+  border-color: var(--c-wood);
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(74, 53, 37, 0.15);
+}
+
+.slice-inner-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.slice-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+}
+
+.indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c-gold);
+}
+
+/* Individual Slice Aesthetics */
+.slice-lid {
+  background: linear-gradient(135deg, #D4A373 0%, #A66E38 100%);
+  color: #FFFFFF;
+  border-radius: 12px 12px 4px 4px;
+  box-shadow: 0 4px 12px rgba(166, 110, 56, 0.25);
+}
+
+.slice-filter {
+  background: linear-gradient(135deg, #4A3525 0%, #2E1F14 100%);
+  color: #FAF6EE;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(46, 31, 20, 0.25);
+}
+
+.coffee-particles {
+  font-size: 0.85rem;
+  margin-right: 0.4rem;
+}
+
+.slice-wick {
+  background: #FAF8F5;
+  border: 1.5px dashed var(--c-border);
+  color: var(--c-dark);
+}
+
+.flame-preview {
+  font-size: 1rem;
+  margin-right: 0.35rem;
+  animation: flicker 1.8s infinite alternate;
+}
+
+@keyframes flicker {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 6px rgba(255, 170, 0, 0.6)); }
+}
+
+.slice-wax {
+  background: linear-gradient(135deg, #FFFDF8 0%, #F5ECE0 100%);
+  color: var(--c-dark);
+  border: 1px solid var(--c-border);
+}
+
+.slice-jar {
+  background: linear-gradient(135deg, rgba(166, 110, 56, 0.3) 0%, rgba(74, 53, 37, 0.45) 100%);
+  border: 1.5px solid var(--c-wood);
+  color: var(--c-dark);
+  border-radius: 4px 4px 14px 14px;
+}
+
+/* Pin Quick Rail */
+.pin-quick-rail {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1.85rem;
+  width: 100%;
+  padding-top: 1.25rem;
+  border-top: 1px dashed var(--c-border);
+}
+
+.pin-btn {
+  padding: 0.38rem 0.8rem;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: var(--c-bg);
+  border: 1px solid var(--c-border);
+  color: var(--c-text-muted);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.pin-btn:hover {
+  border-color: var(--c-coffee);
+  color: var(--c-dark);
+}
+
+.pin-btn.active {
+  background: var(--c-coffee);
+  color: var(--c-surface);
+  border-color: var(--c-coffee);
+  box-shadow: 0 3px 8px rgba(74, 53, 37, 0.2);
+}
+
+/* Detail Cards */
+.anatomy-details-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-card {
+  background: var(--c-surface);
+  border: 1.5px solid var(--c-border);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  margin-bottom: 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+}
+
+.detail-card:hover {
+  border-color: rgba(140, 88, 53, 0.5);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-elevated);
+}
+
+.detail-card.active {
+  border-color: var(--c-wood);
+  background: #FFFCF9;
+  transform: translateX(6px);
+  box-shadow: 0 12px 30px rgba(74, 53, 37, 0.1);
+}
+
+.detail-card.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 15%;
+  height: 70%;
+  width: 4px;
+  background: var(--c-wood);
+  border-radius: 0 4px 4px 0;
+}
+
+.card-num {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--c-gold);
+  margin-bottom: 0.45rem;
+}
+
+.card-heading {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--c-dark);
+  margin-bottom: 0.65rem;
+  line-height: 1.3;
+}
+
+.card-summary {
+  font-size: 0.92rem;
+  color: var(--c-text-muted);
+  line-height: 1.68;
+  margin-bottom: 1.25rem;
+}
+
+.card-specs-list {
+  background: var(--c-surface-soft);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+}
+
+.spec-name {
+  color: var(--c-text-muted);
+  font-weight: 600;
+}
+
+.spec-value {
+  color: var(--c-coffee);
+  font-weight: 700;
+  text-align: right;
+}
+
+/* Responsive Rules for Anatomy */
+@media (max-width: 1024px) {
+  .anatomy-section {
+    padding: 4rem 1.25rem 5rem;
+  }
+
+  .anatomy-layout {
+    grid-template-columns: 1fr;
+    gap: 2.75rem;
+  }
+
+  .anatomy-visual-col {
+    position: static;
+  }
+
+  .detail-card:hover,
+  .detail-card.active {
+    transform: none;
+  }
+}
+

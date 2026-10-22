@@ -260,6 +260,215 @@
         </div>
       </div>
     </section>
+
+    <!-- PHẦN 3: GIẢI PHẪU CẤU TRÚC HŨ NẾN 2-TRONG-1 -->
+    <section class="anatomy-section" id="anatomy">
+      <div class="section-container">
+        <!-- Tiêu đề phần -->
+        <div class="section-header text-center">
+          <div class="section-tag">
+            <span class="tag-icon">🔬</span>
+            <span class="tag-text">Kiến Trúc Độc Bản · Đột Phá 2-trong-1</span>
+          </div>
+          <h2 class="section-title">Giải phẫu cấu trúc hũ nến Re:Bean</h2>
+          <p class="section-subtitle">
+            Khám phá 5 tầng cấu trúc được tính toán khoa học: Khi mở nắp là ngọn nến thơm thư giãn, khi đậy nắp là bộ lọc hút ẩm &amp; khử mùi tự nhiên 24/7.
+          </p>
+
+          <!-- Thanh điều khiển chế độ hiển thị -->
+          <div class="anatomy-controls">
+            <div class="view-toggles">
+              <button class="btn-toggle active" id="btn-explode" onclick="setJarViewMode('exploded')">
+                <span>🔍 Tách Lớp Giải Phẫu</span>
+              </button>
+              <button class="btn-toggle" id="btn-collapse" onclick="setJarViewMode('closed')">
+                <span>🔒 Đóng Hũ Nguyên Khối</span>
+              </button>
+            </div>
+            <div class="dual-mode-pills">
+              <span class="mode-pill pill-light">🔥 Mở nắp: Thắp sáng sạch 100%</span>
+              <span class="mode-pill pill-deodorize">🌱 Đậy nắp: Khử mùi &amp; Hút ẩm 24/7</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bố cục 2 cột: Trình xem mô hình (Trái) & Chi tiết 5 tầng (Phải) -->
+        <div class="anatomy-layout">
+          <!-- Cột trái: Mô hình hũ nến phân tầng tương tác -->
+          <div class="anatomy-visual-col">
+            <div class="jar-stage-wrapper">
+              <div class="jar-stage exploded" id="jar-stage">
+                <!-- Layer 1: Nắp gỗ sồi -->
+                <div class="jar-slice slice-lid active" data-layer="lid" onclick="selectLayer('lid')">
+                  <div class="slice-graphics lid-graphic">
+                    <div class="lid-groove"></div>
+                    <span class="slice-inner-label">Nắp Gỗ Sồi Thông Khí</span>
+                  </div>
+                  <div class="slice-indicator">
+                    <span class="indicator-dot"></span>
+                    <span class="indicator-text">01. Nắp gỗ đối lưu</span>
+                  </div>
+                </div>
+
+                <!-- Layer 2: Túi lọc bã cà phê -->
+                <div class="jar-slice slice-filter" data-layer="filter" onclick="selectLayer('filter')">
+                  <div class="slice-graphics filter-graphic">
+                    <span class="coffee-particles">☕ ☕ ☕</span>
+                    <span class="slice-inner-label">Túi Lọc Bã Khử Mùi (Độ ẩm &lt; 3%)</span>
+                  </div>
+                  <div class="slice-indicator">
+                    <span class="indicator-dot"></span>
+                    <span class="indicator-text">02. Túi lọc bã hữu cơ</span>
+                  </div>
+                </div>
+
+                <!-- Layer 3: Bấc cotton không chì -->
+                <div class="jar-slice slice-wick" data-layer="wick" onclick="selectLayer('wick')">
+                  <div class="slice-graphics wick-graphic">
+                    <div class="wick-thread"></div>
+                    <div class="flame-preview">🔥</div>
+                    <span class="slice-inner-label">Bấc Cotton 100% Không Chì</span>
+                  </div>
+                  <div class="slice-indicator">
+                    <span class="indicator-dot"></span>
+                    <span class="indicator-text">03. Bấc dệt tự nhiên</span>
+                  </div>
+                </div>
+
+                <!-- Layer 4: Sáp đậu nành & dừa -->
+                <div class="jar-slice slice-wax" data-layer="wax" onclick="selectLayer('wax')">
+                  <div class="slice-graphics wax-graphic">
+                    <span class="slice-inner-label">100% Sáp Đậu Nành &amp; Dừa (Chuẩn IFRA)</span>
+                  </div>
+                  <div class="slice-indicator">
+                    <span class="indicator-dot"></span>
+                    <span class="indicator-text">04. Sáp thực vật thuần</span>
+                  </div>
+                </div>
+
+                <!-- Layer 5: Hũ thủy tinh hổ phách -->
+                <div class="jar-slice slice-jar" data-layer="jar" onclick="selectLayer('jar')">
+                  <div class="slice-graphics jar-graphic">
+                    <span class="slice-inner-label">Vỏ Hũ Thủy Tinh Hổ Phách Tái Sinh</span>
+                  </div>
+                  <div class="slice-indicator">
+                    <span class="indicator-dot"></span>
+                    <span class="indicator-text">05. Hũ thủy tinh chịu nhiệt</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Thanh nút chọn nhanh tầng bên dưới mô hình -->
+              <div class="pin-quick-rail">
+                <button class="pin-btn active" data-layer="lid" onclick="selectLayer('lid')">01. Nắp gỗ</button>
+                <button class="pin-btn" data-layer="filter" onclick="selectLayer('filter')">02. Túi lọc bã</button>
+                <button class="pin-btn" data-layer="wick" onclick="selectLayer('wick')">03. Bấc cotton</button>
+                <button class="pin-btn" data-layer="wax" onclick="selectLayer('wax')">04. Sáp thực vật</button>
+                <button class="pin-btn" data-layer="jar" onclick="selectLayer('jar')">05. Hũ thủy tinh</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cột phải: 5 Thẻ thông số kỹ thuật chi tiết -->
+          <div class="anatomy-details-col" id="anatomy-details">
+            <!-- Card 1: Nắp gỗ -->
+            <div class="detail-card active" data-layer="lid" onclick="selectLayer('lid')">
+              <div class="card-num">TẦNG 01</div>
+              <h3 class="card-heading">Nắp Gỗ Sồi Thông Khí Đối Lưu</h3>
+              <p class="card-summary">
+                Được tiện nguyên khối từ gỗ sồi bền vững, tích hợp rãnh hở 1.5mm thông minh giúp luồng không khí trong phòng đối lưu nhẹ nhàng qua túi bã mà không cần mở nắp.
+              </p>
+              <div class="card-specs-list">
+                <div class="spec-row">
+                  <span class="spec-name">Vật liệu:</span>
+                  <span class="spec-value">Gỗ sồi tự nhiên phủ dầu sáp ong</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-name">Công năng:</span>
+                  <span class="spec-value">Đối lưu khí thụ động · Chống ẩm mốc</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Túi lọc bã -->
+            <div class="detail-card" data-layer="filter" onclick="selectLayer('filter')">
+              <div class="card-num">TẦNG 02</div>
+              <h3 class="card-heading">Túi Lọc Bã Cà Phê Hữu Cơ</h3>
+              <p class="card-summary">
+                Trọng tâm của giải pháp 2-trong-1. Bã cà phê rang sấy kiệt độ ẩm &lt; 3% sở hữu hàng triệu vi xốp tự nhiên, hoạt động như một màng lọc carbon hấp phụ mùi hôi và hơi ẩm cực kỳ hiệu quả.
+              </p>
+              <div class="card-specs-list">
+                <div class="spec-row">
+                  <span class="spec-name">Độ ẩm kiểm soát:</span>
+                  <span class="spec-value">&lt; 3% (Đo bằng cảm biến hồng ngoại)</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-name">Cơ chế khử mùi:</span>
+                  <span class="spec-value">Hấp phụ vật lý mùi ẩm mốc, khói, thức ăn</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Bấc cotton -->
+            <div class="detail-card" data-layer="wick" onclick="selectLayer('wick')">
+              <div class="card-num">TẦNG 03</div>
+              <h3 class="card-heading">Bấc Cotton 100% Không Lõi Chì</h3>
+              <p class="card-summary">
+                Sợi bông cotton tự nhiên dệt chặt, ngâm ủ qua sáp đậu nành giúp duy trì ngọn lửa tĩnh lặng, thẳng đứng, không gây nổ lách tách và triệt tiêu 100% muội than bám bẩn trần nhà.
+              </p>
+              <div class="card-specs-list">
+                <div class="spec-row">
+                  <span class="spec-name">Tiêu chuẩn:</span>
+                  <span class="spec-value">100% Cotton hữu cơ · Không bấc kim loại</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-name">Chất lượng khói:</span>
+                  <span class="spec-value">Zero Black Soot (Không khói đen)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4: Sáp đậu nành & dừa -->
+            <div class="detail-card" data-layer="wax" onclick="selectLayer('wax')">
+              <div class="card-num">TẦNG 04</div>
+              <h3 class="card-heading">Sáp Đậu Nành &amp; Sáp Dừa Nguyên Chất</h3>
+              <p class="card-summary">
+                Điểm nóng chảy thấp (48°C – 52°C) giúp sáp tan chảy êm dịu, tạo bể sáp phẳng đều mà không để lại lòng chảo sâu. Kết hợp tinh dầu tự nhiên đạt chuẩn IFRA lan tỏa hương thơm thư giãn.
+              </p>
+              <div class="card-specs-list">
+                <div class="spec-row">
+                  <span class="spec-name">Thành phần:</span>
+                  <span class="spec-value">100% Sáp thực vật (0% Paraffin hóa dầu)</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-name">Chứng nhận hương:</span>
+                  <span class="spec-value">Chuẩn an toàn hô hấp quốc tế IFRA</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5: Hũ thủy tinh -->
+            <div class="detail-card" data-layer="jar" onclick="selectLayer('jar')">
+              <div class="card-num">TẦNG 05</div>
+              <h3 class="card-heading">Hũ Thủy Tinh Hổ Phách Tái Sinh</h3>
+              <p class="card-summary">
+                Độ dày thành hũ 3mm chịu sốc nhiệt vượt trội. Sắc nâu hổ phách bảo vệ cấu trúc tinh dầu khỏi ánh sáng UV. Dễ dàng làm sạch bằng nước ấm 60°C để tái sinh thành hũ đựng gia vị, bút viết hoặc cây cảnh.
+              </p>
+              <div class="card-specs-list">
+                <div class="spec-row">
+                  <span class="spec-name">Khả năng chịu nhiệt:</span>
+                  <span class="spec-value">Lên tới 120°C chống nứt vỡ</span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-name">Vòng đời:</span>
+                  <span class="spec-value">Tái sử dụng trọn đời (Zero Waste)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
   <script src="app.js"></script>
 </body>

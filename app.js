@@ -55,3 +55,65 @@ function initHeaderAndDrawer() {
     link.addEventListener('click', closeDrawer);
   });
 }
+
+/* ==========================================================================
+   Phần 3: Interactive Exploded Jar Anatomy
+   ========================================================================== */
+window.setJarViewMode = function(mode) {
+  const stage = document.getElementById('jar-stage');
+  const btnExplode = document.getElementById('btn-explode');
+  const btnCollapse = document.getElementById('btn-collapse');
+
+  if (!stage) return;
+
+  if (mode === 'exploded') {
+    stage.classList.add('exploded');
+    stage.classList.remove('closed');
+    if (btnExplode) btnExplode.classList.add('active');
+    if (btnCollapse) btnCollapse.classList.remove('active');
+  } else {
+    stage.classList.remove('exploded');
+    stage.classList.add('closed');
+    if (btnCollapse) btnCollapse.classList.add('active');
+    if (btnExplode) btnExplode.classList.remove('active');
+  }
+};
+
+window.selectLayer = function(layerId) {
+  if (!layerId) return;
+
+  // 1. Update slices in jar stage
+  const slices = document.querySelectorAll('.jar-slice');
+  slices.forEach(slice => {
+    if (slice.getAttribute('data-layer') === layerId) {
+      slice.classList.add('active');
+    } else {
+      slice.classList.remove('active');
+    }
+  });
+
+  // 2. Update pin buttons
+  const pins = document.querySelectorAll('.pin-btn');
+  pins.forEach(pin => {
+    if (pin.getAttribute('data-layer') === layerId) {
+      pin.classList.add('active');
+    } else {
+      pin.classList.remove('active');
+    }
+  });
+
+  // 3. Update detail cards
+  const cards = document.querySelectorAll('.detail-card');
+  cards.forEach(card => {
+    if (card.getAttribute('data-layer') === layerId) {
+      card.classList.add('active');
+      // On mobile devices, smoothly scroll active card into view
+      if (window.innerWidth <= 1024) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    } else {
+      card.classList.remove('active');
+    }
+  });
+};
+
