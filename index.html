@@ -294,78 +294,109 @@
 
         <!-- Bố cục 2 cột: Trình xem mô hình (Trái) & Chi tiết 5 tầng (Phải) -->
         <div class="anatomy-layout">
-          <!-- Cột trái: Mô hình hũ nến phân tầng tương tác -->
+          <!-- Cột trái: Mô hình hũ nến thực tế tương tác -->
           <div class="anatomy-visual-col">
             <div class="jar-stage-wrapper">
-              <div class="jar-stage exploded" id="jar-stage">
-                <!-- Layer 1: Nắp gỗ sồi -->
-                <div class="jar-slice slice-lid active" data-layer="lid" onclick="selectLayer('lid')">
-                  <div class="slice-graphics lid-graphic">
-                    <div class="lid-groove"></div>
-                    <span class="slice-inner-label">Nắp Gỗ Sồi Thông Khí</span>
-                  </div>
-                  <div class="slice-indicator">
-                    <span class="indicator-dot"></span>
-                    <span class="indicator-text">01. Nắp gỗ đối lưu</span>
-                  </div>
+              <div class="jar-interactive-stage exploded" id="jar-stage">
+                
+                <!-- Pin Rails tương tác bên cạnh mô hình -->
+                <div class="anatomy-pins">
+                  <button class="pin-btn active" data-layer="lid" id="pin-1" onclick="selectLayer('lid')">
+                    <span class="pin-num">1</span>
+                    <span class="pin-tooltip">Nắp gỗ đối lưu</span>
+                  </button>
+                  <button class="pin-btn" data-layer="filter" id="pin-2" onclick="selectLayer('filter')">
+                    <span class="pin-num">2</span>
+                    <span class="pin-tooltip">Túi bã lọc mùi</span>
+                  </button>
+                  <button class="pin-btn" data-layer="wick" id="pin-3" onclick="selectLayer('wick')">
+                    <span class="pin-num">3</span>
+                    <span class="pin-tooltip">Bấc cotton không chì</span>
+                  </button>
+                  <button class="pin-btn" data-layer="wax" id="pin-4" onclick="selectLayer('wax')">
+                    <span class="pin-num">4</span>
+                    <span class="pin-tooltip">Sáp thực vật thuần</span>
+                  </button>
+                  <button class="pin-btn" data-layer="jar" id="pin-5" onclick="selectLayer('jar')">
+                    <span class="pin-num">5</span>
+                    <span class="pin-tooltip">Hũ thủy tinh hổ phách</span>
+                  </button>
                 </div>
 
-                <!-- Layer 2: Túi lọc bã cà phê -->
-                <div class="jar-slice slice-filter" data-layer="filter" onclick="selectLayer('filter')">
-                  <div class="slice-graphics filter-graphic">
-                    <span class="coffee-particles">☕ ☕ ☕</span>
-                    <span class="slice-inner-label">Túi Lọc Bã Khử Mùi (Độ ẩm &lt; 3%)</span>
+                <!-- Mô hình hũ nến thực tế (Realistic Candle Vessel) -->
+                <div class="jar-model-wrapper">
+                  
+                  <!-- Cụm Nắp Gỗ Sồi & Túi Bã Lọc Khử Mùi -->
+                  <div class="lid-assembly" id="lid-assembly">
+                    <!-- Tầng 01: Nắp gỗ sồi tiện rãnh mộc -->
+                    <div class="jar-slice slice-lid active" data-layer="lid" onclick="selectLayer('lid')" title="Nắp gỗ sồi tiện rãnh đối lưu">
+                      <div class="slice-lid-wood">
+                        <div class="lid-rim-highlight"></div>
+                        <div class="lid-wood-grain"></div>
+                        <div class="lid-vent-grid">
+                          <i></i><i></i><i></i><i></i><i></i>
+                          <i></i><i></i><i></i><i></i><i></i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Tầng 02: Túi lọc bã cà phê hữu cơ dán dưới nắp -->
+                    <div class="jar-slice slice-filter" data-layer="filter" onclick="selectLayer('filter')" title="Túi bã sấy rang kiệt độ ẩm dán dưới nắp">
+                      <div class="slice-pouch-fabric">
+                        <span class="pouch-stitch-border"></span>
+                        <span class="pouch-grounds-fill">☕ Túi Bã Khử Mùi 6–8g (Refill)</span>
+                      </div>
+                    </div>
                   </div>
-                  <div class="slice-indicator">
-                    <span class="indicator-dot"></span>
-                    <span class="indicator-text">02. Túi lọc bã hữu cơ</span>
+
+                  <!-- Thân hũ thủy tinh thực tế (Glass Candle Vessel) -->
+                  <div class="jar-glass-vessel" id="jar-vessel">
+                    <!-- Ánh phản chiếu thành thủy tinh -->
+                    <div class="glass-reflection-left"></div>
+                    <div class="glass-rim"></div>
+
+                    <!-- Tem nhãn thương hiệu Re:Bean dán giữa thân hũ -->
+                    <div class="jar-real-label">
+                      <div class="label-seed-icon">☕</div>
+                      <div class="label-brand">Re:Bean</div>
+                      <div class="label-sub">Artisanal Candle</div>
+                    </div>
+
+                    <!-- Khoảng hở an toàn mặt sáp & Cụm Bấc nến phát sáng -->
+                    <div class="jar-headspace jar-slice slice-wick" data-layer="wick" onclick="selectLayer('wick')">
+                      <div class="candle-wick-assembly">
+                        <div class="wick-stem"></div>
+                        <div class="wick-flame">
+                          <div class="flame-core"></div>
+                          <div class="flame-glow"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Tầng 04: Sáp thơm tinh khiết -->
+                    <div class="jar-slice slice-wax" data-layer="wax" onclick="selectLayer('wax')">
+                      <div class="wax-layer-body pure-wax-gradient">
+                        <span class="slice-tag-chip">100% Sáp Đậu Nành &amp; Dừa (IFRA)</span>
+                      </div>
+                    </div>
+
+                    <!-- Tầng 05: Đáy hũ thủy tinh chịu nhiệt -->
+                    <div class="jar-slice slice-jar" data-layer="jar" onclick="selectLayer('jar')">
+                      <div class="wax-layer-body base-wax-gradient">
+                        <span class="slice-tag-chip base-chip">Đáy Hũ Thủy Tinh Dày 3mm</span>
+                      </div>
+                    </div>
+
+                    <div class="glass-base-weight"></div>
                   </div>
+
+                  <!-- Bóng đổ đáy hũ trên mặt bàn -->
+                  <div class="jar-ground-shadow"></div>
                 </div>
 
-                <!-- Layer 3: Bấc cotton không chì -->
-                <div class="jar-slice slice-wick" data-layer="wick" onclick="selectLayer('wick')">
-                  <div class="slice-graphics wick-graphic">
-                    <div class="wick-thread"></div>
-                    <div class="flame-preview">🔥</div>
-                    <span class="slice-inner-label">Bấc Cotton 100% Không Chì</span>
-                  </div>
-                  <div class="slice-indicator">
-                    <span class="indicator-dot"></span>
-                    <span class="indicator-text">03. Bấc dệt tự nhiên</span>
-                  </div>
-                </div>
-
-                <!-- Layer 4: Sáp đậu nành & dừa -->
-                <div class="jar-slice slice-wax" data-layer="wax" onclick="selectLayer('wax')">
-                  <div class="slice-graphics wax-graphic">
-                    <span class="slice-inner-label">100% Sáp Đậu Nành &amp; Dừa (Chuẩn IFRA)</span>
-                  </div>
-                  <div class="slice-indicator">
-                    <span class="indicator-dot"></span>
-                    <span class="indicator-text">04. Sáp thực vật thuần</span>
-                  </div>
-                </div>
-
-                <!-- Layer 5: Hũ thủy tinh hổ phách -->
-                <div class="jar-slice slice-jar" data-layer="jar" onclick="selectLayer('jar')">
-                  <div class="slice-graphics jar-graphic">
-                    <span class="slice-inner-label">Vỏ Hũ Thủy Tinh Hổ Phách Tái Sinh</span>
-                  </div>
-                  <div class="slice-indicator">
-                    <span class="indicator-dot"></span>
-                    <span class="indicator-text">05. Hũ thủy tinh chịu nhiệt</span>
-                  </div>
-                </div>
               </div>
 
-              <!-- Thanh nút chọn nhanh tầng bên dưới mô hình -->
-              <div class="pin-quick-rail">
-                <button class="pin-btn active" data-layer="lid" onclick="selectLayer('lid')">01. Nắp gỗ</button>
-                <button class="pin-btn" data-layer="filter" onclick="selectLayer('filter')">02. Túi lọc bã</button>
-                <button class="pin-btn" data-layer="wick" onclick="selectLayer('wick')">03. Bấc cotton</button>
-                <button class="pin-btn" data-layer="wax" onclick="selectLayer('wax')">04. Sáp thực vật</button>
-                <button class="pin-btn" data-layer="jar" onclick="selectLayer('jar')">05. Hũ thủy tinh</button>
-              </div>
+
             </div>
           </div>
 
