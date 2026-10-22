@@ -1118,6 +1118,7 @@ a {
 .anatomy-visual-col {
   position: sticky;
   top: 90px;
+  z-index: 50;
 }
 
 .jar-stage-wrapper {
@@ -1188,6 +1189,7 @@ a {
   transform: scale(1.18);
   box-shadow: 0 0 0 6px rgba(194, 139, 71, 0.3), 0 6px 18px rgba(44, 27, 19, 0.3);
   border-color: #C28B47;
+  z-index: 80;
 }
 
 .jar-hotspot.active::before {
@@ -1195,24 +1197,26 @@ a {
   opacity: 0;
 }
 
-/* Tooltip floating label on desktop hover/active */
+/* Tooltip floating label on desktop hover/active (luôn nổi lên trên cùng, không bị phần bên phải đè) */
 .hotspot-tooltip {
   position: absolute;
   top: 50%;
   transform: translateY(-50%) scale(0.88);
-  background: rgba(44, 27, 19, 0.94);
+  background: rgba(36, 21, 14, 0.96);
   color: #FFFDFC;
   font-size: 0.78rem;
   font-weight: 600;
-  padding: 0.4rem 0.85rem;
+  padding: 0.45rem 0.95rem;
   border-radius: var(--radius-full);
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  backdrop-filter: blur(6px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  z-index: 45;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  z-index: 100;
 }
 
 .hotspot-right .hotspot-tooltip {
@@ -1220,9 +1224,31 @@ a {
   transform-origin: left center;
 }
 
+.hotspot-right .hotspot-tooltip::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent rgba(36, 21, 14, 0.96) transparent transparent;
+}
+
 .hotspot-left .hotspot-tooltip {
   right: calc(100% + 10px);
   transform-origin: right center;
+}
+
+.hotspot-left .hotspot-tooltip::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent rgba(36, 21, 14, 0.96);
 }
 
 .jar-hotspot:hover .hotspot-tooltip,
@@ -1706,6 +1732,8 @@ a {
 .anatomy-details-col {
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 10;
 }
 
 .detail-card {
