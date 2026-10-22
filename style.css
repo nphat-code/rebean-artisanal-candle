@@ -1233,7 +1233,7 @@ a {
 }
 
 .hotspot-wick {
-  top: 98px;
+  top: 86px;
   right: -24px;
 }
 
@@ -1450,19 +1450,35 @@ a {
   margin-top: 3px;
 }
 
-/* Headspace & Wick Flame */
+/* Headspace & Wick Flame (Bấc nến cắm vững chãi trên mặt sáp, không lơ lửng) */
 .jar-headspace {
-  height: 52px;
+  height: 28px;
   position: relative;
   width: 100%;
   flex-shrink: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  border-bottom: 2px solid rgba(133, 110, 82, 0.2);
-  background: rgba(255, 255, 255, 0.12);
+  border-bottom: 2px solid rgba(140, 88, 53, 0.45);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 230, 180, 0.12) 100%);
   z-index: 6;
   cursor: pointer;
+}
+
+/* Mặt sáp nến với quầng sáng sáp lỏng ấm áp xung quanh chân bấc */
+.jar-headspace::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 12px;
+  background: radial-gradient(ellipse, rgba(255, 230, 150, 0.95) 0%, rgba(255, 170, 50, 0.5) 55%, transparent 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(1.5px);
+  z-index: 7;
 }
 
 .candle-wick-assembly {
@@ -1470,45 +1486,64 @@ a {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 8px;
-  height: 26px;
+  width: 16px;
+  height: 28px;
   z-index: 9;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
   transition: opacity 0.3s ease;
 }
 
 .wick-stem {
-  width: 3px;
-  height: 16px;
-  background: #1C120C;
+  width: 3.5px;
+  height: 13px;
+  background: linear-gradient(180deg, #1C120C 0%, #382417 100%);
   border-radius: 2px;
+  position: relative;
+  z-index: 2;
 }
 
 .wick-flame {
   position: absolute;
-  top: -14px;
+  bottom: 11px;
   left: 50%;
   transform: translateX(-50%);
-  width: 12px;
-  height: 16px;
+  width: 14px;
+  height: 19px;
   transition: all 0.3s ease;
+  z-index: 3;
 }
 
 .flame-core {
-  width: 10px;
-  height: 14px;
-  background: linear-gradient(180deg, #FFEE55 0%, #FF8800 65%, #FF3300 100%);
+  width: 12px;
+  height: 17px;
+  background: radial-gradient(ellipse at 50% 80%, #FFFFFF 0%, #FFF4B0 25%, #FF9900 65%, #FF3E00 100%);
   border-radius: 50% 50% 35% 35%;
-  box-shadow: 0 0 10px #FF9900, 0 0 18px rgba(255, 136, 0, 0.6);
+  box-shadow: 0 0 10px #FF9900, 0 0 20px rgba(255, 136, 0, 0.7);
   animation: flameFlicker 1.8s infinite alternate ease-in-out;
+  position: relative;
+}
+
+.flame-glow {
+  position: absolute;
+  inset: -6px;
+  background: radial-gradient(circle, rgba(255, 180, 50, 0.35) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: glowPulse 2s infinite alternate ease-in-out;
+}
+
+@keyframes glowPulse {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(1.25); opacity: 1; }
 }
 
 @keyframes flameFlicker {
   0% { transform: scale(1) rotate(-1deg); filter: drop-shadow(0 0 6px #FF8800); }
-  50% { transform: scale(1.15) rotate(1deg); filter: drop-shadow(0 0 12px #FFAA00); }
-  100% { transform: scale(0.95) rotate(-0.5deg); filter: drop-shadow(0 0 8px #FF6600); }
+  50% { transform: scale(1.12) rotate(1deg); filter: drop-shadow(0 0 12px #FFAA00); }
+  100% { transform: scale(0.96) rotate(-0.5deg); filter: drop-shadow(0 0 8px #FF6600); }
 }
 
 /* Slices inside Vessel */
@@ -1824,7 +1859,7 @@ a {
   }
 
   .hotspot-wick {
-    top: 92px;
+    top: 80px;
     right: -14px;
   }
 
