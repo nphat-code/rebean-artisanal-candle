@@ -101,13 +101,13 @@ window.selectLayer = function(layerId) {
     }
   });
 
-  // 2. Update alternating callout items
-  const callouts = document.querySelectorAll('.callout-item');
-  callouts.forEach(callout => {
-    if (callout.getAttribute('data-layer') === layerId) {
-      callout.classList.add('active');
+  // 2. Update interactive hotspot pins
+  const hotspots = document.querySelectorAll('.jar-hotspot');
+  hotspots.forEach(hotspot => {
+    if (hotspot.getAttribute('data-layer') === layerId) {
+      hotspot.classList.add('active');
     } else {
-      callout.classList.remove('active');
+      hotspot.classList.remove('active');
     }
   });
 

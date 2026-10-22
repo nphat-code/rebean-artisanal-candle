@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=2.4">
+  <link rel="stylesheet" href="style.css?v=2.6">
 </head>
 <body>
   <!-- Header / Navigation -->
@@ -300,55 +300,7 @@
 
               <div class="jar-interactive-stage exploded" id="jar-stage">
                 
-                <!-- Cột ghi chú mũi tên so le bên trái (Left Callouts) -->
-                <div class="callout-column callout-left">
-                  <!-- Callout 01: Nắp gỗ sồi tiện mộc -->
-                  <div class="callout-item callout-lid active" data-layer="lid" onclick="selectLayer('lid')">
-                    <div class="callout-card">
-                      <span class="callout-num">01</span>
-                      <div class="callout-text">
-                        <strong>Nắp Gỗ Sồi Mộc</strong>
-                        <span>Có rãnh thoáng nhẹ nhàng</span>
-                      </div>
-                    </div>
-                    <div class="callout-pointer">
-                      <span class="pointer-line"></span>
-                      <span class="pointer-dot"></span>
-                    </div>
-                  </div>
-
-                  <!-- Callout 04: Sáp đậu nành dịu lành -->
-                  <div class="callout-item callout-wax" data-layer="wax" onclick="selectLayer('wax')">
-                    <div class="callout-card">
-                      <span class="callout-num">04</span>
-                      <div class="callout-text">
-                        <strong>Sáp Đậu Nành Lành Tính</strong>
-                        <span>Không pha parafin dầu mỏ</span>
-                      </div>
-                    </div>
-                    <div class="callout-pointer">
-                      <span class="pointer-line"></span>
-                      <span class="pointer-dot"></span>
-                    </div>
-                  </div>
-
-                  <!-- Callout 05: Hũ thủy tinh hổ phách -->
-                  <div class="callout-item callout-jar" data-layer="jar" onclick="selectLayer('jar')">
-                    <div class="callout-card">
-                      <span class="callout-num">05</span>
-                      <div class="callout-text">
-                        <strong>Thủy Tinh Hổ Phách</strong>
-                        <span>Dày dặn, dùng lại trọn đời</span>
-                      </div>
-                    </div>
-                    <div class="callout-pointer">
-                      <span class="pointer-line"></span>
-                      <span class="pointer-dot"></span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Mô hình hũ nến thực tế (Realistic Candle Vessel) -->
+                <!-- Mô hình hũ nến thực tế với Điểm chạm Hotspots trực tiếp -->
                 <div class="jar-model-wrapper">
                   
                   <!-- Cụm Nắp Gỗ Sồi & Túi Bã Lọc Khử Mùi -->
@@ -365,6 +317,12 @@
                       </div>
                     </div>
 
+                    <!-- Hotspot 01: Nắp gỗ sồi mộc -->
+                    <button class="jar-hotspot hotspot-lid hotspot-right active" data-layer="lid" onclick="selectLayer('lid')" aria-label="Góc 01: Nắp Gỗ Sồi Mộc">
+                      <span class="hotspot-num">01</span>
+                      <span class="hotspot-tooltip">01. Nắp Gỗ Sồi Mộc</span>
+                    </button>
+
                     <!-- Tầng 02: Túi bã cà phê đính dưới nắp gỗ -->
                     <div class="jar-slice slice-filter" data-layer="filter" onclick="selectLayer('filter')" title="Túi vải chứa bã cà phê sấy thơm khử mùi">
                       <div class="slice-pouch-fabric">
@@ -372,6 +330,12 @@
                         <div class="pouch-grain-pattern"></div>
                       </div>
                     </div>
+
+                    <!-- Hotspot 02: Túi bã khử mùi -->
+                    <button class="jar-hotspot hotspot-filter hotspot-left" data-layer="filter" onclick="selectLayer('filter')" aria-label="Góc 02: Túi Bã Khử Mùi">
+                      <span class="hotspot-num">02</span>
+                      <span class="hotspot-tooltip">02. Túi Bã Khử Mùi</span>
+                    </button>
                   </div>
 
                   <!-- Thân hũ thủy tinh thực tế (Glass Candle Vessel) -->
@@ -405,7 +369,7 @@
                         <div class="wax-zone wax-zone-top"></div>
 
                         <!-- Dải bã cà phê mỏng 1 xinh xắn -->
-                        <div class="coffee-strata strata-1 jar-slice" data-layer="strata" onclick="selectLayer('strata')" title="Dải bã cà phê mộc mạc tầng 1">
+                        <div class="coffee-strata strata-1 jar-slice" data-layer="strata" onclick="selectLayer('wax')" title="Dải bã cà phê mộc mạc tầng 1">
                           <span class="strata-grounds-grain"></span>
                         </div>
 
@@ -413,7 +377,7 @@
                         <div class="wax-zone wax-zone-mid"></div>
 
                         <!-- Dải bã cà phê mỏng 2 xinh xắn -->
-                        <div class="coffee-strata strata-2 jar-slice" data-layer="strata" onclick="selectLayer('strata')" title="Dải bã cà phê mộc mạc tầng 2">
+                        <div class="coffee-strata strata-2 jar-slice" data-layer="strata" onclick="selectLayer('wax')" title="Dải bã cà phê mộc mạc tầng 2">
                           <span class="strata-grounds-grain"></span>
                         </div>
 
@@ -428,58 +392,33 @@
                     </div>
                   </div>
 
+                  <!-- Hotspot 03: Sợi bấc cotton tự nhiên (Bên ngoài jar-glass-vessel không bị clip) -->
+                  <button class="jar-hotspot hotspot-wick hotspot-right" data-layer="wick" onclick="selectLayer('wick')" aria-label="Góc 03: Bấc Cotton Tự Nhiên">
+                    <span class="hotspot-num">03</span>
+                    <span class="hotspot-tooltip">03. Bấc Cotton Tự Nhiên</span>
+                  </button>
+
+                  <!-- Hotspot 04: Sáp đậu nành & 2 dải bã -->
+                  <button class="jar-hotspot hotspot-wax hotspot-left" data-layer="wax" onclick="selectLayer('wax')" aria-label="Góc 04: Sáp Đậu Nành &amp; 2 Dải Bã Mộc">
+                    <span class="hotspot-num">04</span>
+                    <span class="hotspot-tooltip">04. Sáp Đậu Nành &amp; 2 Dải Bã</span>
+                  </button>
+
+                  <!-- Hotspot 05: Hũ thủy tinh hổ phách -->
+                  <button class="jar-hotspot hotspot-jar hotspot-right" data-layer="jar" onclick="selectLayer('jar')" aria-label="Góc 05: Hũ Thủy Tinh Hổ Phách">
+                    <span class="hotspot-num">05</span>
+                    <span class="hotspot-tooltip">05. Hũ Thủy Tinh Hổ Phách</span>
+                  </button>
+
                   <!-- Bóng đổ đáy hũ trên mặt bàn -->
                   <div class="jar-ground-shadow"></div>
                 </div>
 
-                <!-- Cột ghi chú mũi tên so le bên phải (Right Callouts) -->
-                <div class="callout-column callout-right">
-                  <!-- Callout 02: Túi bã cà phê khử mùi -->
-                  <div class="callout-item callout-filter" data-layer="filter" onclick="selectLayer('filter')">
-                    <div class="callout-pointer">
-                      <span class="pointer-dot"></span>
-                      <span class="pointer-line"></span>
-                    </div>
-                    <div class="callout-card">
-                      <span class="callout-num">02</span>
-                      <div class="callout-text">
-                        <strong>Túi Bã Khử Mùi</strong>
-                        <span>Bã sấy giòn thơm tự nhiên</span>
-                      </div>
-                    </div>
-                  </div>
+              </div>
 
-                  <!-- Callout 03: Bấc cotton tự nhiên -->
-                  <div class="callout-item callout-wick" data-layer="wick" onclick="selectLayer('wick')">
-                    <div class="callout-pointer">
-                      <span class="pointer-dot"></span>
-                      <span class="pointer-line"></span>
-                    </div>
-                    <div class="callout-card">
-                      <span class="callout-num">03</span>
-                      <div class="callout-text">
-                        <strong>Bấc Cotton Tự Nhiên</strong>
-                        <span>Không chì · Zero khói đen</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Callout Strata: 2 dải bã cà phê mộc -->
-                  <div class="callout-item callout-strata" data-layer="strata" onclick="selectLayer('strata')">
-                    <div class="callout-pointer">
-                      <span class="pointer-dot"></span>
-                      <span class="pointer-line"></span>
-                    </div>
-                    <div class="callout-card highlight-card">
-                      <span class="callout-num">★</span>
-                      <div class="callout-text">
-                        <strong>2 Dải Bã Xinh Xắn</strong>
-                        <span>Điểm xuyết mộc mạc &amp; thơm êm</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
+              <!-- Hướng dẫn tương tác nhỏ xinh -->
+              <div class="jar-hint-bar">
+                <span>💡 Chạm vào từng điểm tròn <strong>01 — 05</strong> trên hũ để xem chi tiết từng góc mộc</span>
               </div>
             </div>
           </div>
@@ -585,6 +524,6 @@
       </div>
     </section>
   </main>
-  <script src="app.js?v=2.4"></script>
+  <script src="app.js?v=2.6"></script>
 </body>
 </html>
