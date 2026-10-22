@@ -1523,7 +1523,7 @@ a {
 }
 
 .slice-wax {
-  flex: 1.4;
+  flex: 1;
   display: flex;
   position: relative;
   overflow: hidden;
@@ -1550,13 +1550,13 @@ a {
 }
 
 .wax-zone-mid {
-  height: 20px;
+  flex: 0.85;
   background: linear-gradient(180deg, #F6ECE0 0%, #F2E4D2 100%);
 }
 
 .wax-zone-base {
   flex: 0.95;
-  background: linear-gradient(180deg, #F2E4D2 0%, #E5D3BA 100%);
+  background: linear-gradient(180deg, #F2E4D2 0%, #E5D5C1 100%);
 }
 
 /* 2 Lớp Bã Cà Phê Phân Tầng Thực Tế (2-3mm) */
@@ -1594,22 +1594,21 @@ a {
 }
 
 .slice-jar {
-  flex: 0.4;
+  height: 14px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.85) 100%);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.6);
+  z-index: 10;
 }
 
 .glass-base-weight {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 14px;
-  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.85) 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-  z-index: 10;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(214, 155, 96, 0.3) 100%);
 }
 
 .jar-ground-shadow {
