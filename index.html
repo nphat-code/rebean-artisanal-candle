@@ -299,28 +299,52 @@
             <div class="jar-stage-wrapper">
               <div class="jar-interactive-stage exploded" id="jar-stage">
                 
-                <!-- Pin Rails tương tác bên cạnh mô hình -->
-                <div class="anatomy-pins">
-                  <button class="pin-btn active" data-layer="lid" id="pin-1" onclick="selectLayer('lid')">
-                    <span class="pin-num">1</span>
-                    <span class="pin-tooltip">Nắp gỗ đối lưu</span>
-                  </button>
-                  <button class="pin-btn" data-layer="filter" id="pin-2" onclick="selectLayer('filter')">
-                    <span class="pin-num">2</span>
-                    <span class="pin-tooltip">Túi bã lọc mùi</span>
-                  </button>
-                  <button class="pin-btn" data-layer="wick" id="pin-3" onclick="selectLayer('wick')">
-                    <span class="pin-num">3</span>
-                    <span class="pin-tooltip">Bấc cotton không chì</span>
-                  </button>
-                  <button class="pin-btn" data-layer="wax" id="pin-4" onclick="selectLayer('wax')">
-                    <span class="pin-num">4</span>
-                    <span class="pin-tooltip">Sáp thực vật thuần</span>
-                  </button>
-                  <button class="pin-btn" data-layer="jar" id="pin-5" onclick="selectLayer('jar')">
-                    <span class="pin-num">5</span>
-                    <span class="pin-tooltip">Hũ thủy tinh hổ phách</span>
-                  </button>
+                <!-- Cột ghi chú mũi tên so le bên trái (Left Callouts) -->
+                <div class="callout-column callout-left">
+                  <!-- Callout 01: Nắp gỗ đối lưu -->
+                  <div class="callout-item callout-lid active" data-layer="lid" onclick="selectLayer('lid')">
+                    <div class="callout-card">
+                      <span class="callout-num">01</span>
+                      <div class="callout-text">
+                        <strong>Nắp Gỗ Đối Lưu</strong>
+                        <span>10 lỗ thông khí 1.5mm</span>
+                      </div>
+                    </div>
+                    <div class="callout-pointer">
+                      <span class="pointer-line"></span>
+                      <span class="pointer-dot"></span>
+                    </div>
+                  </div>
+
+                  <!-- Callout 04: Sáp thực vật thuần -->
+                  <div class="callout-item callout-wax" data-layer="wax" onclick="selectLayer('wax')">
+                    <div class="callout-card">
+                      <span class="callout-num">04</span>
+                      <div class="callout-text">
+                        <strong>Sáp Đậu Nành Thuần</strong>
+                        <span>1/3 trên bén lửa sạch IFRA</span>
+                      </div>
+                    </div>
+                    <div class="callout-pointer">
+                      <span class="pointer-line"></span>
+                      <span class="pointer-dot"></span>
+                    </div>
+                  </div>
+
+                  <!-- Callout 05: Hũ thủy tinh hổ phách -->
+                  <div class="callout-item callout-jar" data-layer="jar" onclick="selectLayer('jar')">
+                    <div class="callout-card">
+                      <span class="callout-num">05</span>
+                      <div class="callout-text">
+                        <strong>Thủy Tinh Hổ Phách</strong>
+                        <span>Đáy 3mm · Chịu nhiệt 120°C</span>
+                      </div>
+                    </div>
+                    <div class="callout-pointer">
+                      <span class="pointer-line"></span>
+                      <span class="pointer-dot"></span>
+                    </div>
+                  </div>
                 </div>
 
                 <!-- Mô hình hũ nến thực tế (Realistic Candle Vessel) -->
@@ -340,11 +364,11 @@
                       </div>
                     </div>
 
-                    <!-- Tầng 02: Túi lọc bã cà phê hữu cơ dán dưới nắp -->
+                    <!-- Tầng 02: Túi lọc bã cà phê hữu cơ dán dưới nắp (kết cấu vải mộc, không ghi chữ thô) -->
                     <div class="jar-slice slice-filter" data-layer="filter" onclick="selectLayer('filter')" title="Túi bã sấy rang kiệt độ ẩm dán dưới nắp">
                       <div class="slice-pouch-fabric">
                         <span class="pouch-stitch-border"></span>
-                        <span class="pouch-grounds-fill">☕ Túi Bã Khử Mùi 6–8g (Refill)</span>
+                        <div class="pouch-grain-pattern"></div>
                       </div>
                     </div>
                   </div>
@@ -373,30 +397,89 @@
                       </div>
                     </div>
 
-                    <!-- Tầng 04: Sáp thơm tinh khiết -->
+                    <!-- Thân sáp nến với 2 lớp bã cà phê phân tầng thực tế (Không ghi chữ đè bên trong) -->
                     <div class="jar-slice slice-wax" data-layer="wax" onclick="selectLayer('wax')">
-                      <div class="wax-layer-body pure-wax-gradient">
-                        <span class="slice-tag-chip">100% Sáp Đậu Nành &amp; Dừa (IFRA)</span>
+                      <div class="wax-body-stack">
+                        <!-- Tầng sáp đậu nành & dừa tinh khiết trên cùng (bén lửa sạch) -->
+                        <div class="wax-zone wax-zone-top"></div>
+
+                        <!-- Lớp bã cà phê mỏng 1 (2–3mm) -->
+                        <div class="coffee-strata strata-1 jar-slice" data-layer="strata" onclick="selectLayer('strata')" title="Lớp bã cà phê mỏng 2-3mm tầng 1">
+                          <span class="strata-grounds-grain"></span>
+                        </div>
+
+                        <!-- Tầng sáp trung gian -->
+                        <div class="wax-zone wax-zone-mid"></div>
+
+                        <!-- Lớp bã cà phê mỏng 2 (2–3mm) -->
+                        <div class="coffee-strata strata-2 jar-slice" data-layer="strata" onclick="selectLayer('strata')" title="Lớp bã cà phê mỏng 2-3mm tầng 2">
+                          <span class="strata-grounds-grain"></span>
+                        </div>
+
+                        <!-- Tầng sáp an toàn đáy hũ -->
+                        <div class="wax-zone wax-zone-base"></div>
                       </div>
                     </div>
 
-                    <!-- Tầng 05: Đáy hũ thủy tinh chịu nhiệt -->
+                    <!-- Đáy hũ thủy tinh chịu nhiệt -->
                     <div class="jar-slice slice-jar" data-layer="jar" onclick="selectLayer('jar')">
-                      <div class="wax-layer-body base-wax-gradient">
-                        <span class="slice-tag-chip base-chip">Đáy Hũ Thủy Tinh Dày 3mm</span>
-                      </div>
+                      <div class="glass-base-weight"></div>
                     </div>
-
-                    <div class="glass-base-weight"></div>
                   </div>
 
                   <!-- Bóng đổ đáy hũ trên mặt bàn -->
                   <div class="jar-ground-shadow"></div>
                 </div>
 
+                <!-- Cột ghi chú mũi tên so le bên phải (Right Callouts) -->
+                <div class="callout-column callout-right">
+                  <!-- Callout 02: Túi lọc bã khử mùi -->
+                  <div class="callout-item callout-filter" data-layer="filter" onclick="selectLayer('filter')">
+                    <div class="callout-pointer">
+                      <span class="pointer-dot"></span>
+                      <span class="pointer-line"></span>
+                    </div>
+                    <div class="callout-card">
+                      <span class="callout-num">02</span>
+                      <div class="callout-text">
+                        <strong>Túi Bã Khử Mùi</strong>
+                        <span>6–8g bã sấy rang (Refill)</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Callout 03: Bấc cotton tự nhiên -->
+                  <div class="callout-item callout-wick" data-layer="wick" onclick="selectLayer('wick')">
+                    <div class="callout-pointer">
+                      <span class="pointer-dot"></span>
+                      <span class="pointer-line"></span>
+                    </div>
+                    <div class="callout-card">
+                      <span class="callout-num">03</span>
+                      <div class="callout-text">
+                        <strong>Bấc Cotton Tự Nhiên</strong>
+                        <span>Không chì · Zero khói đen</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Callout Strata: 2 Lớp Bã Phân Tầng -->
+                  <div class="callout-item callout-strata" data-layer="strata" onclick="selectLayer('strata')">
+                    <div class="callout-pointer">
+                      <span class="pointer-dot"></span>
+                      <span class="pointer-line"></span>
+                    </div>
+                    <div class="callout-card highlight-card">
+                      <span class="callout-num">★</span>
+                      <div class="callout-text">
+                        <strong>2 Lớp Bã Phân Tầng</strong>
+                        <span>Mỏng 2–3mm · Đạt Burn Test</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
-
-
             </div>
           </div>
 
@@ -459,21 +542,21 @@
               </div>
             </div>
 
-            <!-- Card 4: Sáp đậu nành & dừa -->
+            <!-- Card 4: Sáp thực vật & 2 Lớp bã phân tầng -->
             <div class="detail-card" data-layer="wax" onclick="selectLayer('wax')">
               <div class="card-num">TẦNG 04</div>
-              <h3 class="card-heading">Sáp Đậu Nành &amp; Sáp Dừa Nguyên Chất</h3>
+              <h3 class="card-heading">Sáp Thực Vật &amp; 2 Lớp Bã Phân Tầng</h3>
               <p class="card-summary">
-                Điểm nóng chảy thấp (48°C – 52°C) giúp sáp tan chảy êm dịu, tạo bể sáp phẳng đều mà không để lại lòng chảo sâu. Kết hợp tinh dầu tự nhiên đạt chuẩn IFRA lan tỏa hương thơm thư giãn.
+                Đột phá kỹ thuật độc quyền Re:Bean: 1/3 hũ trên là sáp đậu nành &amp; sáp dừa nguyên chất (chuẩn IFRA) bén lửa sạch 100%. Nửa dưới hũ chứa <strong>2 lớp bã cà phê mỏng 2–3mm phân tầng</strong> đã sấy kiệt độ ẩm &lt; 3%, tỏa hương cà phê mộc thoang thoảng khi sáp tan dần mà không làm nghẹt sợi bấc.
               </p>
               <div class="card-specs-list">
                 <div class="spec-row">
-                  <span class="spec-name">Thành phần:</span>
-                  <span class="spec-value">100% Sáp thực vật (0% Paraffin hóa dầu)</span>
+                  <span class="spec-name">Cấu trúc phân tầng:</span>
+                  <span class="spec-value">1/3 sáp tinh khiết + 2 lớp bã mỏng 2–3mm</span>
                 </div>
                 <div class="spec-row">
-                  <span class="spec-name">Chứng nhận hương:</span>
-                  <span class="spec-value">Chuẩn an toàn hô hấp quốc tế IFRA</span>
+                  <span class="spec-name">Kiểm định Burn Test:</span>
+                  <span class="spec-value">Đạt chứng nhận đốt an toàn liên tục 4h</span>
                 </div>
               </div>
             </div>

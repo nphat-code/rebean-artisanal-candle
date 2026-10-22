@@ -82,7 +82,7 @@ window.setJarViewMode = function(mode) {
 window.selectLayer = function(layerId) {
   if (!layerId) return;
 
-  // 1. Update slices in jar stage
+  // 1. Update slices & strata in jar stage
   const slices = document.querySelectorAll('.jar-slice');
   slices.forEach(slice => {
     if (slice.getAttribute('data-layer') === layerId) {
@@ -92,22 +92,23 @@ window.selectLayer = function(layerId) {
     }
   });
 
-  // 2. Update pin buttons
-  const pins = document.querySelectorAll('.pin-btn');
-  pins.forEach(pin => {
-    if (pin.getAttribute('data-layer') === layerId) {
-      pin.classList.add('active');
+  // 2. Update alternating callout items
+  const callouts = document.querySelectorAll('.callout-item');
+  callouts.forEach(callout => {
+    if (callout.getAttribute('data-layer') === layerId) {
+      callout.classList.add('active');
     } else {
-      pin.classList.remove('active');
+      callout.classList.remove('active');
     }
   });
 
-  // 3. Update detail cards
+  // 3. Update detail cards (map 'strata' to card 04 'wax')
+  const targetCardLayer = (layerId === 'strata') ? 'wax' : layerId;
   const cards = document.querySelectorAll('.detail-card');
   cards.forEach(card => {
-    if (card.getAttribute('data-layer') === layerId) {
+    if (card.getAttribute('data-layer') === targetCardLayer) {
       card.classList.add('active');
-      // On mobile devices, smoothly scroll active card into view
+      // On tablet/mobile devices, smoothly scroll active card into view
       if (window.innerWidth <= 1024) {
         card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }

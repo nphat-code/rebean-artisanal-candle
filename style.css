@@ -1129,68 +1129,144 @@ a {
   padding: 1.5rem 0 1rem;
 }
 
-/* Pin Rails on the Left (1 to 5) */
-.anatomy-pins {
+/* Alternating Pointer Callouts (Ghi chú so le hai bên) */
+.callout-column {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  z-index: 30;
+  justify-content: space-between;
+  height: 335px;
+  z-index: 25;
   transition: transform 0.45s ease;
+  min-width: 170px;
 }
 
-.pin-btn {
+.callout-left {
+  align-items: flex-end;
+}
+
+.callout-right {
+  align-items: flex-start;
+}
+
+.callout-item {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
-  padding: 0.35rem 0.65rem;
-  border-radius: var(--radius-full);
+  gap: 0.65rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.callout-item:hover,
+.callout-item.active {
+  transform: scale(1.05);
+}
+
+.callout-card {
   background: rgba(255, 255, 255, 0.95);
   border: 1.5px solid var(--c-border);
-  box-shadow: 0 4px 10px rgba(44, 27, 19, 0.06);
-  cursor: pointer;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  box-shadow: 0 4px 14px rgba(44, 27, 19, 0.08);
   transition: all 0.25s ease;
+  white-space: nowrap;
 }
 
-.pin-btn:hover,
-.pin-btn.active {
-  background: var(--c-coffee);
-  border-color: var(--c-coffee);
-  transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(74, 53, 37, 0.22);
+.callout-item:hover .callout-card,
+.callout-item.active .callout-card {
+  border-color: var(--c-wood);
+  background: #FFFDF9;
+  box-shadow: 0 8px 22px rgba(74, 53, 37, 0.16);
 }
 
-.pin-num {
-  width: 24px;
-  height: 24px;
+.callout-num {
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: var(--c-surface-soft);
   color: var(--c-coffee);
   font-family: var(--font-serif);
   font-weight: 700;
-  font-size: 0.82rem;
+  font-size: 0.72rem;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.25s ease;
+  flex-shrink: 0;
 }
 
-.pin-btn.active .pin-num,
-.pin-btn:hover .pin-num {
-  background: #FFFFFF;
-  color: var(--c-coffee);
-}
-
-.pin-tooltip {
-  font-size: 0.74rem;
-  font-weight: 600;
-  color: var(--c-dark);
-  white-space: nowrap;
-  transition: color 0.25s ease;
-}
-
-.pin-btn.active .pin-tooltip,
-.pin-btn:hover .pin-tooltip {
+.callout-item:hover .callout-num,
+.callout-item.active .callout-num {
+  background: var(--c-wood);
   color: #FFFFFF;
+}
+
+.callout-card.highlight-card {
+  border-color: rgba(194, 139, 71, 0.6);
+  background: linear-gradient(135deg, #FFFDF9 0%, #FAF3E8 100%);
+}
+
+.callout-card.highlight-card .callout-num {
+  background: #C28B47;
+  color: #FFFFFF;
+}
+
+.callout-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.callout-left .callout-text {
+  text-align: right;
+}
+
+.callout-text strong {
+  font-size: 0.82rem;
+  color: var(--c-dark);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.callout-text span {
+  font-size: 0.7rem;
+  color: var(--c-text-muted);
+  line-height: 1.2;
+}
+
+.callout-pointer {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.pointer-line {
+  width: 26px;
+  height: 1.5px;
+  background: linear-gradient(90deg, #D4B28C 0%, #8C5835 100%);
+  transition: all 0.25s ease;
+}
+
+.callout-left .pointer-line {
+  background: linear-gradient(90deg, #8C5835 0%, #D4B28C 100%);
+}
+
+.pointer-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--c-coffee);
+  box-shadow: 0 0 0 2px rgba(212, 163, 115, 0.4);
+  transition: all 0.25s ease;
+}
+
+.callout-item:hover .pointer-dot,
+.callout-item.active .pointer-dot {
+  background: var(--c-gold);
+  box-shadow: 0 0 0 4px rgba(212, 163, 115, 0.5);
+  transform: scale(1.3);
 }
 
 /* Jar Model Wrapper */
@@ -1455,49 +1531,80 @@ a {
 .slice-wax {
   flex: 1.4;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Thân sáp nến đa tầng: sáp thực vật + 2 lớp bã cà phê */
+.wax-body-stack {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   position: relative;
 }
 
-.pure-wax-gradient {
+.wax-zone {
+  width: 100%;
+  background: linear-gradient(180deg, #FFFDF8 0%, #F5EDE0 100%);
+  position: relative;
+}
+
+.wax-zone-top {
+  flex: 1.25;
+  background: linear-gradient(180deg, #FFFEFA 0%, #F6ECE0 100%);
+}
+
+.wax-zone-mid {
+  height: 20px;
+  background: linear-gradient(180deg, #F6ECE0 0%, #F2E4D2 100%);
+}
+
+.wax-zone-base {
+  flex: 0.95;
+  background: linear-gradient(180deg, #F2E4D2 0%, #E5D3BA 100%);
+}
+
+/* 2 Lớp Bã Cà Phê Phân Tầng Thực Tế (2-3mm) */
+.coffee-strata {
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #24140B 0%, #462817 25%, #351C0F 55%, #4A2A18 80%, #24140B 100%);
+  position: relative;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  z-index: 5;
+}
+
+.coffee-strata:hover,
+.coffee-strata.active {
+  filter: brightness(1.3) drop-shadow(0 0 6px var(--c-gold));
+  height: 8px;
+}
+
+.strata-grounds-grain {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, #FFFDF8 0%, #F5ECDB 100%);
-  border-bottom: 1px solid rgba(92, 63, 46, 0.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-image: radial-gradient(#150904 1px, transparent 1px);
+  background-size: 3px 3px;
+  opacity: 0.75;
+}
+
+/* Texture vải mộc cho túi bã */
+.pouch-grain-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(45deg, rgba(74, 46, 27, 0.08) 0, rgba(74, 46, 27, 0.08) 2px, transparent 0, transparent 4px);
+  opacity: 0.8;
 }
 
 .slice-jar {
-  flex: 1.1;
+  flex: 0.4;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-}
-
-.base-wax-gradient {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, #F3E6D0 0%, #E2CFB4 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.slice-tag-chip {
-  position: relative;
-  z-index: 3;
-  font-size: 0.66rem;
-  font-weight: 700;
-  color: #5C3F2E;
-  background: rgba(255, 255, 255, 0.85);
-  padding: 3px 8px;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(74, 51, 38, 0.12);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 .glass-base-weight {
@@ -1523,8 +1630,8 @@ a {
   transform: translateY(-24px);
 }
 
-.jar-interactive-stage.exploded .anatomy-pins {
-  transform: translateY(-12px);
+.jar-interactive-stage.exploded .callout-column {
+  transform: translateY(-8px);
 }
 
 .jar-interactive-stage.closed .lid-assembly {
@@ -1540,8 +1647,8 @@ a {
   opacity: 0.85;
 }
 
-.jar-interactive-stage.closed .anatomy-pins {
-  transform: translateY(18px);
+.jar-interactive-stage.closed .callout-column {
+  transform: translateY(12px);
 }
 
 .jar-interactive-stage.closed .candle-wick-assembly {
@@ -1659,6 +1766,41 @@ a {
 
   .anatomy-visual-col {
     position: static;
+  }
+
+  .jar-stage-wrapper {
+    padding: 2rem 1rem 1.5rem;
+  }
+
+  .jar-interactive-stage {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .callout-column {
+    height: auto;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem;
+  }
+
+  .callout-left,
+  .callout-right {
+    align-items: center;
+  }
+
+  .callout-pointer {
+    display: none;
+  }
+
+  .callout-left .callout-text {
+    text-align: left;
+  }
+
+  .callout-card {
+    padding: 0.4rem 0.7rem;
   }
 
   .detail-card:hover,
