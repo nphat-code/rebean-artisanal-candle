@@ -5,6 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initHeaderAndDrawer();
+  initWorkshopTimelineObserver();
 });
 
 /* ==========================================================================
@@ -117,13 +118,156 @@ window.selectLayer = function(layerId) {
   cards.forEach(card => {
     if (card.getAttribute('data-layer') === targetCardLayer) {
       card.classList.add('active');
-      // On tablet/mobile devices, smoothly scroll active card into view
-      if (window.innerWidth <= 1024) {
-        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
+      // Smoothly scroll active card into view
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
     } else {
       card.classList.remove('active');
     }
   });
 };
 
+/* ==========================================================================
+   Phần 3: Ghé Thăm Xưởng Nến Thủ Công (Vertical Craft Timeline)
+   ========================================================================== */
+function initWorkshopTimelineObserver() {
+  const stations = document.querySelectorAll('.timeline-station');
+  if (!stations.length || !('IntersectionObserver' in window)) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      }
+    });
+  }, {
+    rootMargin: '0px 0px -25% 0px',
+    threshold: 0.15
+  });
+
+  stations.forEach(station => observer.observe(station));
+}
+
+/* ==========================================================================
+   Accordion Đóng / Mở Dòng Thời Gian Dọc (Hướng 2 - Mobile-First)
+   ========================================================================== */
+window.toggleTimelineStation = function(headerEl) {
+  const card = headerEl.closest('.station-card');
+  if (!card) return;
+
+  // On mobile (or screen <= 768px), act as accordion
+  if (window.innerWidth <= 768) {
+    const isExpanded = card.classList.contains('expanded');
+    const allCards = document.querySelectorAll('.timeline-tour-container .station-card');
+
+    // Close all other stations for clean mobile height
+    allCards.forEach(c => {
+      if (c !== card) {
+        c.classList.remove('expanded');
+        const trigger = c.querySelector('.station-header');
+        if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    if (isExpanded) {
+      card.classList.remove('expanded');
+      headerEl.setAttribute('aria-expanded', 'false');
+    } else {
+      card.classList.add('expanded');
+      headerEl.setAttribute('aria-expanded', 'true');
+
+      // Smooth scroll if top went off-screen
+      setTimeout(() => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < 70) {
+          window.scrollBy({ top: rect.top - 80, behavior: 'smooth' });
+        }
+      }, 220);
+    }
+  }
+};
+
+window.toggleTimelineStationFromNode = function(nodeEl) {
+  if (window.innerWidth <= 768) {
+    const station = nodeEl.closest('.timeline-station');
+    if (!station) return;
+    const header = station.querySelector('.station-header');
+    if (header) {
+      toggleTimelineStation(header);
+    }
+  }
+};
+
+/* ==========================================================================
+   Phần 3: Dòng Thời Gian Xưởng Nến Thủ Công (Timeline Tour & Accordion)
+   ========================================================================== */
+window.toggleTimelineStation = function(headerElem) {
+  const card = headerElem.closest('.station-card');
+  const station = headerElem.closest('.timeline-station');
+  if (!card) return;
+
+  const isExpanded = card.classList.contains('expanded');
+
+  // Toggle current card
+  if (isExpanded) {
+    card.classList.remove('expanded');
+    headerElem.setAttribute('aria-expanded', 'false');
+  } else {
+    card.classList.add('expanded');
+    headerElem.setAttribute('aria-expanded', 'true');
+    if (station) station.classList.add('in-view');
+  }
+};
+
+window.toggleTimelineStationFromNode = function(nodeElem) {
+  const station = nodeElem.closest('.timeline-station');
+  if (!station) return;
+  const header = station.querySelector('.station-header');
+  if (header) {
+    window.toggleTimelineStation(header);
+  }
+};
+
+function initWorkshopTimelineObserver() {
+  const stations = document.querySelectorAll('.timeline-station');
+  if (!stations.length) return;
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.25,
+      rootMargin: '0px 0px -10% 0px'
+    });
+
+    stations.forEach(station => observer.observe(station));
+  } else {
+    stations.forEach(station => station.classList.add('in-view'));
+  }
+}
+
+/* ==========================================================================
+   Phần 4: Lành Cho Tổ Ấm & Bản Phối Hương (Scent Selector)
+   ========================================================================== */
+window.currentSelectedScent = 'cam';
+
+window.selectScentOption = function(scentKey) {
+  window.currentSelectedScent = scentKey;
+  
+  const cards = document.querySelectorAll('.scent-card');
+  cards.forEach(c => {
+    if (c.getAttribute('data-scent') === scentKey) {
+      c.classList.add('active');
+    } else {
+      c.classList.remove('active');
+    }
+  });
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  initWorkshopTimelineObserver();
+});

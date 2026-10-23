@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=3.1">
+  <link rel="stylesheet" href="style.css?v=5.1">
 </head>
 <body>
   <!-- Header / Navigation -->
@@ -24,11 +24,11 @@
         <a href="#story" class="nav-link">Câu chuyện hạt cà phê</a>
         <a href="#anatomy" class="nav-link">Hũ nến có gì?</a>
         <a href="#workshop" class="nav-link">Ghé thăm xưởng nến</a>
-        <a href="#purity" class="nav-link">Lành cho tổ ấm</a>
+        <a href="#ritual" class="nav-link">Nghi thức &amp; Tái sinh</a>
       </nav>
 
       <div class="header-actions">
-        <a href="#workshop" class="btn-header-cta">Ghé thăm xưởng nến</a>
+        <a href="#ritual" class="btn-header-cta">Hướng dẫn thắp nến</a>
         <button class="btn-hamburger" id="btn-hamburger" aria-label="Mở menu">
           <span></span>
           <span></span>
@@ -48,8 +48,8 @@
       <a href="#story" class="drawer-link">Câu chuyện hạt cà phê</a>
       <a href="#anatomy" class="drawer-link">Hũ nến có gì?</a>
       <a href="#workshop" class="drawer-link">Ghé thăm xưởng nến</a>
-      <a href="#purity" class="drawer-link">Lành cho tổ ấm</a>
-      <a href="#workshop" class="drawer-btn-cta">Ghé thăm xưởng nến thủ công</a>
+      <a href="#ritual" class="drawer-link">Nghi thức &amp; Tái sinh</a>
+      <a href="#ritual" class="drawer-btn-cta">Hướng dẫn thắp nến</a>
     </nav>
   </div>
   <div class="drawer-backdrop" id="drawer-backdrop"></div>
@@ -413,12 +413,6 @@
                   <!-- Bóng đổ đáy hũ trên mặt bàn -->
                   <div class="jar-ground-shadow"></div>
                 </div>
-
-              </div>
-
-              <!-- Hướng dẫn tương tác nhỏ xinh -->
-              <div class="jar-hint-bar">
-                <span>💡 Chạm vào từng điểm tròn <strong>01 — 05</strong> trên hũ để xem chi tiết từng góc mộc</span>
               </div>
             </div>
           </div>
@@ -527,7 +521,670 @@
         </div>
       </div>
     </section>
+
+    <!-- PHẦN 3: GHÉ THĂM XƯỞNG NẾN THỦ CÔNG RE:BEAN (TOUR 7 BƯỚC - MOBILE-FIRST STORY) -->
+    <section class="workshop-section" id="workshop">
+      <div class="section-container">
+        <!-- Tiêu đề phần -->
+        <div class="section-header text-center">
+          <div class="section-tag">
+            <span class="tag-icon">🪵</span>
+            <span class="tag-text">Chuyện từ bàn tay người thợ chế tác</span>
+          </div>
+          <h2 class="section-title">Ghé thăm xưởng nến thủ công Re:Bean</h2>
+          <p class="section-subtitle">
+            Từ những muỗng bã cà phê quen thuộc đến hũ nến thơm 2 công năng hoàn thiện, mời bạn dạo bước qua 7 công đoạn chế tác tỉ mỉ được kiểm soát chuẩn xác từng độ nhiệt và phút giây.
+          </p>
+
+</div>
+
+        <!-- Khung Dòng Thời Gian Dọc (Hướng 2 - Accordion Timeline Tour) -->
+        <div class="timeline-tour-container" id="timeline-tour">
+
+          <!-- Trạm 01: Thu gom bã sạch -->
+          <div class="timeline-station in-view" data-station="1">
+            <div class="station-node" onclick="toggleTimelineStationFromNode(this)">
+              <span class="node-num">01</span>
+            </div>
+            <div class="station-card expanded">
+              <div class="station-header" onclick="toggleTimelineStation(this)" role="button" tabindex="0" aria-expanded="true">
+                <div class="station-header-main">
+                  <span class="step-tag-pill">☕ Nguyên liệu đầu vào nguyên bản</span>
+                  <h3 class="station-card-title">Thu Gom &amp; Tuyển Chọn Bã Cà Phê Tươi Trong Ngày</h3>
+                </div>
+                <div class="station-toggle-icon" aria-label="Đóng/Mở chi tiết">
+                  <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </div>
+              <div class="station-body">
+                <p class="station-card-desc">
+                  Mỗi mẻ bã được tiếp nhận từ các mẻ pha espresso đậm đặc trong vòng 4 giờ đầu tiên để ngăn chặn hoàn toàn quá trình lên men tự nhiên. Tụi mình sàng lọc qua rây inox kép loại bỏ cặn thô, giữ lại những hạt bã mịn màng và đồng nhất từ 100% hạt Robusta &amp; Arabica Tây Nguyên nguyên chất.
+                </p>
+                <div class="story-specs-grid">
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Tiếp nhận</span>
+                    <span class="story-spec-val">&lt; 4 giờ sau pha</span>
+                  </div>
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Sàng lọc</span>
+                    <span class="story-spec-val">Rây kép inox mịn</span>
+                  </div>
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Nguồn gốc</span>
+                    <span class="story-spec-val">100% Tây Nguyên</span>
+                  </div>
+                </div>
+                <div class="station-visual-mini">
+                  <span class="station-mini-icon">☕</span>
+                  <div class="station-mini-info">
+                    <h6>Bã Espresso Tươi Mịn</h6>
+                    <p>100% Hạt Robusta &amp; Arabica nguyên chất từ Đắk Lắk &amp; Lâm Đồng</p>
+                  </div>
+                </div>
+                <div class="story-artisan-box">
+                  <div class="artisan-box-icon">💡</div>
+                  <div class="artisan-box-content">
+                    <h5>Bí quyết chọn bã của thợ</h5>
+                    <p>Tụi mình chỉ tuyển chọn bã pha máy Espresso vì bột xay mịn đều tơi xốp, giữ được hàm lượng tinh dầu béo tự nhiên cao nhất mà không bị lẫn vụn xơ lớn như pha phin.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trạm 02: Sấy nhiệt đối lưu -->
+          <div class="timeline-station" data-station="2">
+            <div class="station-node" onclick="toggleTimelineStationFromNode(this)">
+              <span class="node-num">02</span>
+            </div>
+            <div class="station-card">
+              <div class="station-header" onclick="toggleTimelineStation(this)" role="button" tabindex="0" aria-expanded="false">
+                <div class="station-header-main">
+                  <span class="step-tag-pill">🔥 Xử lý nhiệt kiểm soát</span>
+                  <h3 class="station-card-title">Khử Ẩm &amp; Sấy Nhiệt Đối Lưu 100°C – 120°C</h3>
+                </div>
+                <div class="station-toggle-icon" aria-label="Đóng/Mở chi tiết">
+                  <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </div>
+              <div class="station-body">
+                <p class="station-card-desc">
+                  Bã cà phê tươi chứa đến 65% độ ẩm tự nhiên, là môi trường rất dễ sinh ẩm chua nếu để lâu. Re:Bean đưa bã vào buồng sấy nhiệt đối lưu đảo trộn liên tục 90 phút, rút cạn nước triệt để về dưới 3% để bã khô kiệt và thơm nức mùi cà phê rang mộc.
+                </p>
+                <div class="story-specs-grid">
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Nhiệt độ sấy</span>
+                    <span class="story-spec-val">100°C – 120°C</span>
+                  </div>
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Thời gian</span>
+                    <span class="story-spec-val">90 phút liên tục</span>
+                  </div>
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Độ ẩm đích</span>
+                    <span class="story-spec-val">&lt; 3%</span>
+                  </div>
+                </div>
+                <div class="station-visual-mini">
+                  <span class="station-mini-icon">🔥</span>
+                  <div class="station-mini-info">
+                    <h6>Buồng Sấy Đối Lưu</h6>
+                    <p>Rút cạn triệt để độ ẩm, bảo toàn cấu trúc xốp vi thể khử mùi tự nhiên</p>
+                  </div>
+                </div>
+                <div class="story-artisan-box">
+                  <div class="artisan-box-icon">💡</div>
+                  <div class="artisan-box-content">
+                    <h5>Bí quyết canh nhiệt độ</h5>
+                    <p>Nhiệt độ sấy được canh nghiêm ngặt không vượt quá 120°C để bảo toàn cấu trúc xốp vi thể khử mùi và lớp lipid tự nhiên của cà phê, hoàn toàn không làm cháy khét xơ hạt.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trạm 03: Ép túi lọc nắp -->
+          <div class="timeline-station" data-station="3">
+            <div class="station-node" onclick="toggleTimelineStationFromNode(this)">
+              <span class="node-num">03</span>
+            </div>
+            <div class="station-card">
+              <div class="station-header" onclick="toggleTimelineStation(this)" role="button" tabindex="0" aria-expanded="false">
+                <div class="station-header-main">
+                  <span class="step-tag-pill">🧵 Công nghệ 2-trong-1 độc bản</span>
+                  <h3 class="station-card-title">Ép Nhiệt Túi Lọc Bã Khô Đính Nắp Thoáng Khí</h3>
+                </div>
+                <div class="station-toggle-icon" aria-label="Đóng/Mở chi tiết">
+                  <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </div>
+              <div class="station-body">
+                <p class="station-card-desc">
+                  Đây là trái tim của công năng thứ hai: Định lượng chính xác 15g bã cà phê đã sấy thơm giòn, đưa vào túi vải dệt vi sợi không dệt và ép kín viền bằng nhiệt siêu âm. Chiếc túi được gắn dẹt ôm khít lòng nắp gỗ sồi có hệ rãnh thông khí đối lưu tự nhiên.
+                </p>
+                <div class="story-specs-grid">
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Định lượng</span>
+                    <span class="story-spec-val">15g bã khô / nắp</span>
+                  </div>
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Hàn kín</span>
+                    <span class="story-spec-val">Nhiệt siêu âm 0% keo</span>
+                  </div>
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Công năng</span>
+                    <span class="story-spec-val">Khử mùi phòng 24/7</span>
+                  </div>
+                </div>
+                <div class="station-visual-mini">
+                  <span class="station-mini-icon">🧵</span>
+                  <div class="station-mini-info">
+                    <h6>Túi Bã Mộc Đính Nắp</h6>
+                    <p>May dẹt ôm khít lòng nắp gỗ sồi có hệ rãnh đối lưu không khí tự nhiên</p>
+                  </div>
+                </div>
+                <div class="story-artisan-box">
+                  <div class="artisan-box-icon">💡</div>
+                  <div class="artisan-box-content">
+                    <h5>Bí quyết may dẹt nắp gỗ</h5>
+                    <p>Túi bã được ép dẹt chuẩn xác để khi đậy nắp, đáy túi không chạm vào mặt sáp nến bên dưới. Mỗi khi bạn không thắp nến, chỉ cần đậy nắp gỗ lại là chiếc túi sẽ lặng lẽ hút ẩm và gom sạch mùi phòng cho bạn cả ngày.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trạm 04: Nấu sáp & phối hương -->
+          <div class="timeline-station" data-station="4">
+            <div class="station-node" onclick="toggleTimelineStationFromNode(this)">
+              <span class="node-num">04</span>
+            </div>
+            <div class="station-card">
+              <div class="station-header" onclick="toggleTimelineStation(this)" role="button" tabindex="0" aria-expanded="false">
+                <div class="station-header-main">
+                  <span class="step-tag-pill">🌱 Sáp thực vật &amp; Tinh dầu lành tính</span>
+                  <h3 class="station-card-title">Nấu Chảy Sáp Đậu Nành &amp; Phối Hương ở 65°C</h3>
+                </div>
+                <div class="station-toggle-icon" aria-label="Đóng/Mở chi tiết">
+                  <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </div>
+              <div class="station-body">
+                <p class="station-card-desc">
+                  Re:Bean nói không hoàn toàn với sáp công nghiệp paraffin. Tụi mình nấu chảy chậm sáp đậu nành và sáp dừa Bến Tre ở nhiệt độ thấp, sau đó phối trộn tinh dầu tự nhiên ở "nhiệt độ vàng" 65°C để từng phân tử hương quyện sâu bền chặt vào thân sáp.
+                </p>
+                <div class="story-specs-grid">
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Gốc sáp</span>
+                    <span class="story-spec-val">100% Đậu nành &amp; Dừa</span>
+                  </div>
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Nhiệt phối hương</span>
+                    <span class="story-spec-val">Chuẩn xác 65°C</span>
+                  </div>
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Hương thơm</span>
+                    <span class="story-spec-val">8%–10% Tinh dầu</span>
+                  </div>
+                </div>
+                <div class="station-visual-mini">
+                  <span class="station-mini-icon">🌱</span>
+                  <div class="station-mini-info">
+                    <h6>Sáp Thực Vật Thuần Khiết</h6>
+                    <p>100% Sáp đậu nành &amp; dừa hòa quyện tinh dầu tự nhiên ở nhiệt độ vàng</p>
+                  </div>
+                </div>
+                <div class="story-artisan-box">
+                  <div class="artisan-box-icon">💡</div>
+                  <div class="artisan-box-content">
+                    <h5>Bí quyết nhiệt độ vàng 65°C</h5>
+                    <p>Nếu phối hương ở nhiệt độ quá cao trên 75°C, các phân tử hương đầu thanh thoát sẽ bị bay hơi sớm. Ngược lại nếu sáp quá nguội sẽ đông cục. 65°C là con số hoàn hảo giữ trọn từng nốt hương nguyên bản.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trạm 05: Rót sáp phân tầng -->
+          <div class="timeline-station" data-station="5">
+            <div class="station-node" onclick="toggleTimelineStationFromNode(this)">
+              <span class="node-num">05</span>
+            </div>
+            <div class="station-card">
+              <div class="station-header" onclick="toggleTimelineStation(this)" role="button" tabindex="0" aria-expanded="false">
+                <div class="station-header-main">
+                  <span class="step-tag-pill">⏳ Phân tầng thẩm mỹ &amp; An toàn</span>
+                  <h3 class="station-card-title">Kỹ Thuật Rót Sáp 3 Tầng Phân Lớp Thủ Công</h3>
+                </div>
+                <div class="station-toggle-icon" aria-label="Đóng/Mở chi tiết">
+                  <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </div>
+              <div class="station-body">
+                <p class="station-card-desc">
+                  Để tạo nên vẻ đẹp mộc mạc mà vẫn đảm bảo ngọn nến cháy an toàn, chúng mình chia làm 3 lần rót tỉ mỉ: Lớp sáp an toàn đáy hũ → 2 dải bã cà phê sấy mỏng 2–3mm → Tầng sáp đậu nành tinh khiết trên cùng để bén lửa êm đềm.
+                </p>
+                <div class="story-specs-grid">
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Cấu trúc</span>
+                    <span class="story-spec-val">3 Tầng phân tách rõ</span>
+                  </div>
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Dải bã mộc</span>
+                    <span class="story-spec-val">2 Dải mỏng 2–3mm</span>
+                  </div>
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Nghỉ đông</span>
+                    <span class="story-spec-val">45 phút / tầng</span>
+                  </div>
+                </div>
+                <div class="station-visual-mini">
+                  <span class="station-mini-icon">⏳</span>
+                  <div class="station-mini-info">
+                    <h6>3 Tầng Phân Lớp Mộc</h6>
+                    <p>Rót thủ công 3 lần tỉ mỉ, canh chuẩn nhịp nguội tự nhiên</p>
+                  </div>
+                </div>
+                <div class="story-artisan-box">
+                  <div class="artisan-box-icon">💡</div>
+                  <div class="artisan-box-content">
+                    <h5>Bí quyết nghỉ đông giữa các tầng</h5>
+                    <p>Tụi mình phải canh thời gian nghỉ đông tự nhiên 45 phút giữa các lần rót để lớp sáp đông dẻo vừa đủ, giữ cho 2 dải bã cà phê lơ lửng xinh xắn giữa thân hũ mà không bị chìm xuống đáy hoặc làm đục tầng sáp tinh khiết phía trên.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trạm 06: Kiểm định tâm bấc -->
+          <div class="timeline-station" data-station="6">
+            <div class="station-node" onclick="toggleTimelineStationFromNode(this)">
+              <span class="node-num">06</span>
+            </div>
+            <div class="station-card">
+              <div class="station-header" onclick="toggleTimelineStation(this)" role="button" tabindex="0" aria-expanded="false">
+                <div class="station-header-main">
+                  <span class="step-tag-pill">🕯️ Kiểm soát an toàn &amp; Không khói đen</span>
+                  <h3 class="station-card-title">Định Tâm Bấc Cotton &amp; Test Đốt Mẫu Thực Nghiệm 4 Giờ</h3>
+                </div>
+                <div class="station-toggle-icon" aria-label="Đóng/Mở chi tiết">
+                  <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </div>
+              <div class="station-body">
+                <p class="station-card-desc">
+                  Sợi bấc 100% cotton không chì được đo và định tâm chuẩn xác từng milimet vào giữa hũ thủy tinh chịu nhiệt. Mỗi mẻ nến ra lò đều được trích xuất mẫu ngẫu nhiên để đốt thử nghiệm liên tục 4 giờ trong phòng kín, đo đạc đường kính ngọn lửa và kiểm tra độ sạch của không khí.
+                </p>
+                <div class="story-specs-grid">
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Sợi bấc</span>
+                    <span class="story-spec-val">100% Cotton, 0% chì</span>
+                  </div>
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Chiều dài bấc</span>
+                    <span class="story-spec-val">Cắt tỉa chuẩn 0.6cm</span>
+                  </div>
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Test mẫu</span>
+                    <span class="story-spec-val">Đốt 4h liên tục</span>
+                  </div>
+                </div>
+                <div class="station-visual-mini">
+                  <span class="station-mini-icon">🕯️</span>
+                  <div class="station-mini-info">
+                    <h6>Ngọn Lửa Sạch &amp; Tĩnh</h6>
+                    <p>Thử nghiệm đốt 4 giờ liên tục kiểm soát độ sạch ngọn lửa và bầu không khí</p>
+                  </div>
+                </div>
+                <div class="story-artisan-box">
+                  <div class="artisan-box-icon">💡</div>
+                  <div class="artisan-box-content">
+                    <h5>Bí quyết tỉa bấc chuẩn 0.6cm</h5>
+                    <p>Bấc nến được cắt tỉa sẵn về độ dài tiêu chuẩn 0.6cm trước khi xuất xưởng. Chiều dài này giúp ngọn lửa khi thắp lên lập tức đạt đường kính 2.5cm, ngọn lửa đứng yên tĩnh tại, tỏa nhiệt đều làm tan sáp phẳng mịn mà không bao giờ sinh khói đen.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trạm 07: Đóng hộp & Batch No -->
+          <div class="timeline-station" data-station="7">
+            <div class="station-node" onclick="toggleTimelineStationFromNode(this)">
+              <span class="node-num">07</span>
+            </div>
+            <div class="station-card">
+              <div class="station-header" onclick="toggleTimelineStation(this)" role="button" tabindex="0" aria-expanded="false">
+                <div class="station-header-main">
+                  <span class="step-tag-pill">📦 Thành phẩm &amp; Hoàn thiện</span>
+                  <h3 class="station-card-title">Đóng Hộp Giấy Ivory Tái Chế &amp; Đánh Dấu Số Mẻ Thủ Công</h3>
+                </div>
+                <div class="station-toggle-icon" aria-label="Đóng/Mở chi tiết">
+                  <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </div>
+              <div class="station-body">
+                <p class="station-card-desc">
+                  Từng hũ nến sau khi qua kiểm định được đặt vào hộp giấy Ivory 350gsm tái chế cứng cáp, in mực đậu nành thân thiện. Mặt trước hộp dán tem nhãn mộc và đóng dấu tay số mẻ chế tác (Batch Number) để bạn có thể truy xuất chính xác ngày người thợ hoàn thiện hũ nến của mình.
+                </p>
+                <div class="story-specs-grid">
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Bao bì</span>
+                    <span class="story-spec-val">Hộp Ivory 350gsm</span>
+                  </div>
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Mực in</span>
+                    <span class="story-spec-val">100% Gốc đậu nành</span>
+                  </div>
+                  <div class="story-spec-item">
+                    <span class="story-spec-label">Truy xuất</span>
+                    <span class="story-spec-val">Đóng dấu mộc Batch No</span>
+                  </div>
+                </div>
+
+                <div class="station-visual-mini">
+                  <span class="station-mini-icon">📦</span>
+                  <div class="station-mini-info">
+                    <h6>Bao Bì Giấy Tái Sinh &amp; Đóng Dấu Số Mẻ</h6>
+                    <p>Mỗi hộp nến là một tác phẩm thủ công mộc mạc, bảo chứng an toàn và nguồn gốc</p>
+                  </div>
+                </div>
+
+                <div class="story-artisan-box">
+                  <div class="artisan-box-icon">💡</div>
+                  <div class="artisan-box-content">
+                    <h5>Sẵn sàng cho trải nghiệm thắp nến</h5>
+                    <p>Hũ nến hoàn thiện đã sẵn sàng trên tay bạn. Ngay bên dưới là 3 bản phối hương cùng cẩm nang nghi thức thắp nến an lành từ người thợ.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+        <!-- PHẦN 4: LÀNH CHO TỔ ẤM & NGHI THỨC CHĂM SÓC HŨ NẾN (#ritual) -->
+    <section class="purity-section" id="ritual">
+      <div class="section-container">
+        
+        <!-- Tiêu đề phần -->
+        <div class="section-header text-center">
+          <div class="section-tag">
+            <span class="tag-icon">✨</span>
+            <span class="tag-text">Khám phá hũ nến trên tay bạn</span>
+          </div>
+          <h2 class="section-title">Lành cho tổ ấm, sạch từng hơi thở</h2>
+          <p class="section-subtitle">
+            Cảm ơn bạn đã quét mã QR trên hũ nến Re:Bean. Từng muỗng bã cà phê gom sạch từ sớm nay đã được người thợ hồi sinh trọn vẹn, mang lại hơi ấm tĩnh tại và an lành cho không gian sống của bạn.
+          </p>
+        </div>
+
+        <!-- Khối 1: Tứ Trụ Lành Sạch — Cam Kết 4 KHÔNG (4 Pillars) -->
+        <div class="purity-pillars-grid">
+          <div class="purity-pillar-card">
+            <div class="pillar-icon-box">🌱</div>
+            <div class="pillar-body">
+              <span class="pillar-tag">0% Paraffin</span>
+              <h4 class="pillar-title">100% Sáp Thực Vật Thuần Khiết</h4>
+              <p class="pillar-desc">Phối hòa từ sáp đậu nành tự nhiên và sáp dừa Bến Tre, nóng chảy ở nhiệt độ thấp 45°C–48°C, an toàn tuyệt đối không sinh benzen độc hại.</p>
+            </div>
+          </div>
+
+          <div class="purity-pillar-card">
+            <div class="pillar-icon-box">🕯️</div>
+            <div class="pillar-body">
+              <span class="pillar-tag">0% Bấc Chì</span>
+              <h4 class="pillar-title">100% Sợi Bông Cotton Hữu Cơ</h4>
+              <p class="pillar-desc">Sợi bấc bông mộc đan thủ công, không lõi kim loại nặng, được đo cắt sẵn 0.6cm giúp ngọn lửa tĩnh tại, không tro bụi bay lơ lửng.</p>
+            </div>
+          </div>
+
+          <div class="purity-pillar-card">
+            <div class="pillar-icon-box">🌬️</div>
+            <div class="pillar-body">
+              <span class="pillar-tag">Không Khói Đen</span>
+              <h4 class="pillar-title">Bén Lửa Sạch &amp; Êm Dịu</h4>
+              <p class="pillar-desc">Cháy hết sáp phẳng mịn không tạo rãnh sâu hầm lò, kiểm nghiệm 4h liên tục không làm cay mắt hay bám muội đen lên trần nhà.</p>
+            </div>
+          </div>
+
+          <div class="purity-pillar-card">
+            <div class="pillar-icon-box">👶</div>
+            <div class="pillar-body">
+              <span class="pillar-tag">An toàn khứu giác</span>
+              <h4 class="pillar-title">Lành Cho Trẻ &amp; Thú Cưng</h4>
+              <p class="pillar-desc">Hương thơm từ tinh dầu thực vật tự nhiên và bã cà phê rang mộc đạt chuẩn an toàn khứu giác IFRA, thư giãn sâu mà không gây nhức đầu.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Khối 2: 3 Bản Phối Hương Trên Tay Bạn (Scent Identity Showcase) -->
+        <div class="scent-showcase-wrap">
+          <div class="scent-showcase-header text-center">
+            <span class="sub-badge">BỘ SƯU TẬP HƯƠNG MỘC 3 MIỀN</span>
+            <h3 class="scent-title">Hũ Nến Của Bạn Thuộc Bản Phối Hương Nào?</h3>
+            <p class="scent-desc">Mời bạn đối chiếu với tem nhãn trên thân hũ để khám phá trọn vẹn tầng hương tinh tế mà người thợ đã chắt lọc</p>
+          </div>
+
+          <div class="scent-cards-grid">
+            <!-- Bản phối 01: Cam Gừng Ấm -->
+            <div class="scent-card active" data-scent="cam" onclick="selectScentOption('cam')">
+              <div class="scent-badge-float">Nắng ấm miền Nam 🍊</div>
+              <div class="scent-card-img-wrap">
+                <img src="ReBean_v4_04_ChiTiet_Cam.png" alt="Re:Bean Cam Gừng Ấm" class="scent-card-img" loading="lazy">
+              </div>
+              <div class="scent-card-details">
+                <span class="scent-family">Vườn cam miền Tây &amp; Bã Espresso</span>
+                <h4 class="scent-name">Cam Gừng Ấm</h4>
+                <p class="scent-story">Vỏ cam sành mọng nắng kết hợp gừng già sẻ cay ấm nồng trên nền bã cà phê rang mộc giòn thơm.</p>
+                <div class="scent-pyramid">
+                  <div class="pyramid-row"><span class="pyr-label">Nốt đầu:</span> <span>Cam Bergamot, Vỏ quýt</span></div>
+                  <div class="pyramid-row"><span class="pyr-label">Nốt giữa:</span> <span>Gừng sẻ ấm, Bã Espresso</span></div>
+                  <div class="pyramid-row"><span class="pyr-label">Nốt đáy:</span> <span>Gỗ tuyết tùng, Vani ngọt</span></div>
+                </div>
+                <div class="scent-mood-tag">✨ Khử mùi gian bếp &amp; tiếp thêm năng lượng tích cực</div>
+              </div>
+            </div>
+
+            <!-- Bản phối 02: Vani Gỗ Thông -->
+            <div class="scent-card" data-scent="vani" onclick="selectScentOption('vani')">
+              <div class="scent-badge-float">Sương sớm Đà Lạt 🪵</div>
+              <div class="scent-card-img-wrap">
+                <img src="ReBean_v4_05_ChiTiet_Vani.png" alt="Re:Bean Vani Gỗ Thông" class="scent-card-img" loading="lazy">
+              </div>
+              <div class="scent-card-details">
+                <span class="scent-family">Rừng thông tĩnh tại &amp; Cà phê phố cổ</span>
+                <h4 class="scent-name">Vani Gỗ Thông</h4>
+                <p class="scent-story">Vị ngọt béo êm dịu của vani hòa cùng nhựa thông rừng xanh tĩnh tại và nền cà phê sâu lắng.</p>
+                <div class="scent-pyramid">
+                  <div class="pyramid-row"><span class="pyr-label">Nốt đầu:</span> <span>Hạt béo, Bơ vani dịu</span></div>
+                  <div class="pyramid-row"><span class="pyr-label">Nốt giữa:</span> <span>Gỗ thông thông reo, Cà phê</span></div>
+                  <div class="pyramid-row"><span class="pyr-label">Nốt đáy:</span> <span>Hổ phách mộc, Rêu sồi</span></div>
+                </div>
+                <div class="scent-mood-tag">🪵 Thư giãn đọc sách &amp; sưởi ấm không gian ngủ</div>
+              </div>
+            </div>
+
+            <!-- Bản phối 03: Oải Hương Mộc -->
+            <div class="scent-card" data-scent="lavender" onclick="selectScentOption('lavender')">
+              <div class="scent-badge-float">Gió thu Hà Nội 🌿</div>
+              <div class="scent-card-img-wrap">
+                <img src="ReBean_v4_06_ChiTiet_Lavender.png" alt="Re:Bean Oải Hương Mộc" class="scent-card-img" loading="lazy">
+              </div>
+              <div class="scent-card-details">
+                <span class="scent-family">Đồi lavender &amp; Chiều thu dịu êm</span>
+                <h4 class="scent-name">Oải Hương Mộc</h4>
+                <p class="scent-story">Hoa oải hương đồng nội thanh thoát, xua tan muộn phiền ngày dài trên tầng hương cà phê êm dịu.</p>
+                <div class="scent-pyramid">
+                  <div class="pyramid-row"><span class="pyr-label">Nốt đầu:</span> <span>Oải hương Pháp, Xô thơm</span></div>
+                  <div class="pyramid-row"><span class="pyr-label">Nốt giữa:</span> <span>Hạt Arabica rang, Cúc mộc</span></div>
+                  <div class="pyramid-row"><span class="pyr-label">Nốt đáy:</span> <span>Đàn hương, Xạ hương mộc</span></div>
+                </div>
+                <div class="scent-mood-tag">🌙 Vỗ về giấc ngủ sâu &amp; xoa dịu âu lo</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Khối 3: Cẩm Nang Nghi Thức Thắp Nến Nghệ Nhân (The Candle Ritual) -->
+        <div class="candle-ritual-wrap">
+          <div class="ritual-header text-center">
+            <span class="sub-badge">BÍ QUYẾT TỪ NGƯỜI THỢ CHẾ TÁC</span>
+            <h3 class="ritual-title">Nghi Thức Thắp &amp; Chăm Sóc Hũ Nến Chuẩn Xưởng</h3>
+            <p class="ritual-desc">Để mỗi giờ thắp sáng đều trọn vẹn, không khói muội và khai mở tối đa tầng hương thuần khiết</p>
+          </div>
+
+          <div class="ritual-grid">
+            <div class="ritual-card">
+              <div class="ritual-step-num">01</div>
+              <div class="ritual-icon">✂️</div>
+              <h4 class="ritual-card-title">Cắt Bấc Chuẩn 0.5cm</h4>
+              <p class="ritual-card-desc">Trước mỗi lần thắp, hãy bấm tỉa bớt tro đầu bấc còn khoảng 0.5–0.6cm. Điều này giúp ngọn lửa cháy tĩnh tại, không bập bùng và tuyệt đối không tạo tàn tro.</p>
+            </div>
+
+            <div class="ritual-card">
+              <div class="ritual-step-num">02</div>
+              <div class="ritual-icon">🔥</div>
+              <h4 class="ritual-card-title">Thắp Đủ 1–2 Giờ Lần Đầu</h4>
+              <p class="ritual-card-desc">Trong lần đầu bén lửa, hãy để sáp tan chảy đều tới tận mép thành hũ thủy tinh. Thói quen này ngăn ngừa hiện tượng thụt tim, tạo rãnh sâu hầm lò.</p>
+            </div>
+
+            <div class="ritual-card">
+              <div class="ritual-step-num">03</div>
+              <div class="ritual-icon">🌬️</div>
+              <h4 class="ritual-card-title">Đậy Nắp Gỗ Để Tắt Lửa</h4>
+              <p class="ritual-card-desc">Thay vì thổi mạnh làm khói bay khắp phòng, bạn chỉ cần nhẹ nhàng đậy nắp gỗ sồi lại. Ngọn lửa sẽ tự tắt êm đềm do cách ly oxy, bảo toàn trọn vẹn hương thơm phòng.</p>
+            </div>
+
+            <div class="ritual-card">
+              <div class="ritual-step-num">04</div>
+              <div class="ritual-icon">☕</div>
+              <h4 class="ritual-card-title">Hút Ẩm &amp; Khử Mùi 24/7</h4>
+              <p class="ritual-card-desc">Sau khi tắt nến và đậy nắp kín, chiếc túi bã 15g sấy đối lưu dưới nắp sẽ tự động hút ẩm và gom sạch mùi ẩm mốc trong không gian phòng suốt cả ngày.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Khối 4: Vòng Đời Tái Sinh — Hướng Dẫn Tái Sử Dụng Khi Hết Nến (Upcycling Guide) -->
+        <div class="upcycling-wrap">
+          <div class="upcycling-card">
+            <div class="upcycling-content">
+              <span class="sub-badge">VÒNG ĐỜI TUẦN HOÀN</span>
+              <h3 class="upcycling-title">Khi Hũ Nến Cạn Sáp, Hành Trình Xanh Chưa Dừng Lại</h3>
+              <p class="upcycling-desc">
+                Re:Bean được thiết kế theo tinh thần Zero-Waste. Mỗi thành phần của hũ nến trên tay bạn đều sẵn sàng cho một vòng đời mới đầy hữu ích:
+              </p>
+
+              <div class="upcycle-steps-grid">
+                <div class="upcycle-item">
+                  <div class="upcycle-icon">🪴</div>
+                  <div class="upcycle-text">
+                    <h5>Chậu Sen Đá &amp; Hũ Cắm Bút</h5>
+                    <p>Ngâm hũ thủy tinh vào nước ấm 50°C để sáp cặn nổi lên, rửa sạch bằng xà phòng. Bạn đã có ngay chiếc ly hổ phách cổ điển trang trí bàn làm việc.</p>
+                  </div>
+                </div>
+
+                <div class="upcycle-item">
+                  <div class="upcycle-icon">🌱</div>
+                  <div class="upcycle-text">
+                    <h5>Dưỡng Chất Hữu Cơ Cho Đất</h5>
+                    <p>Rạch nhẹ túi lọc bã cà phê dưới nắp gỗ, trộn phần bã khô giàu nitơ và khoáng chất vào đất trồng cây để tơi xốp đất và xua đuổi côn trùng tự nhiên.</p>
+                  </div>
+                </div>
+
+                <div class="upcycle-item">
+                  <div class="upcycle-icon">♻️</div>
+                  <div class="upcycle-text">
+                    <h5>Trạm Refill Sáp Re:Bean</h5>
+                    <p>Giữ lại hũ thủy tinh hổ phách và mang tới các điểm trạm của Re:Bean để được rót mẻ sáp mới với chi phí tiết kiệm 40% so với mua hũ mới.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Khối thông điệp người thợ -->
+            <div class="artisan-letter-box">
+              <div class="letter-stamp">☕ Re:Bean 2026</div>
+              <h4 class="letter-title">Lời nhắn từ người thợ làm nến</h4>
+              <p class="letter-body">
+                "Hũ nến trên tay bạn bắt đầu từ những muỗng bã cà phê nhỏ bé bị bỏ quên ở góc quán sớm. Qua bàn tay chế tác cẩn trọng và niềm tin vào lối sống tuần hoàn, chúng mình hy vọng ngọn nến này sẽ đem lại cho bạn những phút giây thư thái và bình yên nhất."
+              </p>
+              <div class="letter-author">
+                <strong>Đội ngũ Dự án Re:Bean</strong>
+                <span>Dự án Khởi nghiệp Xanh — BeStartup 2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
   </main>
-  <script src="app.js?v=3.1"></script>
+
+  <!-- FOOTER CHÂN TRANG MỘC MẠC -->
+    <footer class="site-footer" id="footer">
+      <div class="footer-container">
+        <div class="footer-top-grid">
+          <!-- Cột 1: Thông tin thương hiệu -->
+          <div class="footer-brand-col">
+            <div class="footer-logo">
+              <span class="footer-logo-mark">Re:</span><span class="footer-logo-text">Bean</span>
+            </div>
+            <p class="footer-tagline">Artisanal Coffee Candle &amp; Circular Lifestyle</p>
+            <p class="footer-story-quote">
+              "Mỗi hũ nến được thắp lên là một muỗng bã cà phê Tây Nguyên được tái sinh, gửi gắm tình yêu nông sản Việt và hơi ấm lành sạch vào từng góc nhà."
+            </p>
+            <div class="footer-project-badge">
+              <span class="project-pill">🌱 Dự án tham dự Cuộc thi BeStartup 2026</span>
+            </div>
+          </div>
+
+          <!-- Cột 2: Điều hướng nhanh -->
+          <div class="footer-links-col">
+            <h5 class="footer-heading">Khám Phá</h5>
+            <ul class="footer-nav-list">
+              <li><a href="#story">Câu chuyện hạt cà phê</a></li>
+              <li><a href="#anatomy">Hũ nến có gì?</a></li>
+              <li><a href="#workshop">Ghé thăm xưởng nến</a></li>
+              <li><a href="#ritual">Nghi thức &amp; Tái sinh</a></li>
+            </ul>
+          </div>
+
+          <!-- Cột 3: Liên hệ & Cộng đồng -->
+          <div class="footer-contact-col">
+            <h5 class="footer-heading">Kết Nối Với Re:Bean</h5>
+            <p class="footer-contact-item">
+              <span class="contact-icon">📍</span>
+              <span>Xưởng chế tác: Đà Lạt &amp; TP. Hồ Chí Minh, Việt Nam</span>
+            </p>
+            <p class="footer-contact-item">
+              <span class="contact-icon">✉️</span>
+              <a href="mailto:rebean.candle@gmail.com">rebean.candle@gmail.com</a>
+            </p>
+            <p class="footer-contact-item">
+              <span class="contact-icon">📞</span>
+              <a href="tel:0909123456">0909 123 456 • Hotline &amp; Zalo</a>
+            </p>
+            <div class="footer-social-row">
+              <a href="#" class="social-circle" aria-label="Facebook">FB</a>
+              <a href="#" class="social-circle" aria-label="Instagram">IG</a>
+              <a href="#" class="social-circle" aria-label="TikTok">TT</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+          <p>© 2026 Re:Bean — Cuộc thi Khởi nghiệp BeStartup 2026. Made with ❤️ and pure coffee grounds in Vietnam.</p>
+          <div class="footer-eco-statement">
+            <span>🌿 100% Bao bì &amp; vật liệu có thể tái chế hoặc tự phân hủy</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    
+
+  <script src="app.js?v=5.1"></script>
 </body>
 </html>

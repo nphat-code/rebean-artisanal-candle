@@ -5,4 +5,5 @@ Desktop.ini
 
 # Backup files
 _backup_old_version/
+_backup_variants/
 *.tmp
