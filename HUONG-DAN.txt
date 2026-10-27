@@ -1,0 +1,30 @@
+RE:BEAN – TRANG WEB QR TRÊN BAO BÌ
+===================================
+
+1) TRƯỚC KHI ĐƯA LÊN MẠNG
+Mở index.html bằng Notepad / VS Code, tìm khối "CONFIG" ở gần đầu phần <script> và điền:
+  - playlists.work / guest / relax : link playlist (Spotify, YouTube...) mà nhóm có quyền dùng
+  - contact.fanpage / email / phone : thông tin liên hệ (để trống thì không hiện)
+  - wax       : tên hệ sáp sau khi chốt công thức
+  - dims      : kích thước ly 50g / cốc 120g sau khi đo mẫu thật
+  - burnTime  : CHỈ điền sau khi có kết quả đốt thử (ví dụ "5–8 giờ")
+
+2) ĐƯA TRANG LÊN MẠNG (miễn phí)
+  Cách nhanh nhất: Netlify Drop (app.netlify.com/drop) – kéo cả thư mục chứa index.html vào là có link.
+  Hoặc GitHub Pages / Vercel. Nếu mua tên miền (ví dụ rebean.vn) thì trỏ tên miền vào đó.
+  Trang cần Internet để tải thư viện 3D (three.js) và font chữ.
+
+3) TẠO 6 MÃ QR – MỖI SKU MỘT MÃ
+Giả sử địa chỉ trang là https://rebean.vn :
+  RB-SOM-050   -> https://rebean.vn/#som
+  RB-SOM-120   -> https://rebean.vn/#som-120
+  RB-PHIN-050  -> https://rebean.vn/#phin
+  RB-PHIN-120  -> https://rebean.vn/#phin-120
+  RB-DEM-050   -> https://rebean.vn/#dem
+  RB-DEM-120   -> https://rebean.vn/#dem-120
+Quét thử từng mã bằng cả iPhone và Android trước khi gửi file in.
+Kích thước QR trên hộp: tối thiểu 20 x 20 mm, chừa lề trắng 2 mm.
+
+4) LƯU Ý NỘI DUNG
+  - Mô hình 3D là minh họa cấu tạo, trang đã ghi chú điều này.
+  - Không thêm các câu "khử mùi", "giúp ngủ ngon", "đuổi kiến" khi chưa có kết quả thử nghiệm.
