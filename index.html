@@ -150,23 +150,8 @@ p{margin:0}
 .zoom{position:absolute;right:12px;top:12px;display:flex;flex-direction:column;gap:6px}
 .zoom button{width:38px;height:38px;border-radius:12px;border:1px solid var(--line);background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font-family:var(--font-ui);font-size:20px;font-weight:600;line-height:1;cursor:pointer;display:grid;place-items:center}
 .zoom button svg{width:18px;height:18px}
-.hotspots{position:absolute;inset:0;pointer-events:none}
-.hs{position:absolute;left:0;top:0;pointer-events:auto;border:0;background:none;padding:0;cursor:pointer;display:flex;align-items:center;gap:8px;transform:translate(-11px,-11px);transition:opacity .3s}
-.hs .pin{position:relative;width:22px;height:22px;border-radius:50%;background:var(--card);box-shadow:0 0 0 2px var(--scent),0 2px 6px rgba(0,0,0,.3);display:grid;place-items:center;flex:none}
-.hs .pin::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--scent)}
-.hs .pin::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 2px var(--scent);animation:ping 2.4s ease-out infinite}
-@keyframes ping{0%{transform:scale(1);opacity:.7}80%,100%{transform:scale(2);opacity:0}}
-.hs .tag{font-family:var(--font-ui);font-size:12px;font-weight:600;white-space:nowrap;background:var(--card);color:var(--ink);padding:3px 9px;border-radius:999px;box-shadow:0 1px 4px rgba(0,0,0,.2);opacity:0;transform:translateX(-4px);transition:opacity .3s,transform .3s}
-.hs.left{flex-direction:row-reverse;transform:translate(calc(-100% + 11px),-11px)}
-.hs.left .tag{transform:translateX(4px)}
-.stage.show-tags .hs .tag,.hs.active .tag,.hs:hover .tag,.hs:focus-visible .tag{opacity:1;transform:none}
-.hs.active .pin{background:var(--scent)}
-.hs.active .pin::before{background:var(--card)}
-.hs.dim{opacity:.4}
-.stage.sectioned .hs.layer .tag{opacity:1;transform:none}
-.info{position:absolute;left:12px;bottom:12px;width:min(440px,calc(100% - 24px));max-height:52%;overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 44px 14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:transform .35s ease,opacity .35s ease;overscroll-behavior:contain}
-.info[hidden]{display:block!important;opacity:0;transform:translateY(16px);pointer-events:none}
-.info .close{position:absolute;top:8px;right:8px;width:32px;height:32px;border:0;border-radius:50%;background:var(--paper-2);cursor:pointer;font-size:18px;line-height:1}
+.hotspots{display:none!important}
+.info{display:none!important}
 .k{font-family:var(--font-ui);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--scent-ink)}
 .detail h3{font-size:21px;margin:2px 0 6px}
 .detail .d{font-size:14.5px;color:var(--ink-2);line-height:1.6}
@@ -335,15 +320,15 @@ footer{padding-block:64px 48px;border-top:1px solid var(--line);background:var(-
     <div class="stage-col">
       <div class="stage" id="stage">
         <canvas id="scene" aria-label="Mô hình 3D ly nến Re:Bean. Kéo ngang để xoay."></canvas>
-        <div class="hotspots" id="hotspots"></div>
-        <p class="hint pill" id="hint">Kéo để xoay · chạm chấm sáng để xem</p>
+        <div class="hotspots" id="hotspots" style="display:none"></div>
+        <p class="hint pill" id="hint">Kéo ngang để xoay · Kéo dọc đổi góc nhìn</p>
         <div class="zoom" role="group" aria-label="Thu phóng">
           <button type="button" id="zoomIn" aria-label="Phóng to">+</button>
           <button type="button" id="zoomOut" aria-label="Thu nhỏ">−</button>
           <button type="button" id="zoomReset" aria-label="Xem toàn cảnh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
         </div>
         <p class="model-note pill">Mô hình minh họa</p>
-        <div class="info detail" id="info" hidden role="region" aria-live="polite"></div>
+        <div class="info detail" id="info" hidden style="display:none!important" role="region" aria-live="polite"></div>
         <div class="fallback" id="fallback" hidden>Thiết bị của bạn chưa hiển thị được mô hình 3D. Danh sách cấu tạo vẫn mô tả đầy đủ từng lớp của nến.</div>
       </div>
       <div class="controls">
@@ -1215,28 +1200,16 @@ function applySceneLook(s){
 const hsWrap = $("#hotspots");
 let hsEls = {};
 function buildHotspots(){
-  hsWrap.innerHTML = ""; hsEls = {};
-  if(!three) return;
-  const V = three.vessels[state.size];
-  PART_ORDER[state.size].forEach(key => {
-    if(!V.anchors[key]) return;
-    const info = partInfo(key, SCENTS[state.scent], state.size);
-    const b = document.createElement("button"); b.type = "button"; b.className = "hs" + (LAYERS[key] ? " layer" : ""); b.dataset.part = key;
-    b.innerHTML = '<span class="pin"></span><span class="tag">'+esc(info.t)+'</span>'; b.setAttribute("aria-label", info.t);
-    b.addEventListener("click", ev => { ev.stopPropagation(); if(state.selected === key) select(null); else select(key, true); });
-    hsWrap.appendChild(b); hsEls[key] = b;
-  });
+  if(hsWrap) hsWrap.innerHTML = "";
+  hsEls = {};
 }
 const _tmpA = { v:null };
 function select(key, focus){
   state.selected = key;
   const card = $("#info");
-  if(!key){ card.hidden = true; state.zoom = 1; }
+  if(card){ card.hidden = true; card.style.display = "none"; }
+  if(!key){ state.zoom = 1; }
   else {
-    const info = partInfo(key, SCENTS[state.scent], state.size);
-    card.innerHTML = detailHTML(info, true) + '<button class="close" type="button" aria-label="Đóng">×</button>';
-    card.querySelector(".close").addEventListener("click", () => select(null));
-    card.hidden = false; card.scrollTop = 0;
     if(focus){
       if(key === "sticker" && state.explode < 0.6) setExplode(1, true);
       if(INNER[key] && state.explode < 0.5 && !state.section) setSection(true);
@@ -1245,7 +1218,6 @@ function select(key, focus){
       if(three && SNAP[key] && state.explode < 0.5) snapTo(key);
     }
   }
-  Object.entries(hsEls).forEach(([k,el]) => el.classList.toggle("active", k === key));
   markList(); highlight();
 }
 function snapTo(key){
@@ -1432,28 +1404,7 @@ function frame(now){
   placeHotspots(V, e);
 }
 function placeHotspots(V, e){
-  const cv = $("#scene"), w = cv.clientWidth, h = cv.clientHeight;
-  const center = three.cam.target.clone().applyMatrix4(three.camera.matrixWorldInverse).z;
-  $("#stage").classList.toggle("show-tags", (e > 0.6 || state.section || state.zoom < 0.75) && w > 520);
-  $("#stage").classList.toggle("sectioned", state.section);
-  Object.entries(hsEls).forEach(([key, el]) => {
-    if(!anchorWorld(V, key, _v)){ el.style.opacity = "0"; return; }
-    let visible;
-    if(key === "box") visible = three.boxVis > 0.6;
-    else if(key === "sticker") visible = e >= .35 || state.selected === key;
-    else if(INNER[key]) visible = e >= .15 || state.section || state.selected === key;
-    else visible = true;
-    el.style.pointerEvents = visible ? "" : "none";
-    if(!visible){ el.style.opacity = "0"; return; }
-    const vz = _v.clone().applyMatrix4(three.camera.matrixWorldInverse).z;
-    _v.project(three.camera);
-    const x = (_v.x*0.5+0.5)*w, y = (-_v.y*0.5+0.5)*h;
-    const off = _v.z > 1 || x < -40 || x > w+40 || y < -40 || y > h+40;
-    el.style.opacity = off ? "0" : "";
-    el.style.left = x + "px"; el.style.top = y + "px";
-    el.classList.toggle("left", x > w*0.58);
-    el.classList.toggle("dim", vz < center - V.R*0.6 && e < 0.5 && !state.section && key !== "box");
-  });
+  // Hotspot buttons and overlay card removed
 }
 
 /* ---------------- pointer: rotate, look, pinch, wheel ---------------- */
