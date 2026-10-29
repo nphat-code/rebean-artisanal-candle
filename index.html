@@ -265,32 +265,20 @@ body.stage-fullscreen-active{overflow:hidden!important}
 .tier:nth-child(3){width:83%;background:color-mix(in srgb,var(--scent) 28%,var(--card));clip-path:polygon(8% 0,92% 0,100% 100%,0 100%)}
 .tier .lv{font-family:var(--font-ui);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--scent-ink)}
 .tier .nt{font-size:15px;line-height:1.4}
-.modes{display:flex;flex-direction:column;gap:16px}
-.mode{display:flex;flex-direction:column;gap:16px;padding:22px;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 4px 20px rgba(0,0,0,0.12);transition:border-color .3s,box-shadow .3s}
-.mode:hover{border-color:color-mix(in srgb,var(--c) 40%,var(--line));box-shadow:0 8px 28px rgba(0,0,0,0.22)}
-.mode-head{display:flex;align-items:flex-start;gap:14px}
-.mode-head .mi{flex-shrink:0;width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 20%,var(--card));color:var(--c);border:1px solid color-mix(in srgb,var(--c) 35%,transparent)}
-.mode-head .mi svg{width:24px;height:24px}
-.mode-head-info{flex:1;min-width:0}
-.mode-title-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
-.mode-head h3{font-family:var(--font-ui);font-size:16.5px;font-weight:700;color:var(--ink);margin:0;line-height:1.35}
-.mode-badge{font-family:var(--font-ui);font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:999px;background:color-mix(in srgb,var(--c) 20%,transparent);color:var(--c);border:1px solid color-mix(in srgb,var(--c) 40%,transparent)}
-.mode-tip{font-size:14.5px;color:var(--ink-2);line-height:1.55;margin:0}
-.mode-thumb{width:100%;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(circle at center,color-mix(in srgb,var(--c) 14%,#181210) 0%,rgba(18,12,10,0.95) 100%);display:flex;justify-content:center;align-items:center;padding:16px 12px}
-.mode-thumb img{max-height:220px;width:auto;max-width:100%;object-fit:contain;display:block;filter:drop-shadow(0 10px 20px rgba(0,0,0,0.5));transition:transform .35s ease}
-.mode-thumb:hover img{transform:scale(1.03) translateY(-2px)}
-.mode .pl{width:100%;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-top:14px;border-top:1px dashed var(--line);font-size:13.5px;color:var(--ink-2)}
-.mode .pl a{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-ui);font-weight:600;text-decoration:none;padding:5px 12px;border-radius:999px;background:var(--ink);color:var(--paper);font-size:12.5px;transition:transform .2s,background .2s}
-.mode .pl a:hover{transform:translateY(-1px);background:var(--c)}
-.mode .pl .pl-text{flex:1;min-width:180px;line-height:1.45}
-.mode .pl .soon{color:var(--ink-2);font-style:italic;opacity:.8}
-.mode-switcher{display:flex;flex-direction:column;gap:8px;padding-top:12px;border-top:1px solid var(--line)}
-.mode-switcher-label{font-family:var(--font-ui);font-size:12px;font-weight:600;color:var(--ink-2);text-transform:uppercase;letter-spacing:.08em}
-.mode-switcher-chips{display:flex;flex-wrap:wrap;gap:8px}
-.mode-chip{font-family:var(--font-ui);font-size:12.5px;font-weight:600;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink-2);cursor:pointer;transition:all .2s ease;display:inline-flex;align-items:center;gap:6px}
-.mode-chip:hover{border-color:var(--c);color:var(--ink)}
-.mode-chip.active{background:color-mix(in srgb,var(--c) 20%,var(--card));border-color:var(--c);color:var(--ink);font-weight:700}
-.mode-chip .dot{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.modes{display:flex;flex-direction:column;gap:12px}
+.mode{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;background:var(--card);border:1px solid var(--line);border-radius:16px;cursor:pointer;transition:border-color .25s ease,background-color .25s ease,transform .2s ease}
+.mode:hover{border-color:color-mix(in srgb,var(--c) 40%,var(--line));transform:translateY(-1px)}
+.mode[data-active="true"]{border-color:color-mix(in srgb,var(--c) 55%,var(--line));background:color-mix(in srgb,var(--c) 7%,var(--card))}
+.mode .mi{flex-shrink:0;width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 18%,var(--card));color:var(--c);margin-top:2px}
+.mode .mi svg{width:24px;height:24px}
+.mode-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.mode h3{font-family:var(--font-ui);font-size:15.5px;font-weight:700;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0;line-height:1.4}
+.mode .pick{font-family:var(--font-ui);font-size:12px;font-weight:700;letter-spacing:.06em;border:1px solid var(--c);color:var(--c);background:transparent;border-radius:999px;padding:1px 9px;cursor:pointer;transition:all .2s ease}
+.mode .pick:hover, .mode[data-active="true"] .pick{background:var(--c);color:var(--card)}
+.mode p{font-size:14.5px;color:var(--ink-2);line-height:1.55;margin:0}
+.mode .pl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:6px;font-size:13.5px;color:var(--ink-2)}
+.mode .pl a{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-ui);font-weight:600;text-decoration:none;padding:5px 12px;border-radius:999px;background:var(--ink);color:var(--paper)}
+.mode .pl .soon{color:var(--ink-2);font-style:italic}
 .safe-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:start}
 @media (max-width:900px){ .safe-grid{grid-template-columns:minmax(0,1fr)} }
 .panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
@@ -549,11 +537,11 @@ const MODES_DATA = {
       icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>' }
   ],
   seasonal: [
-    { id:"tet", scent:"tet", title:"Xuân Sum Vầy · Tết Đoàn Viên", c:"var(--c-tet)", tip:"Thắp sáng bàn trà ngày Tết khi tiếp khách và đón giao thừa. Hương quất gừng ấm xua tan khí lạnh đầu năm.", music:"Nhạc xuân acoustic hoài niệm, đàn tranh", useArt:true,
+    { id:"tet", scent:"tet", title:"Xuân Sum Vầy · Tết Đoàn Viên", c:"var(--c-tet)", tip:"Thắp sáng bàn trà ngày Tết khi tiếp khách và đón giao thừa. Hương quất gừng ấm xua tan khí lạnh đầu năm.", music:"Nhạc xuân acoustic hoài niệm, đàn tranh",
       icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>' },
-    { id:"dong", scent:"dong", title:"Bên Lò Sưởi · Giáng Sinh & Đêm Đông", c:"var(--c-dong)", tip:"Thắp khi quây quần bữa tối mùa đông hoặc nghe nhạc cuối tuần. Nốt hương mocha quế ấm nồng vỗ về cảm xúc.", music:"Acoustic Giáng sinh, tiếng củi tí tách", useArt:true,
+    { id:"dong", scent:"dong", title:"Bên Lò Sưởi · Giáng Sinh & Đêm Đông", c:"var(--c-dong)", tip:"Thắp khi quây quần bữa tối mùa đông hoặc nghe nhạc cuối tuần. Nốt hương mocha quế ấm nồng vỗ về cảm xúc.", music:"Acoustic Giáng sinh, tiếng củi tí tách",
       icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c2 3.5 5 5.6 5 9.5A5 5 0 0 1 7 11.5c0-2 1-3.4 2-4.5.2 1.6 1 2.6 2 3 0-3 0-5.5 1-8z"/></svg>' },
-    { id:"trang", scent:"trang", title:"Thưởng Nguyệt · Đêm Rằm Trung Thu", c:"var(--c-trang)", tip:"Thắp bên hiên nhà hoặc bàn trà ngắm trăng cùng gia đình. Hương trà sen thanh tao kết hợp cùng bánh nướng truyền thống.", music:"Nhạc thiền trà, sáo trúc an yên", useArt:true,
+    { id:"trang", scent:"trang", title:"Thưởng Nguyệt · Đêm Rằm Trung Thu", c:"var(--c-trang)", tip:"Thắp bên hiên nhà hoặc bàn trà ngắm trăng cùng gia đình. Hương trà sen thanh tao kết hợp cùng bánh nướng truyền thống.", music:"Nhạc thiền trà, sáo trúc an yên",
       icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2a10 10 0 1 0 10 10"/></svg>' }
   ]
 };
@@ -734,47 +722,27 @@ function markList(){
 }
 function renderReuse(){ const r = REUSE[state.size]; $("#reuseList").innerHTML = r.steps.map(t => "<li><span>"+esc(t)+"</span></li>").join(""); $("#reuseNote").textContent = r.note; }
 function renderModes(){
-  const allModes = MODES_DATA[state.collection] || MODES_DATA.daily;
-  const activeMode = allModes.find(m => m.scent === state.scent) || allModes[0];
-  const activeScent = SCENTS[activeMode.scent] || {};
-
-  const url = CONFIG.playlists[activeMode.id];
-  const plContent = url 
-    ? '<a href="'+esc(url)+'" target="_blank" rel="noopener">▶ Mở playlist</a><span class="pl-text">'+esc(activeMode.music)+'</span>'
-    : '<span class="pl-text">Gợi ý nhạc: <b>'+esc(activeMode.music)+'</b> <span class="soon">· playlist đang được tuyển chọn</span></span>';
-
-  const imgSrc = activeMode.img || (ART[activeMode.scent] ? ART[activeMode.scent].front : null);
-  const thumb = imgSrc ? '<div class="mode-thumb"><img src="'+imgSrc+'" alt="Bao bì '+esc(activeScent.name || activeMode.title)+'" loading="lazy"></div>' : '';
-
-  const chips = allModes.map(m => {
-    const s = SCENTS[m.scent] || {};
-    const isAct = m.scent === activeMode.scent;
-    return '<button type="button" class="mode-chip'+(isAct ? ' active' : '')+'" data-scent="'+m.scent+'" style="--c:'+m.c+'">'+
-      '<span class="dot"></span>'+(s.name || m.title)+ (isAct ? ' ✓' : '') +
-      '</button>';
-  }).join("");
-
-  const html = '<article class="mode" style="--c:'+activeMode.c+'">' +
-    '<div class="mode-head">' +
-      '<span class="mi">'+activeMode.icon+'</span>' +
-      '<div class="mode-head-info">' +
-        '<div class="mode-title-row">' +
-          '<h3>'+esc(activeMode.title)+'</h3>' +
-          '<span class="mode-badge">'+esc(activeScent.name || '')+'</span>' +
-        '</div>' +
-        '<p class="mode-tip">'+esc(activeMode.tip)+'</p>' +
+  const modes = MODES_DATA[state.collection] || MODES_DATA.daily;
+  $("#modes").innerHTML = modes.map(m => {
+    const url = CONFIG.playlists[m.id];
+    const pl = url 
+      ? '<a href="'+esc(url)+'" target="_blank" rel="noopener">▶ Mở playlist</a><span>'+esc(m.music)+'</span>' 
+      : '<span>Gợi ý nhạc: '+esc(m.music)+'</span><span class="soon">· playlist đang được tuyển chọn</span>';
+    const isActive = m.scent === state.scent;
+    const scentName = SCENTS[m.scent] ? SCENTS[m.scent].name : "";
+    return '<article class="mode" data-scent="'+m.scent+'" data-active="'+String(isActive)+'" style="--c:'+m.c+'">' +
+      '<span class="mi">'+m.icon+'</span>' +
+      '<div class="mode-body">' +
+        '<h3>'+esc(m.title)+' <button type="button" class="pick" data-scent="'+m.scent+'">'+esc(scentName)+'</button></h3>' +
+        '<p>'+esc(m.tip)+'</p>' +
+        '<div class="pl">'+pl+'</div>' +
       '</div>' +
-    '</div>' +
-    thumb +
-    '<div class="pl">'+plContent+'</div>' +
-    '<div class="mode-switcher">' +
-      '<span class="mode-switcher-label">Khám phá không gian khác ('+(state.collection === "seasonal" ? "Lễ hội" : "Thường nhật")+'):</span>' +
-      '<div class="mode-switcher-chips">'+chips+'</div>' +
-    '</div>' +
-  '</article>';
-
-  $("#modes").innerHTML = html;
-  $$("#modes .mode-chip").forEach(b => b.addEventListener("click", () => setScent(b.dataset.scent)));
+    '</article>';
+  }).join("");
+  $$("#modes .mode").forEach(card => card.addEventListener("click", (e) => {
+    if(e.target.tagName === 'A') return;
+    setScent(card.dataset.scent);
+  }));
 }
 function renderContact(){
   const c = CONFIG.contact, out = [];
