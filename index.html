@@ -74,8 +74,8 @@ p{margin:0}
 .seal.sm{width:32px;height:32px;font-size:9px;letter-spacing:.06em}
 .seal.lg{width:66px;height:66px;font-size:17px;letter-spacing:.06em;transform:rotate(-4deg)}
 .topbar-right{display:flex;align-items:center;gap:10px}
-.collection-toggle{display:inline-flex;background:var(--paper-2);padding:3px;border-radius:999px;border:1px solid var(--line);font-family:var(--font-ui)}
-.col-pill{border:0;background:transparent;padding:5px 12px;border-radius:999px;font-weight:700;font-size:12.5px;cursor:pointer;color:var(--ink-2);transition:background-color .2s,color .2s}
+.collection-toggle{display:inline-flex;flex-shrink:0;white-space:nowrap;background:var(--paper-2);padding:3px;border-radius:999px;border:1px solid var(--line);font-family:var(--font-ui)}
+.col-pill{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;border:0;background:transparent;padding:5px 12px;border-radius:999px;font-weight:700;font-size:12.5px;cursor:pointer;color:var(--ink-2);transition:background-color .2s,color .2s}
 .col-pill[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.15)}
 .scent-tabs{display:flex;gap:4px;background:var(--paper-2);padding:4px;border-radius:999px;font-family:var(--font-ui)}
 .scent-tabs button{white-space:nowrap;border:0;background:transparent;padding:6px 14px;border-radius:999px;font-weight:700;font-size:14px;letter-spacing:.05em;cursor:pointer;color:var(--ink-2);transition:background-color .25s,color .25s}
@@ -300,12 +300,24 @@ footer{padding-block:64px 48px;border-top:1px solid var(--line);background:var(-
 .foot .meta{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14.5px;color:var(--ink-2)}
 .foot .meta a{font-weight:600}
 .foot .small{font-size:12.5px;color:var(--ink-2);max-width:72ch}
-@media (max-width:520px){
-  .scent-tabs button{padding:6px 10px;font-size:13px}
-  .scent-tabs .dot{margin-right:4px}
-  .brand b{font-size:23px}
+@media (max-width:680px){
+  .topbar .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 10px;padding-block:8px 9px}
+  .topbar-right{display:contents}
+  .brand{order:1}
+  .brand b{font-size:22px}
   .brand small{display:none}
+  .collection-toggle{order:2;margin-left:auto}
+  .col-pill{padding:5px 10px;font-size:12px}
+  .scent-tabs{order:3;width:100%;display:flex;justify-content:stretch;gap:4px;padding:3px;background:var(--paper-2);border-radius:999px}
+  .scent-tabs button{flex:1;text-align:center;justify-content:center;display:inline-flex;align-items:center;padding:7px 6px;font-size:13px}
+  .scent-tabs .dot{margin-right:5px}
   .stage .model-note{display:none}
+}
+@media (max-width:360px){
+  .brand b{font-size:20px}
+  .col-pill{padding:4px 8px;font-size:11px}
+  .scent-tabs button{padding:6px 2px;font-size:12px;letter-spacing:0}
+  .seal.sm{width:28px;height:28px;font-size:8px}
 }
 </style>
 </head>
