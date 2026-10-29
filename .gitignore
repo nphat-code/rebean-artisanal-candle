@@ -7,3 +7,11 @@ Desktop.ini
 _backup_old_version/
 _backup_variants/
 *.tmp
+
+# Development & scratchpad artifacts
+scratch/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
