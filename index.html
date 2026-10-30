@@ -229,7 +229,7 @@ body.stage-fullscreen-active{overflow:hidden!important}
 /* chapters */
 .chapter{padding-block:64px;border-top:1px solid var(--line)}
 .chapter-head{display:flex;flex-direction:column;gap:10px;max-width:640px;margin-bottom:32px}
-.chapter-head h2{font-size:clamp(32px,4.6vw,52px);font-weight:800}
+.chapter-head h2{font-size:clamp(32px,4.6vw,52px);font-weight:800;text-wrap:balance}
 .chapter-head p{color:var(--ink-2);font-size:17px}
 .journey{position:relative;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:14px;list-style:none;margin:0;padding:0}
 .journey::before{content:"";position:absolute;left:4%;right:4%;top:31px;height:2px;background:repeating-linear-gradient(90deg,var(--scent) 0 10px,transparent 10px 18px);opacity:.6}
@@ -247,38 +247,853 @@ body.stage-fullscreen-active{overflow:hidden!important}
   .journey .ico{grid-row:span 3}
 }
 .loop-note{margin-top:28px;font-family:var(--font-script);font-size:28px;color:var(--scent-ink)}
-.daybar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-radius:18px;overflow:hidden;border:1px solid var(--line)}
-.daybar button{border:0;cursor:pointer;text-align:left;padding:20px 18px 18px;display:flex;flex-direction:column;gap:4px;min-width:0;position:relative;background:var(--card);transition:background-color .3s}
-.daybar button::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:var(--c)}
-.daybar button[aria-pressed="true"]{background:color-mix(in srgb,var(--c) 16%,var(--card))}
-.daybar .when{font-family:var(--font-ui);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--ink-2)}
-.daybar .nm{font-family:var(--font-display);font-size:32px;font-weight:800;color:var(--c);line-height:1.1}
-.daybar .ms{font-size:14px;color:var(--ink-2)}
-.daybar button + button{border-left:1px solid var(--line)}
-@media (max-width:640px){ .daybar{grid-template-columns:minmax(0,1fr)} .daybar button + button{border-left:0;border-top:1px solid var(--line)} }
-.map-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:28px;margin-top:28px;align-items:start}
-@media (max-width:900px){ .map-grid{grid-template-columns:minmax(0,1fr)} }
-.pyramid{display:flex;flex-direction:column;align-items:center;gap:6px;padding:24px 16px;background:var(--card);border:1px solid var(--line);border-radius:18px}
-.pyramid h3{font-size:23px;margin-bottom:10px;align-self:flex-start}
-.tier{width:100%;text-align:center;padding:14px 12%;background:color-mix(in srgb,var(--scent) 40%,var(--card));clip-path:polygon(6% 0,94% 0,100% 100%,0 100%)}
-.tier:nth-child(2){width:66%;padding:16px 16%;background:color-mix(in srgb,var(--scent) 16%,var(--card));clip-path:polygon(14% 0,86% 0,100% 100%,0 100%)}
-.tier:nth-child(3){width:83%;background:color-mix(in srgb,var(--scent) 28%,var(--card));clip-path:polygon(8% 0,92% 0,100% 100%,0 100%)}
-.tier .lv{font-family:var(--font-ui);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--scent-ink)}
-.tier .nt{font-size:15px;line-height:1.4}
-.modes{display:flex;flex-direction:column;gap:12px}
-.mode{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;background:var(--card);border:1px solid var(--line);border-radius:16px;cursor:pointer;transition:border-color .25s ease,background-color .25s ease,transform .2s ease}
-.mode:hover{border-color:color-mix(in srgb,var(--c) 40%,var(--line));transform:translateY(-1px)}
-.mode[data-active="true"]{border-color:color-mix(in srgb,var(--c) 55%,var(--line));background:color-mix(in srgb,var(--c) 7%,var(--card))}
-.mode .mi{flex-shrink:0;width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 18%,var(--card));color:var(--c);margin-top:2px}
-.mode .mi svg{width:24px;height:24px}
-.mode-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
-.mode h3{font-family:var(--font-ui);font-size:15.5px;font-weight:700;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0;line-height:1.4}
-.mode .pick{font-family:var(--font-ui);font-size:12px;font-weight:700;letter-spacing:.06em;border:1px solid var(--c);color:var(--c);background:transparent;border-radius:999px;padding:1px 9px;cursor:pointer;transition:all .2s ease}
-.mode .pick:hover, .mode[data-active="true"] .pick{background:var(--c);color:var(--card)}
-.mode p{font-size:14.5px;color:var(--ink-2);line-height:1.55;margin:0}
-.mode .pl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:6px;font-size:13.5px;color:var(--ink-2)}
-.mode .pl a{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-ui);font-weight:600;text-decoration:none;padding:5px 12px;border-radius:999px;background:var(--ink);color:var(--paper)}
-.mode .pl .soon{color:var(--ink-2);font-style:italic}
+/* ============================================================
+   SCENT MAP: 24H CIRCADIAN WHEEL, SENSORY ARCHITECTURE & RITUAL
+   ============================================================ */
+.scent-map-sub {
+  font-size: 16px;
+  color: var(--ink-2);
+  max-width: 68ch;
+  line-height: 1.6;
+  margin-top: 6px;
+}
+
+/* 24-Hour Circadian Dial Container */
+.circadian-container {
+  margin-top: 32px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 32px 28px;
+  box-shadow: 0 10px 30px rgba(43,33,28,.04);
+  position: relative;
+  overflow: hidden;
+  transition: background-color .4s ease, border-color .4s ease;
+}
+.circadian-container::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 6px;
+  background: var(--scent);
+  transition: background-color .4s ease;
+}
+
+.clock-stage {
+  display: grid;
+  grid-template-columns: 315px minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .clock-stage {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 24px;
+  }
+}
+
+/* Clock Dial Visual */
+.clock-dial-core {
+  position: relative;
+  width: 270px;
+  height: 270px;
+  margin: 0 auto;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+.clock-dial-core:active,
+.clock-dial-core.dragging {
+  cursor: grabbing;
+}
+.clock-dial-core:hover .hand-flame-core,
+.clock-dial-core.dragging .hand-flame-core {
+  transform: scale(1.25);
+  transform-origin: 160px 38px;
+  fill: #fff;
+  filter: drop-shadow(0 0 10px var(--scent)) drop-shadow(0 0 5px #f59e0b);
+}
+.clock-dial-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.clock-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+  width: 100%;
+}
+.btn-live-sync {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 13px;
+  border-radius: 999px;
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  font-weight: 600;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: all .25s ease;
+  box-shadow: 0 1px 3px rgba(43,33,28,.04);
+  user-select: none;
+  flex-shrink: 0;
+}
+.btn-live-sync:hover {
+  border-color: var(--scent);
+  color: var(--scent);
+  transform: translateY(-1px);
+}
+.btn-live-sync.live-active {
+  background: color-mix(in srgb, #22c55e 12%, var(--card));
+  border-color: #22c55e;
+  color: #15803d;
+}
+.btn-live-sync .live-dot {
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.btn-live-sync.live-active .live-dot {
+  background: #22c55e;
+  box-shadow: 0 0 6px rgba(34,197,94,.6);
+  animation: pulseLiveDot 2s infinite ease-in-out;
+}
+@keyframes pulseLiveDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.4; }
+}
+.clock-drag-hint {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  color: var(--ink-2);
+  opacity: .85;
+  user-select: none;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.clock-moment-banner {
+  margin-top: 12px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--scent) 10%, var(--card));
+  border: 1px solid color-mix(in srgb, var(--scent) 25%, var(--line));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  max-width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  transition: all .35s ease;
+}
+.moment-candle-flame {
+  font-size: 13px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.moment-text {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+.clock-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.clock-ring-outer {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+  opacity: .6;
+}
+.clock-ring-track {
+  fill: none;
+  stroke-width: 9;
+  transition: stroke .4s ease;
+}
+.clock-active-arc {
+  transform-box: view-box;
+  transform-origin: 160px 160px;
+  transform: rotate(-90deg);
+  fill: none;
+  stroke: var(--scent);
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-dasharray: 780;
+  stroke-dashoffset: 325;
+  filter: drop-shadow(0 0 6px var(--scent));
+  transition: stroke-dashoffset .6s cubic-bezier(.34,1.56,.64,1), stroke .4s ease;
+}
+.clock-ticks .tick {
+  stroke: var(--line);
+  stroke-width: 1.5;
+  opacity: .6;
+}
+.clock-ticks .tick.major {
+  stroke: var(--ink-2);
+  stroke-width: 2.2;
+  opacity: .75;
+}
+.clock-hour-labels text {
+  font-family: var(--font-ui);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  fill: var(--ink-2);
+  text-anchor: middle;
+  dominant-baseline: central;
+  opacity: .42;
+  pointer-events: none;
+  user-select: none;
+}
+.milestone-pin {
+  stroke: var(--card);
+  stroke-width: 2;
+  cursor: pointer;
+  transition: transform .2s ease, filter .2s ease;
+}
+.milestone-pin:hover {
+  transform: scale(1.25);
+  transform-origin: center;
+  filter: drop-shadow(0 0 8px currentColor);
+}
+.pin-som { fill: var(--c-som); }
+.pin-phin { fill: var(--c-phin); }
+.pin-dem { fill: var(--c-dem); }
+.milestone-label {
+  font-family: var(--font-ui);
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-anchor: middle;
+  pointer-events: none;
+  user-select: none;
+}
+.label-som { fill: var(--c-som); }
+.label-phin { fill: var(--c-phin); }
+.label-dem { fill: var(--c-dem); }
+.clock-hand {
+  transform-box: view-box;
+  transform-origin: 160px 160px;
+  transition: transform .6s cubic-bezier(.34,1.56,.64,1);
+}
+.hand-line {
+  stroke: var(--scent);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  transition: stroke .4s ease;
+}
+.hand-flame-halo {
+  fill: var(--scent);
+  opacity: .35;
+  filter: blur(2px);
+  transition: fill .4s ease;
+}
+.hand-flame-core {
+  fill: #fff7ed;
+  stroke: var(--scent);
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 6px var(--scent)) drop-shadow(0 0 3px #f59e0b);
+  transition: all .25s ease;
+}
+.hand-pivot {
+  fill: var(--scent);
+  stroke: var(--card);
+  stroke-width: 3;
+  transition: fill .4s ease;
+}
+/* Center Dial Disc (Artisanal Ceramic Minimalism) */
+.clock-disc {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 142px; height: 142px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 25%, color-mix(in srgb, var(--card) 95%, #fff), var(--card) 88%);
+  border: 1px solid color-mix(in srgb, var(--scent) 30%, var(--line));
+  box-shadow: 0 8px 26px rgba(0,0,0,.22), inset 0 1px 1px rgba(255,255,255,.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+  padding: 10px;
+  box-sizing: border-box;
+  transition: border-color .4s ease, box-shadow .4s ease;
+}
+.disc-eyebrow {
+  font-family: var(--font-ui);
+  font-size: 9.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  font-weight: 700;
+  margin-bottom: 2px;
+  opacity: .8;
+}
+.disc-time {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--scent);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  transition: color .4s ease;
+}
+.disc-scent-badge {
+  display: inline-block;
+  margin-top: 5px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--scent) 18%, var(--card));
+  color: var(--scent);
+  border: 1px solid color-mix(in srgb, var(--scent) 35%, transparent);
+}
+/* 3 Dial Station Cards */
+.dial-stations {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+.station-btn {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 20px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  transition: transform .2s ease, border-color .3s ease, background-color .3s ease, box-shadow .3s ease;
+}
+.station-btn * {
+  pointer-events: none;
+}
+.station-btn:hover {
+  transform: translateX(4px);
+  border-color: color-mix(in srgb, var(--c) 50%, var(--line));
+}
+.station-btn:active {
+  transform: scale(0.98);
+}
+.station-btn[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--c) 12%, var(--card));
+  border-color: var(--c);
+  box-shadow: 0 6px 18px rgba(43,33,28,.06);
+}
+.station-time-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.station-time {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--c);
+  line-height: 1.1;
+}
+.station-moment {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  font-weight: 600;
+}
+.station-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.station-name {
+  font-family: var(--font-ui);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.station-btn[aria-pressed="true"] .station-name {
+  color: var(--c);
+}
+.station-tagline {
+  font-size: 13.5px;
+  color: var(--ink-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.station-badge {
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+  background: var(--card);
+}
+.station-btn[aria-pressed="true"] .station-badge {
+  background: var(--c);
+  color: #fff;
+  border-color: var(--c);
+}
+@media (max-width: 600px) {
+  .station-btn {
+    grid-template-columns: 65px 1fr;
+    gap: 10px;
+    padding: 14px 16px;
+  }
+  .station-badge {
+    grid-column: span 2;
+    justify-self: start;
+    margin-top: 4px;
+  }
+}
+
+/* Scent Deep Experience Grid (2 Columns) */
+.scent-experience-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.15fr);
+  gap: 28px;
+  margin-top: 28px;
+  align-items: stretch;
+}
+@media (max-width: 900px) {
+  .scent-experience-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.scent-col-left .panel,
+.scent-col-right .panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.scent-culture-header {
+  margin-bottom: 20px;
+}
+.culture-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.badge-region {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--scent) 14%, var(--card));
+  color: var(--scent);
+}
+.badge-motif {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--paper-2);
+  color: var(--ink-2);
+}
+.scent-title-lg {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--scent);
+  margin: 4px 0 8px;
+  line-height: 1.15;
+}
+.scent-quote-text {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink-2);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Artisanal Pyramid (Streamlined & Clean) */
+.artisanal-pyramid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 16px 0;
+}
+.pyr-tier {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  transition: transform .2s ease, border-color .3s ease;
+}
+.pyr-tier:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--scent) 50%, var(--line));
+}
+.pyr-top {
+  background: color-mix(in srgb, var(--scent) 8%, var(--card));
+}
+.pyr-heart {
+  background: color-mix(in srgb, var(--scent) 13%, var(--card));
+}
+.pyr-base {
+  background: color-mix(in srgb, var(--scent) 18%, var(--card));
+}
+.tier-lead {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.tier-tag {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--scent);
+}
+.tier-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.chip {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  box-shadow: 0 1px 3px rgba(43,33,28,.04);
+}
+
+/* Pledges (Crisp Badge Pills) */
+.circular-pledges {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line);
+  margin-top: 10px;
+}
+.pledge-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: var(--paper-2);
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.pledge-pill strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+.pledge-icon {
+  font-size: 16px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Right Column: Space Ritual & Soundscape (Seamless & Airy) */
+.space-mode-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.mode-icon-box {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--scent) 16%, var(--card));
+  color: var(--scent);
+  flex-shrink: 0;
+}
+.mode-icon-box svg {
+  width: 22px; height: 22px;
+}
+.mode-sublabel {
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+.mode-headline {
+  font-family: var(--font-ui);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--ink);
+  margin: 1px 0 0;
+}
+.mode-space-desc {
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.55;
+  margin: 0 0 12px;
+}
+
+/* Safety Tip: Integrated Whisper Strip */
+.safety-box {
+  background: color-mix(in srgb, var(--scent) 6%, transparent);
+  border: 0;
+  border-left: 3px solid var(--scent);
+  border-radius: 0 10px 10px 0;
+  padding: 8px 12px;
+  margin-bottom: 14px;
+}
+.safety-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--scent);
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.safety-desc {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* Mini Fragrance Matrix (Clean Track) */
+.matrix-card {
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+.matrix-title {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--scent);
+  margin-bottom: 10px;
+}
+.matrix-axis {
+  margin-bottom: 10px;
+}
+.matrix-axis:last-child {
+  margin-bottom: 0;
+}
+.axis-tags {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--ink-2);
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+.axis-track {
+  height: 6px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  position: relative;
+  overflow: visible;
+}
+.axis-glow {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--scent);
+  transition: width .5s cubic-bezier(.34,1.56,.64,1);
+}
+.axis-dot {
+  position: absolute;
+  top: 50%;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--scent);
+  border: 2px solid var(--card);
+  box-shadow: 0 0 8px var(--scent);
+  transform: translate(-50%, -50%);
+  transition: left .5s cubic-bezier(.34,1.56,.64,1), background-color .4s ease;
+}
+
+/* Soundscape Player (Focused Tactile Card) */
+.soundscape-box {
+  background: var(--card);
+  border: 1px solid color-mix(in srgb, var(--scent) 25%, var(--line));
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 0 4px 16px rgba(43,33,28,.04);
+  margin-bottom: 14px;
+}
+.soundscape-header {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+}
+.btn-sound-toggle {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  background: var(--scent);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.btn-sound-toggle:hover {
+  transform: scale(1.06);
+  opacity: .95;
+}
+.soundscape-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.sound-tag {
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--scent);
+  font-weight: 700;
+}
+.sound-track-title {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sound-track-desc {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sound-clock {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--ink-2);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Sound waveform bars with natural idle wave profile */
+.sound-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 22px;
+  margin-top: 12px;
+  padding-top: 4px;
+}
+.sound-bars span {
+  flex: 1;
+  background: color-mix(in srgb, var(--scent) 35%, var(--line));
+  border-radius: 2px;
+  height: 4px;
+  transition: height .25s ease, background-color .3s ease;
+}
+.sound-bars span:nth-child(1) { height: 6px; }
+.sound-bars span:nth-child(2) { height: 10px; }
+.sound-bars span:nth-child(3) { height: 14px; }
+.sound-bars span:nth-child(4) { height: 8px; }
+.sound-bars span:nth-child(5) { height: 16px; }
+.sound-bars span:nth-child(6) { height: 12px; }
+.sound-bars span:nth-child(7) { height: 18px; }
+.sound-bars span:nth-child(8) { height: 14px; }
+.sound-bars span:nth-child(9) { height: 8px; }
+.sound-bars span:nth-child(10) { height: 16px; }
+.sound-bars span:nth-child(11) { height: 12px; }
+.sound-bars span:nth-child(12) { height: 6px; }
+.sound-bars span:nth-child(13) { height: 10px; }
+.sound-bars span:nth-child(14) { height: 14px; }
+.sound-bars span:nth-child(15) { height: 8px; }
+
+.sound-bars.playing span {
+  background: var(--scent);
+  animation: soundWave 0.8s ease-in-out infinite alternate;
+}
+.sound-bars.playing span:nth-child(2n) { animation-delay: 0.15s; }
+.sound-bars.playing span:nth-child(3n) { animation-delay: 0.3s; }
+.sound-bars.playing span:nth-child(4n) { animation-delay: 0.45s; }
+@keyframes soundWave {
+  0% { height: 4px; }
+  100% { height: 22px; }
+}
+
+/* Journey Prompt (No buy buttons) */
+.journey-prompt {
+  margin-top: auto;
+  padding-top: 14px;
+}
+.link-journey {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--scent);
+  text-decoration: none;
+  transition: gap .2s ease, opacity .2s ease;
+}
+.link-journey:hover {
+  gap: 12px;
+  opacity: .85;
+}
 .safe-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:start}
 @media (max-width:900px){ .safe-grid{grid-template-columns:minmax(0,1fr)} }
 .panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
@@ -411,22 +1226,305 @@ footer{padding-block:64px 48px;border-top:1px solid var(--line);background:var(-
     </div>
   </section>
 
-  <section class="chapter" id="scent-map">
+    <section class="chapter" id="scent-map">
     <div class="wrap">
       <div class="chapter-head">
-        <p class="eyebrow">Scent Map</p>
-        <h2>Tìm hương thơm cho không gian của bạn</h2>
-        <p data-bind="mapDesc">Ba hương gắn với ba thời điểm trong ngày. Chạm vào một hương để đổi cả trang và mô hình 3D sang dòng đó.</p>
+        <p class="eyebrow">Bản đồ giác quan · Scent Map</p>
+        <h2>Một ngày trọn&nbsp;vẹn cùng Re:Bean</h2>
+        <p class="scent-map-sub">Ba nốt hương gắn liền với ba khoảnh khắc trong nhịp sinh học 24 giờ. Chạm hoặc xoay vòng thời gian để cảm nhận sự chuyển mình của không gian sống từ sớm mai đến đêm muộn.</p>
       </div>
-      <div class="daybar" id="daybar" role="group" aria-label="Các dòng hương"></div>
-      <div class="map-grid">
-        <div class="pyramid">
-          <h3>Tầng hương của <span data-bind="name">PHIN</span></h3>
-          <div class="tier"><div class="lv">Hương đầu</div><div class="nt" data-bind="note0"></div></div>
-          <div class="tier"><div class="lv">Hương giữa</div><div class="nt" data-bind="note1"></div></div>
-          <div class="tier"><div class="lv">Hương cuối</div><div class="nt" data-bind="note2"></div></div>
+
+      <!-- 24-HOUR CIRCADIAN TIME DIAL -->
+      <div class="circadian-container" id="circadianDial" role="region" aria-label="Đồng hồ sinh học 24 giờ">
+        <div class="clock-stage">
+          <div class="clock-dial-column">
+            <div class="clock-dial-core" id="clockDialCore">
+            <svg class="clock-svg" viewBox="0 0 320 320" aria-hidden="true">
+              <defs>
+                <!-- 24H Circadian Sky Natural Gradient Track -->
+                <linearGradient id="circadianSkyHalo" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#312e81" stop-opacity="0.45"/>
+                  <stop offset="25%" stop-color="#f59e0b" stop-opacity="0.55"/>
+                  <stop offset="55%" stop-color="#b45309" stop-opacity="0.55"/>
+                  <stop offset="80%" stop-color="#6366f1" stop-opacity="0.5"/>
+                  <stop offset="100%" stop-color="#1e1b4b" stop-opacity="0.45"/>
+                </linearGradient>
+              </defs>
+
+              <!-- Outer decorative track -->
+              <circle cx="160" cy="160" r="148" class="clock-ring-outer" />
+              
+              <!-- 24-hour Circadian Sky Track -->
+              <circle cx="160" cy="160" r="124" class="clock-ring-track" stroke="url(#circadianSkyHalo)" />
+              
+              <!-- 24-hour tick marks -->
+              <g class="clock-ticks">
+                <line x1="160" y1="20" x2="160" y2="34" class="tick major" />
+                <line x1="260" y1="60" x2="250" y2="70" class="tick" />
+                <line x1="300" y1="160" x2="286" y2="160" class="tick major" />
+                <line x1="260" y1="260" x2="250" y2="250" class="tick" />
+                <line x1="160" y1="300" x2="160" y2="286" class="tick major" />
+                <line x1="60" y1="260" x2="70" y2="250" class="tick" />
+                <line x1="20" y1="160" x2="34" y2="160" class="tick major" />
+                <line x1="60" y1="60" x2="70" y2="70" class="tick" />
+              </g>
+
+              <!-- 24h Cardinal hour indicators (Subtle anchors) -->
+              <g class="clock-hour-labels">
+                <text x="160" y="49" class="clock-hour-text">00h</text>
+                <text x="265" y="153" class="clock-hour-text">06h</text>
+                <text x="160" y="278" class="clock-hour-text">12h</text>
+                <text x="55" y="153" class="clock-hour-text">18h</text>
+              </g>
+
+              <!-- Dynamic glow arc indicating the active segment -->
+              <circle cx="160" cy="160" r="124" class="clock-active-arc" id="clockActiveArc" transform="rotate(-90 160 160)" />
+
+              <!-- Milestone Station Anchor Nodes with friendly colored labels -->
+              <g class="clock-milestone-nodes">
+                <!-- SỚM (07:00 · 105 deg) -->
+                <circle cx="280" cy="192" r="6.5" class="milestone-pin pin-som" data-scent="som" />
+                <circle cx="280" cy="192" r="2.5" fill="#fff" pointer-events="none" />
+                <text x="274" y="214" class="milestone-label label-som">SỚM · 7h</text>
+                
+                <!-- PHIN (14:00 · 210 deg) -->
+                <circle cx="98" cy="267" r="6.5" class="milestone-pin pin-phin" data-scent="phin" />
+                <circle cx="98" cy="267" r="2.5" fill="#fff" pointer-events="none" />
+                <text x="98" y="289" class="milestone-label label-phin">PHIN · 14h</text>
+
+                <!-- ĐÊM (21:00 · 315 deg) -->
+                <circle cx="72" cy="72" r="6.5" class="milestone-pin pin-dem" data-scent="dem" />
+                <circle cx="72" cy="72" r="2.5" fill="#fff" pointer-events="none" />
+                <text x="72" y="54" class="milestone-label label-dem">ĐÊM · 21h</text>
+              </g>
+
+              <!-- Rotating pointer hand with Candle Ember/Flame tip -->
+              <g class="clock-hand" id="clockHand" transform="rotate(210 160 160)">
+                <line x1="160" y1="160" x2="160" y2="46" class="hand-line" />
+                <circle cx="160" cy="38" r="8.5" class="hand-flame-halo" />
+                <circle cx="160" cy="38" r="4.5" class="hand-flame-core" />
+                <circle cx="160" cy="160" r="10" class="hand-pivot" />
+              </g>
+            </svg>
+
+            <!-- Center dial info disc: Minimalist & Serene -->
+            <div class="clock-disc">
+              <span class="disc-eyebrow" id="discEyebrow">● Giờ hiện tại</span>
+              <span class="disc-time" id="discTime">14:00</span>
+              <span class="disc-scent-badge" id="discScent">PHIN</span>
+            </div>
+          </div>
+
+          <!-- Toolbar: Real-time Live Sync & Friendly Whisper -->
+          <div class="clock-toolbar">
+            <button type="button" class="btn-live-sync live-active" id="btnLiveSync">
+              <span class="live-dot"></span>
+              <span class="live-label" id="liveSyncLabel">● Giờ thực tế</span>
+            </button>
+            <div class="clock-drag-hint" aria-hidden="true">
+              <span>🖐️ Chạm &amp; xoay kim nhẹ nhàng</span>
+            </div>
+          </div>
+
+          <!-- Dedicated Poetic Moment Banner below dial -->
+          <div class="clock-moment-banner" id="clockMomentBanner">
+            <span class="moment-candle-flame">🕯️</span>
+            <span class="moment-text" id="discMoment">Hoàng hôn buông · Thả lỏng sau giờ làm</span>
+          </div>
         </div>
-        <div class="modes" id="modes"></div>
+
+        <!-- 3 Time Milestones / Interactive Station Cards (Populated with initial markup) -->
+          <div class="dial-stations" id="dialStations" role="group" aria-label="3 mốc hương thời gian">
+            <button type="button" class="station-btn" data-scent="som" aria-pressed="false" style="--c:var(--c-som)">
+              <div class="station-time-col">
+                <span class="station-time">07:00</span>
+                <span class="station-moment">Buổi sáng</span>
+              </div>
+              <div class="station-body">
+                <div class="station-name">SỚM <span style="font-size:12px;opacity:0.8;font-weight:600;">· Cà phê • Cam quýt</span></div>
+                <div class="station-tagline">🌿 Miệt vườn Nam Bộ · Work Mode</div>
+              </div>
+              <span class="station-badge">Khám phá</span>
+            </button>
+
+            <button type="button" class="station-btn" data-scent="phin" aria-pressed="true" style="--c:var(--c-phin)">
+              <div class="station-time-col">
+                <span class="station-time">14:00</span>
+                <span class="station-moment">Giữa ngày</span>
+              </div>
+              <div class="station-body">
+                <div class="station-name">PHIN <span style="font-size:12px;opacity:0.8;font-weight:600;">· Cà phê • Vanilla</span></div>
+                <div class="station-tagline">🏙️ Góc phố Sài Gòn · Guest Mode</div>
+              </div>
+              <span class="station-badge">Đang chọn</span>
+            </button>
+
+            <button type="button" class="station-btn" data-scent="dem" aria-pressed="false" style="--c:var(--c-dem)">
+              <div class="station-time-col">
+                <span class="station-time">21:00</span>
+                <span class="station-moment">Buổi tối</span>
+              </div>
+              <div class="station-body">
+                <div class="station-name">ĐÊM <span style="font-size:12px;opacity:0.8;font-weight:600;">· Cà phê • Lavender</span></div>
+                <div class="station-tagline">🌲 Sương đêm Đà Lạt · Relax Mode</div>
+              </div>
+              <span class="station-badge">Khám phá</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- THE DEEP SENSORY EXPERIENCE (2 COLUMNS) -->
+      <div class="scent-experience-grid" id="scentExperienceGrid">
+        <!-- Cột Trái: Kiến Trúc Tầng Hương & Văn Hóa Vùng Miền -->
+        <div class="scent-col-left">
+          <div class="panel pyramid-panel">
+            <div class="scent-culture-header">
+              <div class="culture-badges">
+                <span class="badge-region" id="scentRegionBadge">🏙️ Góc phố Sài Gòn</span>
+                <span class="badge-motif" id="scentMotifBadge">Gạch bông Sài Gòn</span>
+              </div>
+              <h3 class="scent-title-lg">Hương <span data-bind="name">PHIN</span></h3>
+              <p class="scent-quote-text" id="scentPoeticQuote">“Một Sài Gòn rất quen, trong từng làn hương: tiếng phin nhỏ giọt, ly bạc xỉu và những cuộc trò chuyện chưa muốn dứt.”</p>
+            </div>
+
+            <div class="artisanal-pyramid">
+              <!-- Hương Đầu -->
+              <div class="pyr-tier pyr-top">
+                <div class="tier-lead">
+                  <span class="tier-tag">Hương Đầu</span>
+                </div>
+                <div class="tier-chips" id="tierTopChips">
+                  <span class="chip">🥛 Bọt sữa tươi</span>
+                  <span class="chip">🍦 Kem béo ngậy</span>
+                  <span class="chip">✨ Đường nâu nhẹ</span>
+                </div>
+              </div>
+
+              <!-- Hương Giữa -->
+              <div class="pyr-tier pyr-heart">
+                <div class="tier-lead">
+                  <span class="tier-tag">Hương Giữa</span>
+                </div>
+                <div class="tier-chips" id="tierHeartChips">
+                  <span class="chip">☕ Cà phê Robusta</span>
+                  <span class="chip">🍮 Caramel nướng</span>
+                  <span class="chip">🍫 Ca cao mộc</span>
+                </div>
+              </div>
+
+              <!-- Hương Cuối -->
+              <div class="pyr-tier pyr-base">
+                <div class="tier-lead">
+                  <span class="tier-tag">Hương Cuối</span>
+                </div>
+                <div class="tier-chips" id="tierBaseChips">
+                  <span class="chip">🍨 Vanilla ngọt ấm</span>
+                  <span class="chip">🪵 Gỗ mộc êm dịu</span>
+                  <span class="chip">☕ Bã cà phê rang</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cam kết tuần hoàn & tự nhiên tinh giản -->
+            <div class="circular-pledges">
+              <div class="pledge-pill">
+                <span class="pledge-icon">♻️</span>
+                <span><strong>15% Bã cà phê Robusta</strong> tuần hoàn từ quán đối tác</span>
+              </div>
+              <div class="pledge-pill">
+                <span class="pledge-icon">🌱</span>
+                <span><strong>100% Sáp thực vật tự nhiên</strong> từ đậu nành &amp; sáp ong</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cột Phải: Không Gian Sống, Mini Matrix & Soundscape -->
+        <div class="scent-col-right">
+          <div class="panel ritual-space-panel" id="ritualSpacePanel">
+            <!-- Mode Header -->
+            <div class="space-mode-badge">
+              <span class="mode-icon-box" id="modeIconBox">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20c0-3.3 2.7-6 6-6s6 2.7 6 6M12 20c0-3.3 1.8-6 4-6s6 2.7 6 6"/></svg>
+              </span>
+              <div>
+                <span class="mode-sublabel">Không gian sống tối ưu</span>
+                <h4 class="mode-headline" id="modeHeadline">Guest Mode · Góc tiếp khách ấm cúng</h4>
+              </div>
+            </div>
+
+            <p class="mode-space-desc" id="modeSpaceDesc">Đặt trên bàn trà hoặc kệ phòng khách có đế chịu nhiệt để căn phòng ngập tràn mùi cà phê sữa quen thuộc, kết nối những câu chuyện.</p>
+
+            <!-- Lời khuyên an toàn thiết thực -->
+            <div class="safety-box">
+              <div class="safety-head">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+                <span>Nghi thức thắp nến an toàn</span>
+              </div>
+              <p class="safety-desc" id="modeSafetyDesc">Đặt nến trên đế phẳng chịu nhiệt, ngoài tầm với của trẻ nhỏ và vật nuôi, không di chuyển khi sáp còn lỏng.</p>
+            </div>
+
+            <!-- Mini Matrix: Thước đo đặc tính 2 trục -->
+            <div class="matrix-card">
+              <div class="matrix-title">Ma trận đặc tính mùi hương</div>
+
+              <!-- Thước 1: Tông hương -->
+              <div class="matrix-axis">
+                <div class="axis-tags">
+                  <span>Thanh mát, sảng khoái</span>
+                  <span>Ấm nồng, ngọt bùi</span>
+                </div>
+                <div class="axis-track">
+                  <div class="axis-glow" id="axisToneFill" style="width: 85%;"></div>
+                  <div class="axis-dot" id="axisToneDot" style="left: 85%;"></div>
+                </div>
+              </div>
+
+              <!-- Thước 2: Nhịp sống -->
+              <div class="matrix-axis">
+                <div class="axis-tags">
+                  <span>Tập trung, tỉnh thức</span>
+                  <span>Thư giãn, chậm rãi</span>
+                </div>
+                <div class="axis-track">
+                  <div class="axis-glow" id="axisVibeFill" style="width: 50%;"></div>
+                  <div class="axis-dot" id="axisVibeDot" style="left: 50%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Soundscape Ambient Player -->
+            <div class="soundscape-box" id="soundscapeBox">
+              <div class="soundscape-header">
+                <button type="button" class="btn-sound-toggle" id="btnSoundToggle" aria-label="Nghe thử âm thanh không gian (30 giây)">
+                  <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                  <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                </button>
+                <div class="soundscape-meta">
+                  <span class="sound-tag">Soundscape 30s</span>
+                  <div class="sound-track-title" id="soundTrackTitle">Âm thanh góc quán Sài Gòn</div>
+                  <div class="sound-track-desc" id="soundTrackDesc">Tiếng cà phê tí tách, tiếng phố xá xa xa &amp; Bossa Nova mộc</div>
+                </div>
+                <div class="sound-clock" id="soundClock">0:00 / 0:30</div>
+              </div>
+
+              <div class="sound-bars" id="soundBars">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <!-- Chuyển tiếp khám phá (Không nút mua, không giỏ hàng) -->
+            <div class="journey-prompt">
+              <a href="#an-toan" class="link-journey" id="scentJourneyLink">
+                <span>Tìm hiểu thêm về cách thắp nến bền lâu &amp; tái sinh vỏ ly</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -634,19 +1732,32 @@ const PART_ZOOM = { glass:.85, cup:.85, relief:.55, label:.6, backlabel:.55, tag
 const SNAP = { label:1, backlabel:1, tag:1, relief:1, box:1 };
 
 /* ---------------- state ---------------- */
-const state = { collection:"daily", scent:"phin", size:"50", explode:0, lit:false, section:false, selected:null, zoom:1 };
-function readRoute(){
+function getRealTimeScentKey(){
+  const now = new Date();
+  const totalM = now.getHours() * 60 + now.getMinutes();
+  if(totalM >= 300 && totalM < 720) return "som";   // 05:00 - 11:59 (SỚM)
+  if(totalM >= 720 && totalM < 1080) return "phin"; // 12:00 - 17:59 (PHIN)
+  return "dem";                                    // 18:00 - 04:59 (ĐÊM)
+}
+const state = { collection:"daily", scent: getRealTimeScentKey(), size:"50", explode:0, lit:false, section:false, selected:null, zoom:1 };
+function readRoute(allowScentOverride = false){
   let sc, sz;
   try{ const q = new URLSearchParams(location.search); sc = (q.get("dong")||"").toLowerCase(); sz = q.get("size")||""; }catch(e){}
   const m = location.hash.slice(1).toLowerCase().match(/^(som|phin|dem|tet|dong|trang)(?:-(50|120))?$/);
-  if(m){ sc = m[1]; sz = m[2] || sz; }
-  if(SCENTS[sc]){
+  if(m){ if(allowScentOverride) sc = m[1]; sz = m[2] || sz; }
+  if(allowScentOverride && sc && SCENTS[sc]){
     state.scent = sc;
     state.collection = SCENTS[sc].collection || "daily";
   }
   if(sz === "120" || sz === "50") state.size = sz;
 }
 function writeRoute(){
+  if(typeof clockState !== "undefined" && clockState.isLive){
+    if(location.hash && location.hash !== "#live"){
+      try{ history.replaceState(null, "", location.pathname + location.search); }catch(e){}
+    }
+    return;
+  }
   const h = "#" + state.scent + (state.size === "120" ? "-120" : "");
   if(location.hash !== h){ try{ history.replaceState(null, "", h); }catch(e){} }
 }
@@ -665,6 +1776,15 @@ function detailHTML(info, withTitle){
     (info.role ? '<p class="callout role">'+ICON_ROLE+'<span>'+esc(info.role)+'</span></p>' : '') +
     (info.note ? '<p class="callout note">'+ICON_NOTE+'<span>'+esc(info.note)+'</span></p>' : '');
 }
+function syncHeaderTabs(key){
+  const wrap = $("#scentTabs"); if(!wrap) return;
+  if(!wrap.children.length){
+    renderTabs();
+  }
+  wrap.querySelectorAll("button").forEach(b => {
+    b.setAttribute("aria-pressed", String(b.dataset.scent === key));
+  });
+}
 function renderTabs(){
   const wrap = $("#scentTabs"); if(!wrap) return;
   const list = (COLLECTIONS[state.collection] || COLLECTIONS.daily).scents;
@@ -673,27 +1793,516 @@ function renderTabs(){
     const on = s.key === state.scent;
     return '<button type="button" data-scent="'+s.key+'" aria-pressed="'+String(on)+'"><span class="dot" style="background:var(--c-'+s.key+')"></span>'+s.name+'</button>';
   }).join("");
-  wrap.querySelectorAll("button").forEach(b => b.addEventListener("click", () => setScent(b.dataset.scent)));
+  wrap.querySelectorAll("button").forEach(b => b.addEventListener("click", () => setScent(b.dataset.scent, true)));
 }
+/* Data for 3 Core Scent Map Daily Rituals */
+const SCENT_MAP_DATA = {
+  som: {
+    key: "som",
+    time: "07:00",
+    moment: "Buổi sáng",
+    angle: 105,
+    arcDash: 228,
+    region: "🌿 Miệt vườn Nam Bộ",
+    motif: "Khăn rằn",
+    quote: "Một buổi sớm miệt vườn, hương cam sành hòa cùng vị cà phê, đánh thức những khởi đầu tươi mới.",
+    top: ["🍊 Cam sành", "🍋 Chanh tươi", "🌱 Vỏ bưởi"],
+    heart: ["🌾 Sả chanh", "🫚 Gừng ấm", "🍃 Bạc hà nghiền"],
+    base: ["🪵 Gỗ tuyết tùng", "☕ Nốt cà phê nhẹ"],
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M8 21h8M12 17v4"/></svg>',
+    modeTitle: "Work Mode · Góc làm việc sáng",
+    modeDesc: "Thắp khi bắt đầu ngày làm việc. Đặt nến ở góc bàn thoáng, xa giấy tờ và dây điện để khơi nguồn cảm hứng sáng tạo đầu ngày.",
+    safety: "Cắt bấc còn 0,5 cm trước khi đốt. Đặt nến cách xa laptop, màn hình và giấy tờ tối thiểu 40 cm.",
+    tonePos: 20,
+    vibePos: 15,
+    soundTitle: "Âm thanh ban mai Nam Bộ",
+    soundDesc: "Tiếng chim sớm, gió luồn vườn cam & lofi acoustic êm đềm",
+    soundType: "som"
+  },
+  phin: {
+    key: "phin",
+    time: "14:00",
+    moment: "Giữa ngày",
+    angle: 210,
+    arcDash: 455,
+    region: "🏙️ Góc phố Sài Gòn",
+    motif: "Gạch bông Sài Gòn",
+    quote: "Một Sài Gòn rất quen, trong từng làn hương: tiếng phin nhỏ giọt, ly bạc xỉu và những cuộc trò chuyện chưa muốn dứt.",
+    top: ["🥛 Bọt sữa tươi", "🍦 Kem béo ngậy", "✨ Đường nâu nhẹ"],
+    heart: ["☕ Cà phê Robusta", "🍮 Caramel nướng", "🍫 Ca cao mộc"],
+    base: ["🍨 Vanilla ngọt ấm", "🪵 Gỗ mộc êm dịu", "☕ Bã cà phê rang"],
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20c0-3.3 2.7-6 6-6s6 2.7 6 6M12 20c0-3.3 1.8-6 4-6s6 2.7 6 6"/></svg>',
+    modeTitle: "Guest Mode · Góc tiếp khách ấm cúng",
+    modeDesc: "Đặt trên bàn trà hoặc kệ phòng khách có đế chịu nhiệt để căn phòng ngập tràn mùi cà phê sữa quen thuộc, kết nối những câu chuyện.",
+    safety: "Đặt nến trên đế phẳng chịu nhiệt, ngoài tầm với của trẻ nhỏ và vật nuôi, không di chuyển khi sáp còn lỏng.",
+    tonePos: 85,
+    vibePos: 50,
+    soundTitle: "Âm thanh góc quán Sài Gòn",
+    soundDesc: "Tiếng cà phê tí tách, tiếng phố xá xa xa & Bossa Nova mộc",
+    soundType: "phin"
+  },
+  dem: {
+    key: "dem",
+    time: "21:00",
+    moment: "Buổi tối",
+    angle: 315,
+    arcDash: 683,
+    region: "🌲 Sương đêm Đà Lạt",
+    motif: "Đồi hoa Lavender",
+    quote: "Đà Lạt luôn có cách làm mọi thứ chậm lại, để ta nghe rõ hơn những điều tốt đẹp trong lòng mình.",
+    top: ["🌿 Thảo mộc sương sớm", "🍃 Khuynh diệp nhẹ", "💧 Sương lạnh"],
+    heart: ["🪻 Hoa oải hương", "🌿 Xô thơm thanh khiết", "🌾 Hương hoa dại"],
+    base: ["🌲 Gỗ thông đồi", "✨ Xạ hương trắng", "☕ Điểm cà phê mộc"],
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>',
+    modeTitle: "Relax Mode · Không gian thư giãn đêm",
+    modeDesc: "Đọc sách, nghe nhạc, ngâm bồn hoặc thiền định. Hương lavender sương đêm vỗ về giác quan, giúp nhịp thở chậm lại sau ngày dài.",
+    safety: "Thắp 30–45 phút trước khi ngủ. Luôn dập tắt nến trước khi bước lên giường, tuyệt đối không để nến cháy lúc ngủ.",
+    tonePos: 42,
+    vibePos: 95,
+    soundTitle: "Âm thanh sương đêm Đà Lạt",
+    soundDesc: "Tiếng mưa rơi trên mái hiên, tiếng dế đêm & phím Piano chậm",
+    soundType: "dem"
+  }
+};
+
+/* Audio Soundscape Synthesizer */
+let ambientAudio = null;
+let soundTimerId = null;
+let soundSeconds = 0;
+let isSoundPlaying = false;
+
+function stopSoundscape(){
+  if(ambientAudio){
+    try{ ambientAudio.stop(); }catch(e){}
+    ambientAudio = null;
+  }
+  if(soundTimerId){ clearInterval(soundTimerId); soundTimerId = null; }
+  isSoundPlaying = false;
+  soundSeconds = 0;
+  const btn = $("#btnSoundToggle");
+  if(btn){
+    const playSvg = btn.querySelector(".icon-play");
+    const pauseSvg = btn.querySelector(".icon-pause");
+    if(playSvg) playSvg.style.display = "block";
+    if(pauseSvg) pauseSvg.style.display = "none";
+  }
+  const bars = $("#soundBars");
+  if(bars) bars.classList.remove("playing");
+  const clock = $("#soundClock");
+  if(clock) clock.textContent = "0:00 / 0:30";
+}
+
+function startSoundscape(type){
+  stopSoundscape();
+  try{
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if(!AudioCtx) return;
+    const ctx = new AudioCtx();
+    const master = ctx.createGain();
+    master.gain.setValueAtTime(0.01, ctx.currentTime);
+    master.gain.exponentialRampToValueAtTime(0.3, ctx.currentTime + 1.0);
+    master.connect(ctx.destination);
+
+    // 1. Organic background ambient sound
+    const bufferSize = ctx.sampleRate * 2;
+    const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+    for(let i = 0; i < bufferSize; i++){ output[i] = Math.random() * 2 - 1; }
+    const whiteNoise = ctx.createBufferSource();
+    whiteNoise.buffer = noiseBuffer;
+    whiteNoise.loop = true;
+
+    const filter = ctx.createBiquadFilter();
+    if(type === "som"){
+      filter.type = "lowpass"; filter.frequency.setValueAtTime(750, ctx.currentTime);
+    } else if(type === "phin"){
+      filter.type = "bandpass"; filter.frequency.setValueAtTime(400, ctx.currentTime); filter.Q.setValueAtTime(1.0, ctx.currentTime);
+    } else {
+      filter.type = "bandpass"; filter.frequency.setValueAtTime(1100, ctx.currentTime); filter.Q.setValueAtTime(0.8, ctx.currentTime);
+    }
+
+    const noiseGain = ctx.createGain();
+    noiseGain.gain.setValueAtTime(type === "dem" ? 0.35 : 0.12, ctx.currentTime);
+    whiteNoise.connect(filter); filter.connect(noiseGain); noiseGain.connect(master);
+    whiteNoise.start();
+
+    // 2. Gentle harmonic chimes
+    const chordOscs = [];
+    const freqs = (type === "som") ? [261.6, 329.6, 392.0, 523.2]
+                : (type === "phin") ? [174.6, 220.0, 261.6, 329.6]
+                : [220.0, 261.6, 329.6, 392.0];
+    freqs.forEach((freq, idx) => {
+      const osc = ctx.createOscillator();
+      const g = ctx.createGain();
+      osc.type = (type === "dem") ? "triangle" : "sine";
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      g.gain.setValueAtTime(0.035 / (idx + 1), ctx.currentTime);
+      osc.connect(g); g.connect(master);
+      osc.start();
+      chordOscs.push(osc);
+    });
+
+    ambientAudio = {
+      ctx,
+      stop: () => {
+        try{
+          master.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+          setTimeout(() => {
+            try{ whiteNoise.stop(); }catch(e){}
+            chordOscs.forEach(o => { try{ o.stop(); }catch(e){} });
+            try{ ctx.close(); }catch(e){}
+          }, 450);
+        }catch(e){}
+      }
+    };
+
+    isSoundPlaying = true;
+    const btn = $("#btnSoundToggle");
+    if(btn){
+      const playSvg = btn.querySelector(".icon-play");
+      const pauseSvg = btn.querySelector(".icon-pause");
+      if(playSvg) playSvg.style.display = "none";
+      if(pauseSvg) pauseSvg.style.display = "block";
+    }
+    const bars = $("#soundBars");
+    if(bars) bars.classList.add("playing");
+
+    soundSeconds = 0;
+    soundTimerId = setInterval(() => {
+      soundSeconds++;
+      const clock = $("#soundClock");
+      if(clock){
+        const s = soundSeconds < 10 ? "0" + soundSeconds : soundSeconds;
+        clock.textContent = "0:" + s + " / 0:30";
+      }
+      if(soundSeconds >= 30){ stopSoundscape(); }
+    }, 1000);
+  }catch(err){
+    console.warn("Soundscape not supported:", err);
+  }
+}
+
+
+/* Circadian 24H Fluid Scrubbing & Real-time Live Clock Sync */
+const CLOCK_PRESETS = {
+  som: { angle: 105, time: "07:00", name: "SỚM", moment: "Buổi sáng" },
+  phin: { angle: 210, time: "14:00", name: "PHIN", moment: "Giữa ngày" },
+  dem: { angle: 315, time: "21:00", name: "ĐÊM", moment: "Buổi tối" }
+};
+
+let clockState = {
+  isLive: true,
+  angle: 210,
+  timeStr: "14:00",
+  scent: "phin",
+  isDragging: false,
+  initialized: false
+};
+
+function getCircadianInfo(h, m){
+  const totalM = h * 60 + m;
+  // Zone 1: SỚM (05:00 - 11:59)
+  if(totalM >= 300 && totalM < 720){
+    let sub = "Khởi đầu ngày mới";
+    if(totalM < 420) sub = "Bình minh tỉnh thức · Đón sớm mai";
+    else if(totalM < 540) sub = "Năng lượng tươi mới · Khởi đầu công việc";
+    else sub = "Tập trung năng suất · Tỉnh táo sảng khoái";
+    return { key: "som", name: "SỚM", moment: sub, tag: "Dải Buổi Sáng · Work Mode" };
+  }
+  // Zone 2: PHIN (12:00 - 17:59)
+  if(totalM >= 720 && totalM < 1080){
+    let sub = "Năng lượng buổi chiều";
+    if(totalM < 810) sub = "Nghỉ trưa tái tạo · Cà phê đầu giờ";
+    else if(totalM < 960) sub = "Tập trung cao độ · Tràn đầy cảm hứng";
+    else sub = "Gặp gỡ kết nối · Chuẩn bị tan ca";
+    return { key: "phin", name: "PHIN", moment: sub, tag: "Dải Chiều · Guest Mode" };
+  }
+  // Zone 3: ĐÊM (18:00 - 04:59)
+  let sub = "Thư giãn & tĩnh lặng";
+  if(totalM >= 1080 && totalM < 1200) sub = "Hoàng hôn buông · Thả lỏng sau giờ làm";
+  else if(totalM >= 1200 && totalM < 1320) sub = "Không gian dưỡng tâm · Đọc sách & an yên";
+  else if(totalM >= 1320 && totalM < 1440) sub = "Chuẩn bị giấc ngủ · Xoa dịu tâm trí";
+  else sub = "Tĩnh lặng đêm sâu · Chữa lành giấc nồng";
+  return { key: "dem", name: "ĐÊM", moment: sub, tag: "Dải Đêm · Relax Mode" };
+}
+
+function updateLiveButtonUI(){
+  const btn = $("#btnLiveSync");
+  const label = $("#liveSyncLabel");
+  if(!btn || !label) return;
+  if(clockState.isLive){
+    btn.classList.add("live-active");
+    label.textContent = "● Giờ thực tế";
+    btn.removeAttribute("title");
+  } else {
+    btn.classList.remove("live-active");
+    label.textContent = "⏱️ Về giờ hiện tại";
+    btn.removeAttribute("title");
+  }
+}
+
+function updateClockDisplay(deg, animate){
+  clockState.angle = deg;
+  const totalM = Math.round((deg / 360) * 1440) % 1440;
+  const h = Math.floor(totalM / 60);
+  const m = totalM % 60;
+  const timeStr = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m);
+  clockState.timeStr = timeStr;
+
+  const info = getCircadianInfo(h, m);
+  const scentChanged = clockState.scent !== info.key;
+  clockState.scent = info.key;
+
+  // 1. Hand rotation
+  const hand = $("#clockHand");
+  if(hand){
+    hand.style.transition = animate ? "transform .55s cubic-bezier(.34,1.56,.64,1)" : "none";
+    hand.setAttribute("transform", "rotate(" + deg + " 160 160)");
+    hand.style.transform = "rotate(" + deg + "deg)";
+  }
+
+  // 2. Active arc sweep
+  const arc = $("#clockActiveArc");
+  if(arc){
+    arc.style.transition = animate ? "stroke-dashoffset .55s cubic-bezier(.34,1.56,.64,1), stroke .4s ease" : "none";
+    const dash = (deg / 360) * 780;
+    arc.style.strokeDashoffset = String(780 - dash);
+  }
+
+  // 3. Center disc
+  const discTime = $("#discTime"); if(discTime) discTime.textContent = timeStr;
+  const discScent = $("#discScent"); if(discScent) discScent.textContent = info.name;
+  const discMoment = $("#discMoment"); if(discMoment) discMoment.textContent = info.moment;
+  const discEyebrow = $("#discEyebrow");
+  if(discEyebrow){
+    discEyebrow.textContent = clockState.isLive ? "● Giờ hiện tại" : "Giờ khám phá";
+  }
+
+  // 4. Update station buttons active highlight
+  const stationsWrap = $("#dialStations");
+  if(stationsWrap){
+    stationsWrap.querySelectorAll(".station-btn").forEach(btn => {
+      const isActive = btn.dataset.scent === info.key;
+      btn.setAttribute("aria-pressed", String(isActive));
+      const badge = btn.querySelector(".station-badge");
+      if(badge) badge.textContent = isActive ? "Đang chọn" : "Khám phá";
+    });
+  }
+
+  // 5. Update sensory pyramid, header tabs, route & space details if scent zone changed
+  if(scentChanged || state.scent !== info.key){
+    state.scent = info.key;
+    document.documentElement.dataset.scent = info.key;
+    syncHeaderTabs(info.key);
+    writeRoute();
+    renderScentPanels(info.key);
+
+    const s = SCENTS[info.key], isCup = state.size === "120";
+    if(s){
+      const map = { name:s.name, sub:s.sub, quote:s.quote, region:s.region, moment:"Hợp nhất: " + s.moment.toLowerCase(), tagline:s.tagline,
+        mapDesc: (COLLECTIONS[state.collection] || COLLECTIONS.daily).mapDesc,
+        note0:s.notes[0], note1:s.notes[1], note2:s.notes[2], vesselName: isCup ? "Hộp quà cốc thạch cao 120g" : "Ly thủy tinh 50g", vesselShort: isCup ? "cốc nến" : "ly nến" };
+      $$("[data-bind]").forEach(el => { const k = el.dataset.bind; if(map[k] != null) el.textContent = map[k]; });
+      document.title = s.name + " · Bên trong Re:Bean";
+    }
+
+    if(three && three.vessels && three.vessels[state.size]){
+      applyScentTo(three.vessels[state.size], SCENTS[info.key]);
+      applySceneLook(SCENTS[info.key]);
+      if(typeof buildHotspots === "function") buildHotspots();
+    }
+    if(isSoundPlaying){
+      startSoundscape(SCENT_MAP_DATA[info.key].soundType);
+    }
+  }
+}
+
+function syncClockToRealTime(animate){
+  clockState.isLive = true;
+  updateLiveButtonUI();
+
+  const now = new Date();
+  const h = now.getHours();
+  const m = now.getMinutes();
+  const deg = ((h * 60 + m) / 1440) * 360;
+
+  updateClockDisplay(deg, animate);
+}
+
+function glideToPreset(key){
+  clockState.isLive = false;
+  updateLiveButtonUI();
+  if(state.collection !== "daily"){
+    state.collection = "daily";
+    $$('.col-pill').forEach(b => b.setAttribute("aria-pressed", String(b.dataset.col === "daily")));
+    renderTabs();
+  }
+  const preset = CLOCK_PRESETS[key];
+  if(preset){
+    updateClockDisplay(preset.angle, true);
+  }
+  syncHeaderTabs(key);
+}
+
+function renderScentPanels(key){
+  const cur = SCENT_MAP_DATA[key];
+  if(!cur) return;
+
+  // Update Left Column (Pyramid & Story)
+  const regBadge = $("#scentRegionBadge"); if(regBadge) regBadge.textContent = cur.region;
+  const motBadge = $("#scentMotifBadge"); if(motBadge) motBadge.textContent = cur.motif;
+  const quoteEl = $("#scentPoeticQuote"); if(quoteEl) quoteEl.textContent = '“' + cur.quote + '”';
+
+  const topChips = $("#tierTopChips");
+  if(topChips) topChips.innerHTML = cur.top.map(t => '<span class="chip">'+esc(t)+'</span>').join("");
+  const heartChips = $("#tierHeartChips");
+  if(heartChips) heartChips.innerHTML = cur.heart.map(t => '<span class="chip">'+esc(t)+'</span>').join("");
+  const baseChips = $("#tierBaseChips");
+  if(baseChips) baseChips.innerHTML = cur.base.map(t => '<span class="chip">'+esc(t)+'</span>').join("");
+
+  // Update Right Column (Living Space & Matrix)
+  const modeIcon = $("#modeIconBox"); if(modeIcon) modeIcon.innerHTML = cur.icon;
+  const modeHead = $("#modeHeadline"); if(modeHead) modeHead.textContent = cur.modeTitle;
+  const modeDesc = $("#modeSpaceDesc"); if(modeDesc) modeDesc.textContent = cur.modeDesc;
+  const safetyDesc = $("#modeSafetyDesc"); if(safetyDesc) safetyDesc.textContent = cur.safety;
+
+  // Spectrum Matrix Bars
+  const toneFill = $("#axisToneFill"); if(toneFill) toneFill.style.width = cur.tonePos + "%";
+  const toneDot = $("#axisToneDot"); if(toneDot) toneDot.style.left = cur.tonePos + "%";
+  const vibeFill = $("#axisVibeFill"); if(vibeFill) vibeFill.style.width = cur.vibePos + "%";
+  const vibeDot = $("#axisVibeDot"); if(vibeDot) vibeDot.style.left = cur.vibePos + "%";
+
+  // Soundscape Meta
+  const soundTitle = $("#soundTrackTitle"); if(soundTitle) soundTitle.textContent = cur.soundTitle;
+  const soundDesc = $("#soundTrackDesc"); if(soundDesc) soundDesc.textContent = cur.soundDesc;
+}
+
+function bindClockDrag(){
+  const dial = $("#clockDialCore");
+  if(!dial || dial.dataset.bound) return;
+  dial.dataset.bound = "true";
+
+  function getAngleFromEvent(e){
+    const rect = dial.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = e.clientX - cx;
+    const dy = e.clientY - cy;
+    let rad = Math.atan2(dy, dx);
+    let deg = rad * (180 / Math.PI) + 90; // Top is 0 deg
+    if(deg < 0) deg += 360;
+    return deg;
+  }
+
+  function onPointerDown(e){
+    clockState.isDragging = true;
+    clockState.isLive = false;
+    updateLiveButtonUI();
+    dial.classList.add("dragging");
+    try{ dial.setPointerCapture(e.pointerId); }catch(err){}
+    onPointerMove(e);
+  }
+
+  function onPointerMove(e){
+    if(!clockState.isDragging) return;
+    const deg = getAngleFromEvent(e);
+    // 60fps instant tracking without transition lag
+    updateClockDisplay(deg, false);
+  }
+
+  function onPointerUp(e){
+    if(!clockState.isDragging) return;
+    clockState.isDragging = false;
+    dial.classList.remove("dragging");
+    try{ dial.releasePointerCapture(e.pointerId); }catch(err){}
+
+    const hand = $("#clockHand");
+    if(hand) hand.style.transition = "";
+
+    // Fluid scrubbing: Needle stays at released position!
+  }
+
+  dial.addEventListener("pointerdown", onPointerDown);
+  dial.addEventListener("pointermove", onPointerMove);
+  dial.addEventListener("pointerup", onPointerUp);
+  dial.addEventListener("pointercancel", onPointerUp);
+
+  // Direct click on SVG milestone pins
+  dial.querySelectorAll(".milestone-pin").forEach(pin => {
+    pin.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if(pin.dataset.scent) glideToPreset(pin.dataset.scent);
+    });
+  });
+
+  // Bind Real-Time Live Sync Button
+  const btnLive = $("#btnLiveSync");
+  if(btnLive){
+    btnLive.addEventListener("click", () => {
+      syncClockToRealTime(true);
+    });
+  }
+
+  // Periodic heartbeat: tick every 30s if in Live mode
+  if(!window._liveClockTimer){
+    window._liveClockTimer = setInterval(() => {
+      if(clockState.isLive && !clockState.isDragging){
+        syncClockToRealTime(false);
+      }
+    }, 30000);
+  }
+}
+
+function bindSoundscapeBtn(){
+  const btn = $("#btnSoundToggle");
+  if(!btn || btn.dataset.bound) return;
+  btn.dataset.bound = "true";
+  btn.addEventListener("click", () => {
+    if(isSoundPlaying){
+      stopSoundscape();
+    } else {
+      const currentKey = ["som", "phin", "dem"].includes(state.scent) ? state.scent : "phin";
+      const item = SCENT_MAP_DATA[currentKey];
+      startSoundscape(item.soundType);
+    }
+  });
+}
+
+function bindStationBtns(){
+  const stationsWrap = $("#dialStations");
+  if(!stationsWrap) return;
+  stationsWrap.querySelectorAll(".station-btn").forEach(btn => {
+    if(!btn.dataset.bound){
+      btn.dataset.bound = "true";
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const sc = btn.dataset.scent;
+        if(sc && typeof glideToPreset === "function"){
+          glideToPreset(sc);
+        }
+      });
+    }
+  });
+}
+
 function renderDaybar(){
-  const wrap = $("#daybar"); if(!wrap) return;
-  const list = (COLLECTIONS[state.collection] || COLLECTIONS.daily).scents;
-  wrap.innerHTML = list.map(k => {
-    const s = SCENTS[k];
-    const on = s.key === state.scent;
-    const when = s.moment || "Lễ hội";
-    const sub = s.sub + " · " + s.tagline;
-    return '<button type="button" data-scent="'+s.key+'" style="--c:var(--c-'+s.key+')" aria-pressed="'+String(on)+'"><span class="when">'+when+'</span><span class="nm">'+s.name+'</span><span class="ms">'+sub+'</span></button>';
-  }).join("");
-  wrap.querySelectorAll("button").forEach(b => b.addEventListener("click", () => setScent(b.dataset.scent)));
+  bindStationBtns();
+
+  // On first initialization: Always default to real-time!
+  if(!clockState.initialized){
+    clockState.initialized = true;
+    syncClockToRealTime(false);
+  }
 }
+
 function setCollection(colKey){
   if(state.collection === colKey) return;
   state.collection = colKey;
   $$('.col-pill').forEach(b => b.setAttribute("aria-pressed", String(b.dataset.col === state.collection)));
+  renderTabs();
   const list = COLLECTIONS[colKey].scents;
   const nextScent = list.includes(state.scent) ? state.scent : list[0];
-  setScent(nextScent);
+  setScent(nextScent, true);
 }
 function renderText(){
   const s = SCENTS[state.scent], isCup = state.size === "120";
@@ -703,10 +2312,10 @@ function renderText(){
     note0:s.notes[0], note1:s.notes[1], note2:s.notes[2], vesselName: isCup ? "Hộp quà cốc thạch cao 120g" : "Ly thủy tinh 50g", vesselShort: isCup ? "cốc nến" : "ly nến" };
   $$("[data-bind]").forEach(el => { const k = el.dataset.bind; if(map[k] != null) el.textContent = map[k]; });
   $$('.col-pill').forEach(b => b.setAttribute("aria-pressed", String(b.dataset.col === state.collection)));
-  renderTabs(); renderDaybar();
+  syncHeaderTabs(state.scent);
   $$('.seg button').forEach(b => b.setAttribute("aria-pressed", String(b.dataset.size === state.size)));
   document.title = s.name + " · Bên trong Re:Bean";
-  renderParts(); renderReuse(); renderModes();
+  renderParts(); renderReuse();
 }
 function swatchFor(key){
   const s = SCENTS[state.scent];
@@ -734,27 +2343,8 @@ function markList(){
 }
 function renderReuse(){ const r = REUSE[state.size]; $("#reuseList").innerHTML = r.steps.map(t => "<li><span>"+esc(t)+"</span></li>").join(""); $("#reuseNote").textContent = r.note; }
 function renderModes(){
-  const modes = MODES_DATA[state.collection] || MODES_DATA.daily;
-  $("#modes").innerHTML = modes.map(m => {
-    const url = CONFIG.playlists[m.id];
-    const pl = url 
-      ? '<a href="'+esc(url)+'" target="_blank" rel="noopener">▶ Mở playlist</a><span>'+esc(m.music)+'</span>' 
-      : '<span>Gợi ý nhạc: '+esc(m.music)+'</span><span class="soon">· playlist đang được tuyển chọn</span>';
-    const isActive = m.scent === state.scent;
-    const scentName = SCENTS[m.scent] ? SCENTS[m.scent].name : "";
-    return '<article class="mode" data-scent="'+m.scent+'" data-active="'+String(isActive)+'" style="--c:'+m.c+'">' +
-      '<span class="mi">'+m.icon+'</span>' +
-      '<div class="mode-body">' +
-        '<h3>'+esc(m.title)+' <button type="button" class="pick" data-scent="'+m.scent+'">'+esc(scentName)+'</button></h3>' +
-        '<p>'+esc(m.tip)+'</p>' +
-        '<div class="pl">'+pl+'</div>' +
-      '</div>' +
-    '</article>';
-  }).join("");
-  $$("#modes .mode").forEach(card => card.addEventListener("click", (e) => {
-    if(e.target.tagName === 'A') return;
-    setScent(card.dataset.scent);
-  }));
+  // Synchronize scent map ritual display
+  renderDaybar();
 }
 function renderContact(){
   const c = CONFIG.contact, out = [];
@@ -1305,15 +2895,20 @@ function highlight(){
 }
 
 /* ---------------- controls ---------------- */
-function setScent(k){
+function setScent(k, syncClock = true){
   if(!SCENTS[k]) return;
   state.scent = k;
   const col = SCENTS[k].collection || "daily";
   if(state.collection !== col){
     state.collection = col;
+    renderTabs();
   }
+  syncHeaderTabs(k);
   renderText(); writeRoute();
   if(three){ Object.values(three.vessels).forEach(V => applyScentTo(V, SCENTS[k])); applySceneLook(SCENTS[k]); buildHotspots(); select(state.selected && PART_ORDER[state.size].includes(state.selected) ? state.selected : null); }
+  if(syncClock && typeof glideToPreset === "function" && CLOCK_PRESETS[k]){
+    glideToPreset(k);
+  }
 }
 function setSize(sz){
   if(sz === state.size) return;
@@ -1585,6 +3180,8 @@ function toggleFullscreen(forceState){
 }
 
 function bindUI(){
+  bindSoundscapeBtn();
+  bindClockDrag();
   $$(".col-pill").forEach(b => b.addEventListener("click", () => setCollection(b.dataset.col)));
   $$(".seg button").forEach(b => b.addEventListener("click", () => setSize(b.dataset.size)));
   $("#explode").addEventListener("input", ev => { setExplode(ev.target.value/100, true); if(three) three.lastInteract = performance.now(); });
@@ -1599,13 +3196,15 @@ function bindUI(){
       toggleFullscreen(false);
     }
   });
-  addEventListener("hashchange", () => { const p = { s:state.scent, z:state.size }; readRoute(); const ns = state.scent, nz = state.size; state.scent = p.s; state.size = p.z; setScent(ns); setSize(nz); });
+  addEventListener("hashchange", () => { const p = { s:state.scent, z:state.size }; readRoute(true); const ns = state.scent, nz = state.size; state.scent = p.s; state.size = p.z; setScent(ns); setSize(nz); });
   setHint();
 }
 async function boot(){
   syncTopbarHeight();
   addEventListener("resize", syncTopbarHeight);
-  readRoute();
+  state.scent = getRealTimeScentKey();
+  readRoute(false);
+  renderTabs();
   renderModes(); renderContact(); renderText(); bindUI();
   const faces = ['800 100px "Playfair Display"','700 96px "Playfair Display"','700 30px "Be Vietnam Pro"'];
   try{ await Promise.race([ Promise.all([loadArt()].concat(faces.map(f => document.fonts.load(f, "Re:Bean TÁI SINH")))), new Promise(r => setTimeout(r, 4000)) ]); }catch(e){}
